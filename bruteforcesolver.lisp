@@ -14,10 +14,10 @@
 ;This function is a helper function for concatenating a list of strings into a 
 ;single string
 ;strList = the string list
-(defun concat-count-helper (strList)
+(defun concat-helper (strList)
   (if (endp strList)
       ""
-      (concatenate 'string (car strList) (concat-count-helper (cdr strList))
+      (concatenate 'string (car strList) (concat-helper (cdr strList))
                    )))
 
 ;Concat-Count (solutions)
@@ -32,9 +32,60 @@
 (defun concat-count (solutions)
   (if (endp solutions)
       nil
-      (cons (list (concat-count-helper (car solutions))
+      (cons (list (concat-helper (car solutions))
                   (len (car solutions)))(concat-count (cdr solutions)))
             ))
+
+; nthrdc (xs)
+; This function is similar to nthcdr except we are 
+; going backwards and removing the nth elements
+; from the end of the list.
+; n = the number of elements to delete
+; xs = the list
+(defun nthrdc (n xs)
+ (reverse (nthcdr n (reverse xs)))
+  )
+  
+;linear-row-search-helper (row sol)
+;This function does the string comparison for each row
+; and returns a vector if a solution is found.
+;row = the current row
+;sol = the current solution to find within the row
+;leftOrRight = the direction of search
+;rowNum = the current row number
+;rowLen = the length of the total row to determine col num
+(defun linear-row-search-helper (row sol leftOrRight rowNum colIndex)
+  (if (< (len row) (cadr sol))
+      nil ;the length of the current row is
+          ;smaller than the solution, hence its not on this row.
+      (if (equal (concat-helper (nthrdc (- (len row)(cadr sol)) row ))
+                              (car sol);if the sub-row matches the solution
+                              )
+                              ;found solution
+                              (list (list rowNum colIndex)  leftOrRight (- (cadr sol) 1))
+                              ;resulting vector (starting coords, direction, num of spaces from starting coords)
+          (linear-row-search-helper (cdr row) sol leftOrRight rowNum (+ colIndex 1));else keep searching within the current row, but the next col
+          )))
+   
+
+;linear-search (sol rows)
+;This function takes in a solution and
+; a list of rows and does extensive string matching
+;within the bounds of each row.
+;sol = the target solution
+;rows = the matrix in row major order
+;leftOrRight = the direction of search
+
+;Note: This is used for searching left to right 
+; and right to left only. 
+(defun linear-row-search (sol rows leftorRight rowNum)
+  (if (endp rows)
+      nil
+      (let* ((vect (linear-row-search-helper (car rows) sol leftOrRight (+ rowNum 1)  0)))
+        (if (not (equal vect nil))
+            vect
+            (linear-row-search sol (cdr rows) leftOrRight (+ rowNum 1))
+   ))))
 
 ;search-left-to-right (matrix solList)
 ;This function searches the matrix from left to right
@@ -43,8 +94,21 @@
 ;matrix = the game board
 ;solList = the concatenated list of string characters along with their word sizes.
 (defun search-left-to-right (matrix solList)
+(if (endp solList) ; no more solutions to check for
+    nil
+    (cons (linear-row-search (car solList) matrix "right" -1);start indexing the row
+          (search-left-to-right matrix (cdr solList)
+                                ))))
 
-   )
+;reverse-matrix (matrix)
+; This function takes in a matrix
+;in row order form and reverses it.
+;matrix = the matrix to be reversed
+(defun reverse-matrix (matrix)
+  (if (endp matrix)
+      nil
+      (cons (reverse (car matrix))(reverse-matrix (cdr matrix)))
+   ))
 
 ;search-right-to-left (matrix solList)
 ;This function searches the matrix from right to left
@@ -53,8 +117,11 @@
 ;matrix = the game board
 ;solList = the concatenated list of string characters along with their word sizes.
 (defun search-right-to-left (matrix solList)
-  (
-   ))
+(if (endp solList) ; no more solutions to check for
+    nil
+    (cons (linear-row-search (car solList) (reverse-matrix matrix) "left" -1);start indexing the row
+          (search-right-to-left matrix (cdr solList)
+                                ))))
 
 ;search-up-to-down (matrix solList)
 ;This function searches the matrix from up to down
@@ -95,14 +162,15 @@
    ))
 
 ;TESTING
-(brute-force-solver (list (list "a" "b" "c" "f" "g") ;;example game board
-                          (list "m" "l" "a" "h" "i") 
-                          (list "p" "o" "t" "j" "k") 
+(brute-force-solver (list (list "a" "b" "y" "f" "g") ;;example game board
+                          (list "m" "l" "i" "h" "i") 
+                          (list "p" "o" "t" "a" "c") 
                           (list "d" "o" "g" "q" "s")
                           (list "r" "p" "t" "u" "w"))
-                    (list (list "c" "a" "t") (list "d" "o" "g")); example solutions list
+                    (list (list "c" "a" "t") (list "d" "o" "g") (list "g" "q")); example solutions list
                     )
 
+;TODO the coordinates need to be fixed for right-to-left (backwards) searching. 
 
 
 
