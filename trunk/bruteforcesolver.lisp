@@ -36,22 +36,72 @@
                   (len (car solutions)))(concat-count (cdr solutions)))
             ))
 
-;Brute-Force-solver (matrix solutions)
+;search-left-to-right (matrix solList)
+;This function searches the matrix from left to right
+;in order to string match the solutions.
+;If solutions are found, then it returns a list of vectors.
+;matrix = the game board
+;solList = the concatenated list of string characters along with their word sizes.
+(defun search-left-to-right (matrix solList)
+
+   )
+
+;search-right-to-left (matrix solList)
+;This function searches the matrix from right to left
+;in order to string match the solutions.
+;If solutions are found, then it returns a list of vectors.
+;matrix = the game board
+;solList = the concatenated list of string characters along with their word sizes.
+(defun search-right-to-left (matrix solList)
+  (
+   ))
+
+;search-up-to-down (matrix solList)
+;This function searches the matrix from up to down
+;in order to string match the solutions.
+;If solutions are found, then it returns a list of vectors.
+;matrix = the game board
+;solList = the concatenated list of string characters along with their word sizes.
+(defun search-up-to-down (matrix solList)
+  (
+   ))
+
+;search-down-to-up (matrix solList)
+;This function searches the matrix from down to up
+;in order to string match the solutions.
+;If solutions are found, then it returns a list of vectors.
+;matrix = the game board
+;solList = the concatenated list of string characters along with their word sizes.
+(defun search-down-to-up (matrix solList)
+  (
+   ))
+
+;brute-force-solver (matrix solutions)
 ; This function utilizes a brute force algorithm
 ; to search, match, and return locations within the grid
 ; with the pass-in solutions.
 ; matrix = the populated grid
 ; solutions = a list of words that we are searching for
-(defun Brute-Force-Solver (matrix solutions)
-  (
+;
+;Note: we are excluding diagonals due to complexity.
+(defun brute-force-solver (matrix solutions)
+  (let* ((solList (concat-count solutions));concatenate sols with their sizes
+         (searchLeftToRight(search-left-to-right matrix solList))
+         (searchRightToLeft(search-right-to-left matrix solList))
+         (searchUpToDown (search-up-to-down matrix solList))
+         (searchDownToUp (search-down-to-up matrix solList)))
+        (concatenate 'list searchLeftToRight searchRightToLeft
+                     searchUpToDown searchDownToUp);return a list of all vectors found. 
    ))
 
-
-
-
-
-
-
+;TESTING
+(brute-force-solver (list (list "a" "b" "c" "f" "g") ;;example game board
+                          (list "m" "l" "a" "h" "i") 
+                          (list "p" "o" "t" "j" "k") 
+                          (list "d" "o" "g" "q" "s")
+                          (list "r" "p" "t" "u" "w"))
+                    (list (list "c" "a" "t") (list "d" "o" "g")); example solutions list
+                    )
 
 
 
