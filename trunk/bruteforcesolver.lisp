@@ -17,7 +17,8 @@
 (defun concat-helper (strList)
   (if (endp strList)
       ""
-      (concatenate 'string (car strList) (concat-helper (cdr strList))
+      (concatenate 'string (car strList) 
+                   (concat-helper (cdr strList))
                    )))
 
 ;Concat-Count (solutions)
@@ -54,7 +55,7 @@
 ;leftOrRight = the direction of search
 ;rowNum = the current row number
 ;rowLen = the length of the total row to determine col num
-(defun linear-row-search-helper (row sol leftOrRight rowNum colIndex rowSize)
+(defun linear-search-helper (row sol direction rowNum colIndex rowSize)
   (if (< (len row) (cadr sol))
       nil ;the length of the current row is
           ;smaller than the solution, hence its not on this row.
@@ -63,12 +64,13 @@
                               )
                               ;found solution
                               ;resulting vector (starting coords, direction, num of spaces from starting coords)
-                              (if (equal leftOrRight "right")
-                                  (list rowNum colIndex  leftOrRight (- (cadr sol) 1));right coords
-                                  (list rowNum (- rowSize colIndex)  leftOrRight (- (cadr sol) 1));left coords
-                                  )
+                              (cond ((equal direction "right")(list rowNum colIndex  direction (- (cadr sol) 1)));right coords)
+                                    ((equal direction "left")(list rowNum (- rowSize colIndex)  direction (- (cadr sol) 1)));left coords
+                                    ((equal direction "up")(list (- rowSize colIndex) rowNum  direction (- (cadr sol) 1)) )
+                                    ((equal direction "down")(list colIndex rowNum direction (- (cadr sol) 1)))
+                                    )
                               ;else keep searching within the current row, but the next col
-          (linear-row-search-helper (cdr row) sol leftOrRight rowNum (+ colIndex 1) rowSize)
+          (linear-search-helper (cdr row) sol direction rowNum (+ colIndex 1) rowSize)
           )))
    
 
@@ -82,14 +84,14 @@
 
 ;Note: This is used for searching left to right 
 ; and right to left only. 
-(defun linear-row-search (sol rows leftorRight rowNum)
+(defun linear-search (sol rows direction rowNum)
   (if (endp rows)
       nil
-      (let* ((vect (linear-row-search-helper (car rows) sol leftOrRight
+      (let* ((vect (linear-search-helper (car rows) sol direction
                                              (+ rowNum 1)  0 (- (len (car rows)) 1))))
         (if (not (equal vect nil))
             vect
-            (linear-row-search sol (cdr rows) leftOrRight (+ rowNum 1))
+            (linear-search sol (cdr rows) direction (+ rowNum 1))
    ))))
 
 ;search-left-to-right (matrix solList)
@@ -101,7 +103,7 @@
 (defun search-left-to-right (matrix solList)
 (if (endp solList) ; no more solutions to check for
     nil
-    (cons (linear-row-search (car solList) matrix "right" -1);start indexing the row
+    (cons (linear-search (car solList) matrix "right" -1);start indexing the row
           (search-left-to-right matrix (cdr solList)
                                 ))))
 
@@ -124,7 +126,7 @@
 (defun search-right-to-left (matrix solList)
 (if (endp solList) ; no more solutions to check for
     nil
-    (cons (linear-row-search (car solList)
+    (cons (linear-search (car solList)
                              (reverse-matrix matrix) "left" -1);start indexing the row
           (search-right-to-left matrix (cdr solList)
                                 ))))
@@ -159,21 +161,28 @@
 ;This function searches the matrix from up to down
 ;in order to string match the solutions.
 ;If solutions are found, then it returns a list of vectors.
-;matrix = the game board
+;tmatrix = the transposed matrix
 ;solList = the concatenated list of string characters along with their word sizes.
-(defun search-up-to-down (matrix solList)
-  (
-))
+(defun search-up-to-down (tmatrix solList)
+(if (endp solList) ; no more solutions to check for
+    nil
+    (cons (linear-search (car solList) tmatrix "down" -1);start indexing the col
+          (search-up-to-down tmatrix (cdr solList)
+                                ))))
 
 ;search-down-to-up (matrix solList)
 ;This function searches the matrix from down to up
 ;in order to string match the solutions.
 ;If solutions are found, then it returns a list of vectors.
-;matrix = the game board
+;tmatrix = the transposed matrix
 ;solList = the concatenated list of string characters along with their word sizes.
-(defun search-down-to-up (matrix solList)
-  (
-   ))
+(defun search-down-to-up (tmatrix solList)
+(if (endp solList) ; no more solutions to check for
+    nil
+    (cons (linear-search (car solList)
+                             (reverse-matrix tmatrix) "up" -1);start indexing the row
+          (search-down-to-up tmatrix (cdr solList)
+                                ))))
 
 ;clean-results (results)
 ;This function takes the list of vectors
@@ -199,7 +208,7 @@
 ; matrix = the populated grid
 ; solutions = a list of words that we are searching for
 ;
-;Note: we are excluding diagonals due to complexity.
+;**Note: we are excluding diagonals due to complexity**
 ;
 ; The result is a list of vectors of the form (x y direction number-of-spaces). 
 ;Each x and y is zero indexed and the number of spaces is starting from that coordinate
@@ -208,24 +217,35 @@
   (let* ((solList (concat-count solutions));concatenate sols with their sizes
          (searchLeftToRight(search-left-to-right matrix solList))
          (searchRightToLeft(search-right-to-left matrix solList))
-         (searchUpToDown (search-up-to-down matrix solList))
-         (searchDownToUp (search-down-to-up matrix solList)))
+         (searchUpToDown (search-up-to-down (transpose matrix (len (car matrix)) 0) solList));invert the matrix and use implemented logic
+         (searchDownToUp (search-down-to-up (transpose matrix (len (car matrix)) 0) solList)))
         (clean-results(concatenate 'list searchLeftToRight searchRightToLeft
                      searchUpToDown searchDownToUp));return a list of all vectors found. 
    ))
 
 ;TESTING...this is how we use this solver.
-;(brute-force-solver (list (list "a" "b" "y" "f" "g") ;;example game board
-;                          (list "m" "l" "i" "h" "i") 
-;                          (list "p" "o" "t" "a" "c") 
-;                          (list "d" "o" "g" "q" "s")
-;                          (list "r" "p" "t" "u" "w"))
-;                    (list (list "c" "a" "t") (list "d" "o" "g") (list "i" "d" "g")); example solutions list
-;                    )
+(brute-force-solver (list (list "a" "b" "y" "i" "g" "g" "d" "a" "e") ;;example game board
+                          (list "m" "l" "i" "d" "i" "q" "p" "u" "f") 
+                          (list "p" "o" "t" "a" "c" "f" "d" "f" "g") 
+                          (list "d" "o" "g" "t" "s" "c" "a" "c" "k")
+                          (list "r" "p" "p" "t" "w" "w" "r" "g" "o")
+                          (list "e" "p" "t" "o" "g" "o" "x" "z" "a")
+                          (list "w" "f" "t" "r" "q" "r" "w" "d" "b")
+                          (list "e" "d" "t" "r" "i" "r" "t" "f" "p")
+                          (list "h" "d" "t" "a" "r" "a" "t" "f" "p")
+                          (list "e" "w" "t" "p" "a" "p" "r" "o" "t")
+                          (list "i" "i" "u" "u" "q" "s" "o" "k" "n")
+                          (list "a" "u" "q" "s" "y" "f" "p" "s" "p")
+                          (list "e" "f" "d" "a" "q" "z" "j" "d" "c"))
+                    
+                    (list (list "c" "a" "t"); example word list 
+                          (list "d" "o" "g") 
+                          (list "p" "i" "g")
+                          (list "r" "a" "t")
+                          (list "p" "a" "r" "r" "o" "t")
+                          (list "s" "p" "a" "r" "r" "o" "w")
+                          )
+                    )
 
-           (transpose(list(list "a" "b" "y" "f" "g")
-                          (list "m" "l" "i" "h" "i") 
-                          (list "p" "o" "t" "a" "c") 
-                          (list "d" "o" "g" "q" "s")
-                          (list "r" "p" "t" "u" "w")) 5 0)
+
 
