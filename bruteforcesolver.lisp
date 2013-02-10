@@ -172,11 +172,3 @@
                           (list "r" "p" "t" "u" "w"))
                     (list (list "c" "a" "t") (list "d" "o" "g") (list "g" "q")); example solutions list
                     )
-
-;TODO the coordinates need to be fixed for right-to-left (backwards) searching. 
-
-
-
-
-
-
