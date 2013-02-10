@@ -54,7 +54,7 @@
 ;leftOrRight = the direction of search
 ;rowNum = the current row number
 ;rowLen = the length of the total row to determine col num
-(defun linear-row-search-helper (row sol leftOrRight rowNum colIndex)
+(defun linear-row-search-helper (row sol leftOrRight rowNum colIndex rowSize)
   (if (< (len row) (cadr sol))
       nil ;the length of the current row is
           ;smaller than the solution, hence its not on this row.
@@ -62,9 +62,12 @@
                               (car sol);if the sub-row matches the solution
                               )
                               ;found solution
-                              (list (list rowNum colIndex)  leftOrRight (- (cadr sol) 1))
                               ;resulting vector (starting coords, direction, num of spaces from starting coords)
-          (linear-row-search-helper (cdr row) sol leftOrRight rowNum (+ colIndex 1));else keep searching within the current row, but the next col
+                              (if (equal leftOrRight "right")
+                                  (list (list rowNum colIndex)  leftOrRight (- (cadr sol) 1));right coords
+                                  (list (list rowNum (- rowSize colIndex))  leftOrRight (- (cadr sol) 1));left coords
+                                  )
+          (linear-row-search-helper (cdr row) sol leftOrRight rowNum (+ colIndex 1) rowSize);else keep searching within the current row, but the next col
           )))
    
 
@@ -81,7 +84,7 @@
 (defun linear-row-search (sol rows leftorRight rowNum)
   (if (endp rows)
       nil
-      (let* ((vect (linear-row-search-helper (car rows) sol leftOrRight (+ rowNum 1)  0)))
+      (let* ((vect (linear-row-search-helper (car rows) sol leftOrRight (+ rowNum 1)  0 (- (len (car rows)) 1))))
         (if (not (equal vect nil))
             vect
             (linear-row-search sol (cdr rows) leftOrRight (+ rowNum 1))
