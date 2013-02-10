@@ -64,14 +64,15 @@
                               ;found solution
                               ;resulting vector (starting coords, direction, num of spaces from starting coords)
                               (if (equal leftOrRight "right")
-                                  (list (list rowNum colIndex)  leftOrRight (- (cadr sol) 1));right coords
-                                  (list (list rowNum (- rowSize colIndex))  leftOrRight (- (cadr sol) 1));left coords
+                                  (list rowNum colIndex  leftOrRight (- (cadr sol) 1));right coords
+                                  (list rowNum (- rowSize colIndex)  leftOrRight (- (cadr sol) 1));left coords
                                   )
-          (linear-row-search-helper (cdr row) sol leftOrRight rowNum (+ colIndex 1) rowSize);else keep searching within the current row, but the next col
+                              ;else keep searching within the current row, but the next col
+          (linear-row-search-helper (cdr row) sol leftOrRight rowNum (+ colIndex 1) rowSize)
           )))
    
 
-;linear-search (sol rows)
+;linear-row-search (sol rows)
 ;This function takes in a solution and
 ; a list of rows and does extensive string matching
 ;within the bounds of each row.
@@ -84,7 +85,8 @@
 (defun linear-row-search (sol rows leftorRight rowNum)
   (if (endp rows)
       nil
-      (let* ((vect (linear-row-search-helper (car rows) sol leftOrRight (+ rowNum 1)  0 (- (len (car rows)) 1))))
+      (let* ((vect (linear-row-search-helper (car rows) sol leftOrRight
+                                             (+ rowNum 1)  0 (- (len (car rows)) 1))))
         (if (not (equal vect nil))
             vect
             (linear-row-search sol (cdr rows) leftOrRight (+ rowNum 1))
@@ -122,9 +124,36 @@
 (defun search-right-to-left (matrix solList)
 (if (endp solList) ; no more solutions to check for
     nil
-    (cons (linear-row-search (car solList) (reverse-matrix matrix) "left" -1);start indexing the row
+    (cons (linear-row-search (car solList)
+                             (reverse-matrix matrix) "left" -1);start indexing the row
           (search-right-to-left matrix (cdr solList)
                                 ))))
+
+;transpose-helper (matrix index)
+;Thie function acts as a helper for transpose by
+;iterating through the whole matrix and creating a column
+;out of the given row index.
+;matrix = the matrix to be flipped
+;index = the row index
+(defun transpose-helper (matrix index)
+  (if (endp matrix)
+      nil
+      (cons (car (nthcdr index (car matrix)))
+            (transpose-helper (cdr matrix) index))
+      ))
+
+;transpose (matrix)
+;This function takes in a matrix
+;and returns its transpose (flipping to the right)
+;matrix = the matrix to flip
+;rowLength = the size of every row in the matrix
+;Note: To be used for searching up to down and down to up
+(defun transpose (matrix rowLength index)
+  (if (= rowLength index)
+      nil
+      (cons (transpose-helper matrix index)
+            (transpose matrix rowLength (+ index 1)))
+      ))
 
 ;search-up-to-down (matrix solList)
 ;This function searches the matrix from up to down
@@ -134,7 +163,7 @@
 ;solList = the concatenated list of string characters along with their word sizes.
 (defun search-up-to-down (matrix solList)
   (
-   ))
+))
 
 ;search-down-to-up (matrix solList)
 ;This function searches the matrix from down to up
@@ -146,29 +175,57 @@
   (
    ))
 
+;clean-results (results)
+;This function takes the list of vectors
+;and removes all of the nil entries
+;that each search direction returns if 
+;the word was not found. This allows the
+;results to be human readable and easy to work with
+;for modularity.
+;results = the list of vectors
+(defun clean-results (results)
+  (if (endp results)
+      nil
+      (if (equal (car results) nil)
+          (clean-results (cdr results))
+          (cons (car results) (clean-results (cdr results)))
+          )))
+   
+
 ;brute-force-solver (matrix solutions)
 ; This function utilizes a brute force algorithm
 ; to search, match, and return locations within the grid
-; with the pass-in solutions.
+; with the pass-in solutions. This is the only function which should be called externally. 
 ; matrix = the populated grid
 ; solutions = a list of words that we are searching for
 ;
 ;Note: we are excluding diagonals due to complexity.
+;
+; The result is a list of vectors of the form (x y direction number-of-spaces). 
+;Each x and y is zero indexed and the number of spaces is starting from that coordinate
+;and going in the direction specified.
 (defun brute-force-solver (matrix solutions)
   (let* ((solList (concat-count solutions));concatenate sols with their sizes
          (searchLeftToRight(search-left-to-right matrix solList))
          (searchRightToLeft(search-right-to-left matrix solList))
          (searchUpToDown (search-up-to-down matrix solList))
          (searchDownToUp (search-down-to-up matrix solList)))
-        (concatenate 'list searchLeftToRight searchRightToLeft
-                     searchUpToDown searchDownToUp);return a list of all vectors found. 
+        (clean-results(concatenate 'list searchLeftToRight searchRightToLeft
+                     searchUpToDown searchDownToUp));return a list of all vectors found. 
    ))
 
-;TESTING
-(brute-force-solver (list (list "a" "b" "y" "f" "g") ;;example game board
+;TESTING...this is how we use this solver.
+;(brute-force-solver (list (list "a" "b" "y" "f" "g") ;;example game board
+;                          (list "m" "l" "i" "h" "i") 
+;                          (list "p" "o" "t" "a" "c") 
+;                          (list "d" "o" "g" "q" "s")
+;                          (list "r" "p" "t" "u" "w"))
+;                    (list (list "c" "a" "t") (list "d" "o" "g") (list "i" "d" "g")); example solutions list
+;                    )
+
+           (transpose(list(list "a" "b" "y" "f" "g")
                           (list "m" "l" "i" "h" "i") 
                           (list "p" "o" "t" "a" "c") 
                           (list "d" "o" "g" "q" "s")
-                          (list "r" "p" "t" "u" "w"))
-                    (list (list "c" "a" "t") (list "d" "o" "g") (list "g" "q")); example solutions list
-                    )
+                          (list "r" "p" "t" "u" "w")) 5 0)
+
