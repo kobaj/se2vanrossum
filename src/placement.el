@@ -85,10 +85,7 @@
         (new-brd 
          (update-brd brd new-row row-num 0)))
     new-brd))
- 
-;Place word diagonally
-(defun plc-diag (brd word cords))
- 
+
 
 
 ;;$$#@$!$!#$#@$#@$!@#$!$!$#!@$#@!$!@$!@ -- Random number Generator !@#
@@ -99,12 +96,68 @@
 ; word according to its placement 
 ; type
 (defun get-cords (type brd word)
-  (
 ))
 
 
-(defun find-fits (word brd)
-  (
+(defun ckrow (n row)
+  (if (endp row) nil
+    (if (= (car row) " ")
+	(cons n (ckrow (+ n 1) (cdr row) ))
+      (cons nil (ckrow (+ n 1) (cdr)))
+  )))
+
+(defun consec (n nums)
+  (if (endp nums) nil
+    (if (= nums n)
+	(cons n (consec 
+
+
+; Defines if word will fit in given coords
+(defun fits (word coords)
+  (if (endp coords) nil
+    (if ( <= (len words) 
+	     (- (cadr (car coords)) (caar coords))
+	     (cons (car coords) (fits word (cdr coords)))))))
+
+
+; Gets the end coordinate for the row
+(defun get-end (n nums)
+  (if (endp nums) (- n 1) 
+      (if (= (car nums) n)
+          (get-end (+ n 1) (cdr nums))
+          (-  n 1))))
+
+
+; Gets the start and end coordinates for the row
+; This returns a list of coordinates for row
+(defun start-end (n nums)
+  (if (endp nums) n
+      (if (= n (car nums))
+          (let ((start (car nums)) ; get the starting point of row
+                (end (get-end (+ n 1) (cdr nums)) ;get the ending point of row
+                     ))
+                (cons (list start end) ;add starting and ending pts
+                      (start-end end  (nthcdr (+ 1 end) nums))))
+          (start-end (+ n 1) nums))))
+
+
+; Checks the row and finds all the indices that are blank
+(defun ckrow (n row)
+  (if (endp row) nil
+    (if (char-equal (car row) #\space)
+	(cons n (ckrow (+ n 1) (cdr row) ))
+      (ckrow (+ n 1) (cdr row))
+  )))
+
+
+
+; return a list of the avail coordinates
+(defun find-fit-h (word brd)
+  (if (endp brd) nil
+    (
+
+		
+
 
 ; Place word on the board according to random num generator
 (defun place (brd word rand)
