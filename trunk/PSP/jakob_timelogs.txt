@@ -1,0 +1,63 @@
+name: Jakob Griffith
+date: February 5, 2013
+program: timelog
+instructor: Dr. Page
+
+actual base lines: 0
+actual added lines: 0
+actual modified lines: 0
+actual removed lines: 0
+
+time log:
+	- date: January 17, 2013
+	start time: 10:30AM
+	end time: 11:45AM
+	phase: Group Planning
+	comment: Got to remeet old group and team, as well as discuss ideas for the project.
+	
+	- date: January 22, 2013
+	start time: 10:28AM
+	end time: 11:50AM
+	phase: Group Planning
+	comment: Worked on t2 with group, project proposal for
+	Crossword/wordsearch games.
+	
+	- date: January 24, 2013
+	start time: 10:32AM
+	end time: 11:48AM
+	phase: Group Planning
+	comment: Proposal laid out, deligated work regarding engineering
+	standards and presentation.
+
+	- date: January 29, 2013
+	start time: 10:30AM
+	end time: 11:45AM
+	phase: Group Planning
+	comment: Wrapped up work on t1,t2,t3, began practice for presentation.
+
+	- date: January 29, 2013
+	start time: 6:04PM
+	end time: 7:10PM
+	phase: Individual Practice
+	comment: Performed my section of the presentation to ensure proper time and information goals were met.
+
+	- date: January 31, 2013
+	start time: 10:30AM	
+	end time: 11:45AM
+	phase: Group Presentation	
+	comment: Team presentation day, showing off the Word Games Project.
+
+	- date: February 5, 2013
+	start time: 10:25AM
+	end time: 11:59AM
+	phase: Group Planning
+	comment: Deligated next section of work (t4), and prepared for next thursday's presentation.
+
+new objects:
+reused objects:
+defect log:
+	
+	- date: January 29, 2013
+	type: Individual Practice
+	fix time: 2
+	comment: Rewrote my script to tame it down.
