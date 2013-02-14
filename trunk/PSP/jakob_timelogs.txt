@@ -53,6 +53,24 @@ time log:
 	phase: Group Planning
 	comment: Deligated next section of work (t4), and prepared for next thursday's presentation.
 
+	- date: February 7, 2013
+	start time: 10:20AM
+	end time: 11:50AM
+	phase: Group Planning
+	comment: Discussion and presentation of progress so far with dr. Page. Lots of concern over random number generation.
+
+	- date: February 12, 2013
+	start time: 10:25AM
+	end time: 11:59AM
+	phase: Group Planning
+	comment: Review of design between members, required new markup of old t5.
+
+	- date: February 14, 2013
+	start time: 10:35AM
+	end time: 11:40AM
+	phase: Group Planning
+	comment: Delegation of a new run of work (t7) and recap of current progress.
+
 new objects:
 reused objects:
 defect log:
@@ -60,4 +78,4 @@ defect log:
 	- date: January 29, 2013
 	type: Individual Practice
 	fix time: 2
-	comment: Rewrote my script to tame it down.
+	comment: Rewrote my presentation script to tame it down.
