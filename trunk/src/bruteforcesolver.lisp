@@ -224,10 +224,10 @@
    ))
 
 ;TESTING...this is how we use this solver.
-(brute-force-solver (list (list "a" "b" "y" "i" "g" "g" "d" "a" "e") ;;example game board
-                          (list "m" "l" "i" "d" "i" "q" "p" "u" "f") 
-                          (list "p" "o" "t" "a" "c" "f" "d" "f" "g") 
-                          (list "d" "o" "g" "t" "s" "c" "a" "c" "k")
+(brute-force-solver (list (list "w" "b" "y" "i" "g" "g" "d" "a" "w") ;;example game board
+                          (list "m" "l" "i" "d" "i" "q" "p" "u" "o") 
+                          (list "p" "o" "t" "a" "c" "f" "d" "f" "r") 
+                          (list "d" "o" "g" "t" "s" "c" "a" "c" "m")
                           (list "r" "p" "p" "t" "w" "w" "r" "g" "o")
                           (list "e" "p" "t" "o" "g" "o" "x" "z" "a")
                           (list "w" "f" "t" "r" "q" "r" "w" "d" "b")
@@ -244,6 +244,7 @@
                           (list "r" "a" "t")
                           (list "p" "a" "r" "r" "o" "t")
                           (list "s" "p" "a" "r" "r" "o" "w")
+                          (list "w" "o" "r" "m")
                           )
                     )
 
