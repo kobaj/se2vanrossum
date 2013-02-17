@@ -224,29 +224,29 @@
    ))
 
 ;TESTING...this is how we use this solver.
-(brute-force-solver (list (list "w" "b" "y" "i" "g" "g" "d" "a" "w") ;;example game board
-                          (list "m" "l" "i" "d" "i" "q" "p" "u" "o") 
-                          (list "p" "o" "t" "a" "c" "f" "d" "f" "r") 
-                          (list "d" "o" "g" "t" "s" "c" "a" "c" "m")
-                          (list "r" "p" "p" "t" "w" "w" "r" "g" "o")
-                          (list "e" "p" "t" "o" "g" "o" "x" "z" "a")
-                          (list "w" "f" "t" "r" "q" "r" "w" "d" "b")
-                          (list "e" "d" "t" "r" "i" "r" "t" "f" "p")
-                          (list "h" "d" "t" "a" "r" "a" "t" "f" "p")
-                          (list "e" "w" "t" "p" "a" "p" "r" "o" "t")
-                          (list "i" "i" "u" "u" "q" "s" "o" "k" "n")
-                          (list "a" "u" "q" "s" "y" "f" "p" "s" "p")
-                          (list "e" "f" "d" "a" "q" "z" "j" "d" "c"))
-                    
-                    (list (list "c" "a" "t"); example word list 
-                          (list "d" "o" "g") 
-                          (list "p" "i" "g")
-                          (list "r" "a" "t")
-                          (list "p" "a" "r" "r" "o" "t")
-                          (list "s" "p" "a" "r" "r" "o" "w")
-                          (list "w" "o" "r" "m")
-                          )
-                    )
+;(brute-force-solver (list (list "w" "b" "y" "i" "g" "g" "d" "a" "w") ;example game board
+;                          (list "m" "l" "i" "d" "i" "q" "p" "u" "o") 
+;                          (list "p" "o" "t" "a" "c" "f" "d" "f" "r") 
+;                          (list "d" "o" "g" "t" "s" "c" "a" "c" "m")
+;                          (list "r" "p" "p" "t" "w" "w" "r" "g" "o")
+;                          (list "e" "p" "t" "o" "g" "o" "x" "z" "a")
+;                          (list "w" "f" "t" "r" "q" "r" "w" "d" "b")
+;                          (list "e" "d" "t" "r" "i" "r" "t" "f" "p")
+;                          (list "h" "d" "t" "a" "r" "a" "t" "f" "p")
+;                          (list "e" "w" "t" "p" "a" "p" "r" "o" "t")
+;                          (list "i" "i" "u" "u" "q" "s" "o" "k" "n")
+;                          (list "a" "u" "q" "s" "y" "f" "p" "s" "p")
+;                          (list "e" "f" "d" "a" "q" "z" "j" "d" "c"))
+;                    
+;                    (list (list "c" "a" "t"); example word list 
+;                          (list "d" "o" "g") 
+;                          (list "p" "i" "g")
+;                          (list "r" "a" "t")
+;                          (list "p" "a" "r" "r" "o" "t")
+;                          (list "s" "p" "a" "r" "r" "o" "w")
+;                          (list "w" "o" "r" "m")
+;                          )
+;                    )
 
 
 
