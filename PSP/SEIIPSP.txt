@@ -94,6 +94,12 @@ time log:
           phase: meeting
 	  comment: Team began preparing for the next progress report and finished the design documents and work for remaining modules. 
 
+	- date: Feb 17, 2013
+	  start time: 4:30pm
+	  end time: 5:55pm
+          phase: testing
+	  comment: Began implementing unit tests for brute force solver. 
+
 defect log:
 
 	- date: Feb 8, 2013
