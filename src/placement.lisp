@@ -1,7 +1,9 @@
-; Team Van Rossum
-; Places the words on the board appropriately
-
-
+; SE2 Van Rossum
+;
+;placement.lisp 
+;
+; places the words within the word search
+;
 
 
 (include-book "rand" :dir :teachpacks)
@@ -21,8 +23,7 @@
             (update-row (cdr brd) brd-length 
                         row  
                         row-num 
-                        (+ 1 n))))
-  ))
+                        (+ 1 n)))) ))
       
 
 
@@ -132,13 +133,29 @@
 ; correct spot utilizing coordinates
 (defun row-rep (chrs y1 y2 cnt row)
   (if (= (+ 1 cnt) (len row)) (last row) ;we reached end of row
-  (if (and (>= cnt y1) (< cnt y2))
+  (if  (and (not (endp chrs)) (and (>= cnt y1) (< cnt y2)))
       (cons (car chrs) ; where we put characters into board
             (row-rep (cdr chrs) y1 y2 (+ 1 cnt) row)) 
     (cons (nth cnt  row) ; kee going until we are in range
          (row-rep chrs y1 y2 (+ 1 cnt) row)
   
 ))))
+
+;(defun update-column (col y1 y2 brd)
+;  (if (endp brd)
+
+(defun get-column (brd  col)
+  (if (endp brd) '()
+  (cons (nth col (car brd)) 
+        (get-column (cdr brd) col))))
+
+;(defun plc-vert (brd word coords)
+;  (let* ((cords (car coords)
+;                )
+;         (col-num (cadar cords))
+;         (y1 (caar cords))
+;         (y2 (cadr cords))
+;         (cons (plc-vert-helper y1 y2 col word) (plc-vert brd word coords)))))
 
 ;Find a need to place letters horizontally
 ;across the game-board this will do it
@@ -155,7 +172,6 @@
 
 ; Place word on the board according to random num generator
 (defun place (brd word type coord)
-
   (cond ((= type 0) (plc-horiz brd word coord)) 
 	((= type 1) (plc-horiz brd (reverse word) coord))))
 ;TODO do for verticals and diagonals
@@ -167,6 +183,5 @@
   (let* ((word (coerce (car words) 'list)) ;convert the word to a list of characters
 	(type (rand 2 (car seeds))) ;get the type we are placing
 	(coords (fit-coords word brd (car seeds)))
- 	(new-brd (place brd word type  coords))) ;our new updated board after we place the word
+ 	(new-brd (place brd word type  coords)));our new updated board after we place the word
     (cons new-brd (plc-wdsrch (cdr words) new-brd (cdr seeds))))))
-
