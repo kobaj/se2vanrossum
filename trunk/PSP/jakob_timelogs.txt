@@ -71,6 +71,12 @@ time log:
 	phase: Group Planning
 	comment: Delegation of a new run of work (t7) and recap of current progress.
 
+	- date: February 19, 2013
+	start time: 10:32AM
+	end time: 11:15AM
+	phase: Group Planning
+	comment: Regroup on problems regarding create board while planning out t8.
+
 new objects:
 reused objects:
 defect log:
@@ -79,3 +85,8 @@ defect log:
 	type: Individual Practice
 	fix time: 2
 	comment: Rewrote my presentation script to tame it down.
+
+	- date: February 19, 2013
+	type: Group
+	fix time: 1
+	comment: Confusing over redistribution of algorythms and unit tests, solved by discussion.
