@@ -4,6 +4,8 @@
 ; creates the game board
 ;
 
+(include-book "placement")
+(include-book "fill-board")
 ; Helper function to get largest element returns larger
 ; of two words
 (defun largest-elem-helper (word1 word2)
@@ -42,12 +44,12 @@
 
 ;Generate Board for word-search
 (defun wdsrch-brd (words diff)
-  (let* ((diff (gen-diff  words diff))
-        (brd (mtx 10 10))
-        (seeds '(1 2 3 4 5 6 21 23 12 24 21 9 1 12  17 19 12 29 4 22 23 14 22 23 19 17))
-        (wdsrch  (car (last (plc-wdsrch words brd seeds))))
-       (filld-srch (fill-brd wdsrch seeds)))
-        filld-srch))
+  (let* ((brd (mtx 10 10))
+        (seeds '(1 2 3 4 5 69 17)))
+ ;       (wdsrch  (car (last (plc-wdsrch words brd seeds))))
+        (mv brd seeds)))
+;       (filld-srch (fill-brd wdsrch seeds)))
+;        filld-srch))
 
 ;Generate Board for word-search
 ;(defun xwrd-brd (words)
@@ -63,3 +65,5 @@
    (cond ((= game 1) (wdsrch-brd words diff))
 	 ((= game 2) nil)) 
 )
+
+; End create-board.lisp
