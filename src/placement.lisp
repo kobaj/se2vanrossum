@@ -114,11 +114,12 @@
 
 ; Place this word vertically dog
 (defun plc-vert (brd word coords)
-  (let* ((col-num (caar coords))
-         (y1 (cadar coords))
-         (y2 (cadadr coords))
+  (let* ((col-num (cadar coords))
+         (y1 (caar coords))
+         (y2 (caadr coords))
          (col (get-column brd col-num))
          (new-col (row-rep word y1 y2 0 col))
+         
          (new-brd (replace-col brd new-col col-num)))
     new-brd))
 
@@ -140,8 +141,8 @@
 (defun place (brd word type coord)
   (cond ((= type 0) (plc-horiz brd word coord)) 
 	((= type 1) (plc-horiz brd (reverse word) coord))
-        ((= type 3) (plc-vert brd word coord))
-        ((= type 4) (plc-vert brd (reverse word) coord))))
+        ((= type 2) (plc-vert brd word coord))
+        ((= type 3) (plc-vert brd (reverse word) coord))))
 
 
 
@@ -149,7 +150,7 @@
 (defun plc-wdsrch (words brd seeds)
   (if (endp words) '()
       (let* ((word (coerce (car words) 'list)) ;cnvrt str chrs
-             (type (rand 3 (car seeds))) ;get the type we are placing
+             (type (rand 4 (car seeds))) ;get the type we are placing
              (coords (fit-coords type word brd (car seeds)))
              (new-brd (place brd word type  coords)));our new updated board
         (cons new-brd (plc-wdsrch (cdr words) new-brd (cdr seeds))))))

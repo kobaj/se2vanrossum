@@ -2,6 +2,9 @@
 ; Fills the game board appropriately depending
 ; on whether it is a crossword or a word srch
 
+;1 random number and keep modifying it.
+
+(include-book "rand" :dir :teachpacks)
 ; Returns random letter
 (defun rand-let (num)
   (cond (( = num 0) #\a)
@@ -29,7 +32,7 @@
 	((= num 22) #\w)
 	((= num 23) #\x)
 	((= num 24) #\y)
-	((= num 25) #\s)
+	((= num 25) #\z)
 ))
 
 
@@ -38,14 +41,14 @@
 (defun row-fill (row nums)
   (if (endp row) '()
   (if (char-equal #\space (car row))
-      (cons (rand-let (car nums)) 
+      (cons (rand-let (rand 25 (car nums))) 
             (row-fill (cdr row) (cdr nums)))
       (cons (car row) (row-fill (cdr row) (cdr nums))))))
 
 (defun fill-brd (wdsrch seeds)
   (if (endp wdsrch) '()
       (cons (row-fill (car wdsrch) seeds)
-            (fill-brd (cdr wdsrch) seeds))))
+            (fill-brd (cdr wdsrch) (cdr seeds)))))
 
 
 
