@@ -112,6 +112,18 @@ time log:
           phase: meeting
 	  comment: Team discussed the next progress report and finished assignment.  
 
+	- date: Feb 21, 2013
+	  start time: 10:33am
+	  end time: 11:46am
+          phase: meeting
+	  comment: Team conducted a progress report to Dr. Page and discussed further implementation issues.
+
+	- date: Feb 23, 2013
+	  start time: 3:45pm
+	  end time: 4:32pm
+          phase: implementation
+	  comment: Began hill climbing search. Started recycling useful code from brute force solver. 
+
 defect log:
 
 	- date: Feb 8, 2013
