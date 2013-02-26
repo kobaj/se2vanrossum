@@ -5,6 +5,8 @@
 ; (bunch-of-chrs filename state)
 ; This function takes in a file and a state and returns a list of
 ; lists of characters
+; Note: for a crossword, the text will have the form word1>hint1
+; and for a wordsearch it will just be word1 (one per line)
 ; filename = string representation of the file to read
 ; state = file->string state
 (defun bunch-of-chrs (filename state)
