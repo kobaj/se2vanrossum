@@ -1,0 +1,139 @@
+name: Clayton Miller
+date: January 17, 2013
+Program: capstone
+instructor: Dr. Page
+
+actual added lines: 23
+actual base lines: 0
+
+time log:
+
+		- date: Jan 17, 2013
+		  start time: 10:30AM
+		  end time: 11:47AM
+		  phase: planning
+		  comment: Team discussion of what our capstone project would be. Ultimately decided upon a word search/crossword puzzle project.
+		  
+		- date: Jan 22, 2013
+		  start time: 10:33AM
+		  end time: 11:45AM
+		  phase: planning
+		  comment: Refined word search project plan and worked on figuring out basic project structure in team meeting. Evaluated different approaches to solving word search problem.
+		  
+		- date: Jan 24, 2013
+		  start time: 10:36AM
+		  end time: 11:47AM
+		  phase: planning
+		  comment: Worked on slides for presentation.
+		  
+		- date: Jan 29, 2013
+		  start time: 10:34AM
+		  end time: 11:47AM
+		  phase: planning
+		  comment: Finished presentation slides and decided on who would speak for which slides.
+		  
+		- date: Feb 5, 2013
+		  start time: 10:30AM
+		  end time: 11:46AM
+		  phase: planning
+		  comment: Discussed who would work on which parts of the project, and came up with a rough outline of our project schedule.
+		  
+		- date: Feb 7, 2013
+		  start time: 10:38AM
+		  end time: 10:50AM
+		  phase: discussion
+		  comment: Presented current project status to project manager Dr. Page.
+		  
+		- date: Feb 7, 2013
+		  start time: 11:11AM
+		  end time: 11:42AM
+		  phase: planning
+		  comment: Worked on t5: Multilevel design and PROBE estimate.
+		  
+		- date: Feb 12, 2013
+		  start time: 10:32AM
+		  end time: 11:13AM
+		  phase: review
+		  comment: Worked on t6: Initial design review report.
+		  
+		- date: Feb 12, 2013
+		  start time: 11:15AM
+		  end time: 11:24AM
+		  phase: discussion
+		  comment: Completed agenda for today's meeting.
+		  
+		- date: Feb 12, 2013
+		  start time: 11:28AM
+		  end time: 11:41AM
+		  phase: planning
+		  comment: Discussed more implementation details.
+		  
+		- date: Feb 14, 2013
+		  start time: 10:31AM
+		  end time: 10:46AM
+		  phase: discussion
+		  comment: Worked on t7.
+		  
+		- date: Feb 14, 2013
+		  start time: 10:46AM
+		  end time: 11:46AM
+		  phase: design
+		  comment: Worked on create-words-list function.
+		  
+		- date: Feb 19, 2013
+		  start time: 10:38AM
+		  end time: 11:40AM
+		  phase: planning
+		  comment: Worked on t8: Progress Report B.
+		  
+		- date: Feb 21, 2013
+		  start time: 10:46AM
+		  end time: 11:02AM
+		  phase: discussion
+		  comment: Presented t8: Progress Report B.
+		  
+		- date: Feb 23, 2013
+		  start time: 7:43PM
+		  end time: 8:44PM
+		  phase: design
+		  comment: Worked on create-words-list function.
+		  
+		- date: Feb 23, 2013
+		  start time: 8:44PM
+		  end time: 9:19PM
+		  phase: code
+		  comment: Implemented create-words-list function
+		  
+		- date: Feb 26, 2013
+		  start time: 10:36AM
+		  end time: 11:47AM
+		  phase: documentation
+		  comment: Worked on t9 and t10.
+		
+new objects:
+
+		#### finput module ####
+		
+		- name: bunch-of-chrs
+		  estimated lines: 5
+		  type: I/O
+		  
+		- name: words-hints
+		  estimated lines: 5
+		  type: Parse/Format
+		  
+		- name: just-words
+		  estimated lines: 5
+		  type: Parse/Format
+		  
+		- name: create-words-list
+		  estimated lines: 5
+		  type: I/O
+		
+
+defect log:
+
+		- date: Feb 23, 2013
+		  type: Conceptual
+		  fix time: 5
+		  comment: I found it difficult to create word/hint pairs just based on a space as a delimiter, since hints could have zero or more spaces in them. I fixed this by using the '>' character as a delimiter to seperate word/hint pairs in the input text file.
