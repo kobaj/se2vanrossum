@@ -124,6 +124,12 @@ time log:
           phase: implementation
 	  comment: Began hill climbing search. Started recycling useful code from brute force solver. 
 
+	- date: Feb 25, 2013
+	  start time: 6:32pm
+	  end time: 7:57pm
+          phase: implementation
+	  comment: Continued working on hill climber search. Still needs a better design plan.  
+
 defect log:
 
 	- date: Feb 8, 2013
