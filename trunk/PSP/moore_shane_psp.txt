@@ -1,0 +1,285 @@
+name: Shane Moore
+date: Jan 17,2013
+program: SE2 Final Project
+instructor: Dr. Page
+actual added lines: 348
+
+time log:
+
+- date: Jan 17, 2013
+  start time: 10:30AM
+  end time: 11:45AM
+  phase: Planning 
+  comment: Discussed Different ideas in regards to our project homing in on the idea about doing word games
+
+- date: Jan 22, 2013
+  start time: 10:30AM
+  end time: 11:45AM
+  phase: Planning
+  comment: Discuss more in depth about how we are going to implement our project and what other ideas we could use to bulk it up decided who would do what deliverables
+
+- date: Jan 24, 2013
+  start time: 10:30AM
+  end time: 11:45AM
+  phase: Planning/Documentation
+  comment: Spent much of the time working on our design document along with Jakob, talked to other members about how we will have all of our parts done on Tuesday also completed meeting agenda 
+
+- date: Jan 25, 2013
+  start time: 07:18PM
+  end time: 8:14PM
+  phase: Documentation
+  comment: Finished up my part of the design document except for probe will probably do over the weekend
+
+- date: Jan 27,2013
+  start time: 3:22PM
+  end time: 4:33PM
+  phase: Documentation
+  comment: Wrote up the probe a little worried that the project will not be long enough
+
+- date: Jan 29,2013
+  start time: 10:30AM
+  end time: 11:45AM
+  phase: Documentation
+  comment: Went over the different deliverables that we have worked on went over the slides that will be pertinent to each of us
+  
+- date: Jan 30,2013
+  start time: 7:55PM
+  end time: 8:15PM
+  phase: Presentation Practice
+  comment: Practiced my part of the presentation so that I do not seem like I am reading off slides hopefully nervousness will not get the best of me
+
+- date: Jan 31,2013
+  start time: 10:30PM
+  end time: 11:45PM
+  phase: Presentation 
+  comment: Presented my portion of the slides I think it went rather well other than having a hard time standing in front of people
+  
+- date: Feb 5,2013
+  start time: 10:30AM
+  end time: 11:45AM
+  phase: Planning
+  comment: Discussed which parts of the project each of us will do wrote up documentation which splits up all of the work evenly amongst the team, discussed our t4 presentation
+
+- date: Feb 7,2013
+  start time: 10:30AM
+  end time: 11:45AM
+  phase: Planning
+  comment: Gave our progress report to Dr Page worked out well got some ideas for the random number generator
+
+- date: Feb 8,2013
+  start time: 08:30AM
+  end time: 10:30AM
+  phase: Coding
+  comment: Worked on the base board for the word search/cross word puzzle was able to implement the matrix we will be using
+
+- date: Feb 8,2013
+  start time: 01:15PM
+  end time: 3:42PM
+  phase: Coding
+  comment: worked on how rows and columns will be edited created update multi row and update row functions to do so
+
+- date: Feb 9,2013
+  start time: 07:09PM
+  end time: 9:42PM
+  phase: Coding
+  comment: Spent time testing the update rows functions and made sure they were working properly to replace rows
+
+- date: Feb 12,2013
+  start time: 10:30AM
+  end time: 11:45AM
+  phase: Coding
+  comment: Spent the whole time working on some more stubs for the code additional to the functions already written decided I will code while everyone else does documentation
+
+
+- date: Feb 14,2013
+  start time: 10:30AM
+  end time: 11:45AM
+  phase: Coding
+  comment: Spent more time coding during team meeting will have try and have all of my portion done over the weekend
+
+- date: Feb 16,2013
+  start time: 08:13AM
+  end time: 10:23AM
+  phase: Coding
+  comment: Since matrix creation is done need to start wroking on correct placement of words got some functionality done running into problems
+
+- date: Feb 16,2013
+  start time: 03:29PM
+  end time: 05:11PM
+  phase: Coding
+  comment: Got the coordinate system working for the placement but the placement numbers are not working correctly.
+
+- date: Feb 17,2013
+  start time: 07:34AM
+  end time: 10:51AM
+  phase: Coding
+  comment: Horizonal placement is working but when placeing these elements on the board they are only going into the first spots that are open so have to create a randomized ssytem of choosing a subset that will fit
+
+
+- date: Feb 19,2013
+  start time: 10:30AM
+  end time: 11:45AM
+  phase: Coding/Planning
+  comment: Discussed where we are at with our code and worked on some of the create board
+
+
+defect log:
+
+- date: Jan 27, 2013
+  type: Conceptual
+  fix time: 20
+  comment: Went over probe several times keep getting the feeling that it is not long enough but since our estimates have always been low decided to stick with what I had
+
+
+- date: Jan 29, 2013
+  type: Conceptual
+  fix time: 40
+  comment: The slides were not completed by the members who said they would have them done so had to spend time working on thos rather than preparing our presentation
+
+
+- date: Feb 5, 2013
+  type: Conceptual
+  fix time: 35
+  comment: Do not think everyone has had the same ideas in deciding how some of the aspects will be implemented, showed team how the matrix for our word games will be implemented so everyone was clear
+
+
+- date: Feb 7, 2013
+  type: Conceptual
+  fix time: 22
+  comment: Deciding on how to create the board based on some type of difficulty needed to chage from largest letter +1 to amount of words
+
+- date: Feb 9, 2013
+  type: Conceptual
+  fix time: 5
+  comment: Matrix was not the correct dimensions because I had an error with the difficulty fixed number and sizing appropriately
+
+- date: Feb 16, 2013
+  type: Conceptual
+  fix time: 10
+  comment: Do not think everyone has had the same ideas in deciding how some of the aspects will be implemented, showed team how the matrix for our word games will be implemented so everyone was clear
+
+- date: Feb 16, 2013
+  type: Conceptual
+  fix time: 12
+  comment: The board is not filling with random chars as needed. Found reason is the list of chars was running out and putting nil fixed appropriately
+
+- date: Feb 16, 2013
+  type: Conceptual
+  fix time: 35
+  comment: Coordinate system is not working as supposed to needed to have a set for each row (((0 4) (0 9)) .....) realized i cons'd too many times remove an outside list works coorectly
+
+- date: Feb 17, 2013
+  type: Conceptual
+  fix time: 40
+  comment: Did not realize how difficult it is to work with a random set of numbers in ACL2 and need to get Horizonal placement correct so it is not going into first fit
+
+
+
+new objects:
+
+	- name: largest-elem-helper
+	  type: non-io
+	  estimated lines: 4
+
+	- name: largest-elem
+	  type: non-io
+	  estimated lines: 5
+
+	- name: gen-diff
+	  type: non-io
+	  estimated lines: 3
+
+	- name: mtx-row
+	  type: non-io
+	  estimated lines: 6
+
+	- name: wdsrch-brd
+	  type: non-io
+	  estimated lines: 7
+
+	- name: xwrd-brd
+	  type: non-io
+	  estimated lines: 4
+
+	- name: create-board
+	  type: non-io
+	  estimated lines: 3
+
+	- name: plc-wdsrch
+	  type: non-io
+	  estimated lines: 7
+
+	- name: place
+	  type: non-io 
+	  estimated lines: 3
+
+	- name: plc-horiz
+	  type: non-io
+	  estimated lines: 9
+
+	- name: plc-vert
+	  type: non-io
+	  estimated lines: 7
+
+	- name: get-column
+	  type: non-io
+	  estimated lines: 4
+
+	- name: row-rep
+	  type: non-io
+	  estimated lines: 8
+
+	- name: fit-coords
+	  type: non-io
+	  estimated lines: 6
+
+	- name: do-fits
+	  type: non-io
+	  estimated lines: 4
+
+	- name: fits
+	  type: non-io
+	  estimated lines: 4
+
+	- name: fitsp
+	  type: non-io
+	  estimated lines: 3
+
+	- name: open-brd-coords
+	  type: non-io
+	  estimated lines: 4
+
+	- name: ckrow
+	  type: non-io
+	  estimated lines: 5
+
+	- name: final-coords
+	  type: non-io
+	  estimated lines: 6
+
+	- name: mtx-form
+	  type: non-io
+	  estimated lines: 4
+	
+	- name: mtx-form-helper
+	  type: non-io
+	  estimated lines: 2
+
+
+	- name: do-start-end
+	  type: non-io
+	  estimated lines: 3
+
+	- name: start-end
+	  type: non-io
+	  estimated lines: 7
+
+	- name: update-row
+	  type: non-io
+	  estimated lines: 5
+
+	- name: update-mult-row
+	  type: non-io
+	  estimated lines: 7
+
+
