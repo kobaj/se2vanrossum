@@ -15,6 +15,22 @@
 ;---------Start board elems retrieval and Modification--------------
 ;-------------------------------------------------------------------
 
+
+;----------------------------------------------------------------
+;---------X,Y placement-----------------------------------------
+;---------------------------------------------------------------
+(defun get-row (brd n)
+  (nth n brd))
+
+; Helper method
+(defun plc-indx-helper (n y row char)
+  (if (endp row) '()
+    (if (= n y )
+	(cons char (plc-indx-helper (+ 1 n) y (cdr row) char))
+      (cons (car row) (plc-indx-helper (+ 1 n) y (cdr row) char)))))
+
+
+
 ;Updates the board by putting the modified row
 ; into its right place making a new board
 (defun update-row (brd brd-length row row-num n)
@@ -28,7 +44,16 @@
                         row  
                         row-num 
                         (+ 1 n)))) ))
-      
+
+; Places character at specified index
+(defun plc-indx (brd x y char)
+  (let* ((row (get-row brd x))
+	 (new-row (plc-indx-helper 0 y row char))
+	 )
+     (update-row brd (len brd) new-row x 0)))
+
+
+
 
 ; Changing values of a row puts the
 ; correct spot utilizing coordinates
@@ -134,7 +159,6 @@
           (new-brd 
          (update-row brd (len brd) new-row row-num 0))) ;upd8 brd row
     new-brd)) ; return new board    
-
 
 
  ;Place word on the board according to random num generator
