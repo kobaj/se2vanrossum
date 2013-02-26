@@ -77,6 +77,18 @@ time log:
 	phase: Group Planning
 	comment: Regroup on problems regarding create board while planning out t8.
 
+	- date: February 22, 2013
+	start time: 10:30AM
+	end time: 11:40AM
+	phase: Group Planning
+	comment: Meeting with prof and presentation of progress thus far.
+
+	- date: February 26, 2013
+	start time: 10:38AM
+	end time: 11:45AM
+	phase: Group Planning
+	comment: Discussion and completion of t9 and t10 for project.
+
 new objects:
 reused objects:
 defect log:
@@ -89,4 +101,4 @@ defect log:
 	- date: February 19, 2013
 	type: Group
 	fix time: 1
-	comment: Confusing over redistribution of algorythms and unit tests, solved by discussion.
+	comment: Confusing over redistribution of algorithms and unit tests, solved by discussion.
