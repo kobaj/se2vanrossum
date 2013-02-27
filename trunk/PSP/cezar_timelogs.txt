@@ -130,6 +130,18 @@ time log:
           phase: implementation
 	  comment: Continued working on hill climber search. Still needs a better design plan.  
 
+	- date: Feb 26, 2013
+	  start time: 10:30am
+	  end time: 11:50pm
+          phase: meeting
+	  comment: team worked on the t9 and t10 documents.
+
+	- date: Feb 26, 2013
+	  start time: 6:35pm
+	  end time: 8:11pm
+          phase: implementation
+	  comment: Continued planning out the hill climbing search. Considering a row-by-row localized search procedure. 
+
 defect log:
 
 	- date: Feb 8, 2013
