@@ -47,24 +47,44 @@
 (defun char-p (char sols)
   (if (endp sols)
       nil
-      (or 
+      (if (equal char (caar sols))
+          (cdar sols);found, so return the word and the size
+          (char-p char (cdr sols)))))
+                  
+ ;localize (matrix solution)
+; This function performs a localized search in
+; all possible directions for a specific solution, at
+; a particular coordinate.
+; matrix = a copy of the gameboard
+; solution = the word to find
+(defun localize (x y matrix solution)
+  (
+   ))
 
+;row-char-search (row char)
+;This function searches an entire row for
+;a matching character.
+;row = the row to search
+;char = the character to find
+(defun row-char-search (row char colIndex)
+  (if (endp row)
+      nil
+      (if (equal (car row) char)
+          colIndex
+          (row-char-search (cdr row) char (+ colIndex 1)))))
+  
+  
+  
 ;search-and-localize (matrix charWordLengths)
 ;This function performs the overall search of the entire
-;matrix and performs a localized search (hill climbing) if
+;matrix and performs a localized search if
 ;any of the first characters of each solution is found
 ;at the current letter in the matrix.
-;matrix = the gameboard
+;matrix = the gameboard we are iterating
 ;charWordLengths = the solutions with first character, the word itself, and the length
 (defun search-and-localize (matrix charWordLengths)
- (if (endp matrix)
-     nil
-     (let*((matching (char-p (caar matrix) charWordLengths)))
-       (if (equal matching nil)
-           (search-and-localize () charWordLengths);char not in sol list
-           ()
-           
-         
+ (if (endp matrix) ; todo for each solution, check if the first char matches the current char in the matrix and perform a local search. 
+     
          
   ))
 
@@ -77,12 +97,12 @@
 ;of vectors like brute force solver's output.
 ;matrix = the gameboard
 ;words = the solutions to be found
-(defun hill-climbing-solver (matrix words)
-  (let*((charWordLengths(char-concat-count words))
-        (vects(search-and-Localize matrix charWordLengths)))
-   ()
-   ))
-  
+;(defun hill-climbing-solver (matrix words)
+;  (let*((charWordLengths(char-concat-count words))
+;        (vects(search-and-Localize matrix matrix charWordLengths)))
+;   ()
+;   ))
+;  
   ;TESTING...this is how we use this solver.
 ;(hill-climbing-solver (list (list "w" "b" "y" "i" "g" "g" "d" "a" "w") ;example game board
 ;                          (list "m" "l" "i" "d" "i" "q" "p" "u" "o") 
@@ -107,4 +127,6 @@
 ;                          (list "w" "o" "r" "m")
 ;                          )
 ;                    )
+
+
 
