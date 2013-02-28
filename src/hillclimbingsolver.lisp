@@ -37,20 +37,6 @@
                   (len (car solutions)))(char-concat-count (cdr solutions)))
             ))
 
-;char-p (char sols)
-;This function performs a simple search to determine if
-;a specific character matches the first character of any of
-;the solutions. This either return nil for not found or the
-;word along with the length.
-;char = the char to match
-;sols = the words to find
-(defun char-p (char sols)
-  (if (endp sols)
-      nil
-      (if (equal char (caar sols))
-          (cdar sols);found, so return the word and the size
-          (char-p char (cdr sols)))))
-                  
  ;localize (matrix solution)
 ; This function performs a localized search in
 ; all possible directions for a specific solution, at
@@ -61,20 +47,29 @@
   (
    ))
 
-;row-char-search (row char)
-;This function searches an entire row for
-;a matching character.
-;row = the row to search
-;char = the character to find
-(defun row-char-search (row char colIndex)
-  (if (endp row)
+ 
+;char-p (char sols)
+;This function performs a simple search to determine if
+;a specific character matches the first character of any of
+;the solutions. This either return nil for not found or the
+;list of potential solutions with their lengths. 
+;char = the char to match
+;sols = the words to find
+(defun char-match (char sols)
+  (if (endp sols)
       nil
-      (if (equal (car row) char)
-          colIndex
-          (row-char-search (cdr row) char (+ colIndex 1)))))
-  
-  
-  
+      (if (equal char (caar sols))
+          (cons (cdar sols) (char-match char (cdr sols)))
+          (char-match char (cdr sols)))))
+       
+
+;(defun row-char-search (row sols)
+;  (if (endp row)
+;      nil
+;      (
+
+           
+
 ;search-and-localize (matrix charWordLengths)
 ;This function performs the overall search of the entire
 ;matrix and performs a localized search if
@@ -82,11 +77,12 @@
 ;at the current letter in the matrix.
 ;matrix = the gameboard we are iterating
 ;charWordLengths = the solutions with first character, the word itself, and the length
-(defun search-and-localize (matrix charWordLengths)
- (if (endp matrix) ; todo for each solution, check if the first char matches the current char in the matrix and perform a local search. 
-     
-         
-  ))
+;rowIndex = the current row within the matrix
+(defun search-and-localize (matrix matrix-copy charWordLengths rowIndex)
+ (if (endp matrix)
+     nil
+     ()
+))
 
 
 ;hill-climbing-solver (matrix words)
