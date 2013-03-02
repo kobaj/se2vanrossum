@@ -21,6 +21,17 @@
                    (char-concat-helper (cdr strList))
                    )))
 
+;defun final-clean (results)
+;This is essentially a second helper for the clean-results
+;that goes through the cleaned list and gets rid of the final nil elements.
+;results = the "cleaned" results
+(defun final-clean (results)
+  (if (endp results)
+      nil
+      (if (equal (car results) nil)
+          (final-clean (cdr results))
+          (cons  (car results) (final-clean (cdr results))))))
+
 ;char-concat-count (solutions)
 ;This function takes in a list of character string representations of
 ;the solutions and concats into a single string, retains the fist character, and stores its length 
@@ -37,6 +48,18 @@
                   (len (car solutions)))(char-concat-count (cdr solutions)))
             ))
 
+;defun clean-results-helper (inner)
+;This function is a helper for clean-results.
+;It iterates through a list and removes nil elments.
+;inner = the inner list
+(defun clean-results-helper (inner)
+  (if (endp inner)
+      nil
+      (if (equal (car inner) nil)
+          (clean-results-helper (cdr inner))
+          (cons (car inner) (clean-results-helper (cdr inner))))))
+          
+
 ;clean-results (results)
 ;This function takes the list of vectors
 ;and removes all of the nil entries
@@ -48,10 +71,8 @@
 (defun clean-results (results)
   (if (endp results)
       nil
-      (if (equal (car results) nil)
-          (clean-results (cdr results))
-          (cons (car results) (clean-results (cdr results)))
-          )))
+      (cons (clean-results-helper (car results))
+            (clean-results (cdr results)))))
 
 ; nthrdc (xs)
 ; This function is similar to nthcdr except we are 
@@ -182,7 +203,7 @@
 ;matrix = the gameboard
 ;words = the solutions to be found
 (defun hill-climbing-solver (matrix words)
- (search-and-Localize matrix matrix (char-concat-count words) 0))
+ (final-clean(clean-results (search-and-Localize matrix matrix (char-concat-count words) 0))))
   
   ;TESTING...this is how we use this solver.
 (hill-climbing-solver(list(list "w" "b" "y" "i" "g" "g" "d" "a" "w") ;example game board
