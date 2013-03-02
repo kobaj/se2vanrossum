@@ -93,8 +93,6 @@
 (defun nthrdc (n xs)
  (reverse (nthcdr n (reverse xs))))
 
-
-
 ;defun match-left-to-right (row sol y)
 ;This function performs a match on the row for
 ;a specific solution based on a col index.
@@ -121,12 +119,61 @@
 ;x = the return x coord for the solution vector
 (defun match-right-to-left (x y r-row sol)
     (if (>= (len (nthcdr y r-row)) (cadr sol))
-        (if (equal (car sol)(char-concat-helper (nthcdr y (nthrdc (- (len (nthcdr y r-row)) (cadr sol)) r-row))))
+        (if (equal (car sol)
+                   (char-concat-helper (nthcdr y (nthrdc (- (len (nthcdr y r-row)) (cadr sol)) r-row))))
             (list x y "left" (- (cadr sol) 1)) ;solution found
             nil
             )
   nil ;solution cant fit, so its automatically not there
   ))
+
+;reverse-matrix (matrix)
+; This function takes in a matrix
+;in row order form and reverses it.
+;matrix = the matrix to be reversed
+(defun reverse-matrix (matrix)
+  (if (endp matrix)
+      nil
+      (cons (reverse (car matrix))(reverse-matrix (cdr matrix)))
+   ))
+
+;transpose-helper (matrix index)
+;Thie function acts as a helper for transpose by
+;iterating through the whole matrix and creating a column
+;out of the given row index.
+;matrix = the matrix to be flipped
+;index = the row index
+(defun transpose-helper (matrix index)
+  (if (endp matrix)
+      nil
+      (cons (car (nthcdr index (car matrix)))
+            (transpose-helper (cdr matrix) index))
+      ))
+
+;transpose (matrix)
+;This function takes in a matrix
+;and returns its transpose (flipping to the right)
+;matrix = the matrix to flip
+;rowLength = the size of every row in the matrix
+;Note: To be used for searching up to down and down to up
+(defun transpose (matrix rowLength index)
+  (if (= rowLength index)
+      nil
+      (cons (transpose-helper matrix index)
+            (transpose matrix rowLength (+ index 1)))
+      ))
+
+;defun match-up-to-down (x y rows sol)
+;This function takes as many rows as the size of the solution
+;and matches the solution based on the coordinate of the potential
+;starting position.
+;x = the x coord
+;y = the y coord
+;t-rows = the transposed rows below the potential solution (number of them = word length)
+;sol = the solution to be matched
+(defun match-up-to-down (x y t-rows sol)
+  (
+   ))
            
  ;localize (x y matrix solutions)
 ; This function performs a localized search in
@@ -141,7 +188,7 @@
       nil
       (let* ((leftToRight (match-left-to-right x y (car (nthcdr x matrix)) (car solutions)))
              (rightToLeft  (match-right-to-left x y  (reverse (car (nthcdr x matrix))) (car solutions)))
-             (upToDown nil)
+             (upToDown (match-up-to-down x y (transpose(nthrdc (cadr solutions)(nthcdr x matrix)) (car solutions)0)))
              (downToUp nil)) ;using nested ifs instead of cond so we have the else statement at the end
         (if (not (equal leftToRight nil))
             leftToRight
