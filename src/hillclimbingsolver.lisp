@@ -21,17 +21,6 @@
                    (char-concat-helper (cdr strList))
                    )))
 
-;defun final-clean (results)
-;This is essentially a second helper for the clean-results
-;that goes through the cleaned list and gets rid of the final nil elements.
-;results = the "cleaned" results
-(defun final-clean (results)
-  (if (endp results)
-      nil
-      (if (equal (car results) nil)
-          (final-clean (cdr results))
-          (cons  (car results) (final-clean (cdr results))))))
-
 ;char-concat-count (solutions)
 ;This function takes in a list of character string representations of
 ;the solutions and concats into a single string, retains the fist character, and stores its length 
@@ -48,6 +37,27 @@
                   (len (car solutions)))(char-concat-count (cdr solutions)))
             ))
 
+;defun clean-results-tier3 (results)
+;This is essentially a third helper for cleaning the results
+;that goes through the cleaned list and extracts the vectors.
+;results = the "cleaned" results
+(defun clean-results-tier3 (results)
+  (if (endp results)
+      nil
+      (cons (caar results)
+            (clean-results-tier3 (cdr results)))))
+
+;defun clean-results-tier2 (results)
+;This is essentially a second helper for the clean-results
+;that goes through the cleaned list and gets rid of the final nil elements.
+;results = the "cleaned" results
+(defun clean-results-tier2 (results)
+  (if (endp results)
+      nil
+      (if (equal (car results) nil)
+          (clean-results-tier2 (cdr results))
+          (cons  (car results) (clean-results-tier2 (cdr results))))))
+
 ;defun clean-results-helper (inner)
 ;This function is a helper for clean-results.
 ;It iterates through a list and removes nil elments.
@@ -60,7 +70,7 @@
           (cons (car inner) (clean-results-helper (cdr inner))))))
           
 
-;clean-results (results)
+;clean-results-tier1 (results)
 ;This function takes the list of vectors
 ;and removes all of the nil entries
 ;that each search direction returns if 
@@ -68,11 +78,11 @@
 ;results to be human readable and easy to work with
 ;for modularity.
 ;results = the list of vectors
-(defun clean-results (results)
+(defun clean-results-tier1 (results)
   (if (endp results)
       nil
       (cons (clean-results-helper (car results))
-            (clean-results (cdr results)))))
+            (clean-results-tier1 (cdr results)))))
 
 ; nthrdc (xs)
 ; This function is similar to nthcdr except we are 
@@ -202,8 +212,13 @@
 ;This is the entry point for the hill climbing
 ;matrix = the gameboard
 ;words = the solutions to be found
+;Note: The results need to be cleaned up since we are performing lots 
+;of localized searches within an overall search.
 (defun hill-climbing-solver (matrix words)
- (final-clean(clean-results (search-and-Localize matrix matrix (char-concat-count words) 0))))
+(clean-results-tier3
+ (clean-results-tier2
+  (clean-results-tier1 
+   (search-and-Localize matrix matrix (char-concat-count words) 0)))))
   
   ;TESTING...this is how we use this solver.
 (hill-climbing-solver(list(list "w" "b" "y" "i" "g" "g" "d" "a" "w") ;example game board
