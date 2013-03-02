@@ -91,7 +91,9 @@
 ; n = the number of elements to delete
 ; xs = the list
 (defun nthrdc (n xs)
- (reverse (nthcdr n (reverse xs))))
+  (if (or (< (len xs) n) (< n 0))
+      nil
+      (reverse (nthcdr n (reverse xs)))))
 
 ;defun match-left-to-right (row sol y)
 ;This function performs a match on the row for
@@ -172,7 +174,23 @@
 ;t-rows = the transposed rows below the potential solution (number of them = word length)
 ;sol = the solution to be matched
 (defun match-up-to-down (x y t-rows sol)
-  (
+      (if (equal (char-concat-helper (car (nthcdr y t-rows))) (car sol))
+          (list x y "down" (- (cadr sol) 1))
+          nil
+   ))
+
+;defun match-down-to-up (x y rows sol)
+;This function takes as many rows as the size of the solution
+;and matches the solution based on the coordinate of the potential
+;starting position.
+;x = the x coord
+;y = the y coord
+;rt-rows = the reverse transposed rows below the potential solution (number of them = word length)
+;sol = the solution to be matched
+(defun match-down-to-up (x y rt-rows sol)
+      (if (equal (char-concat-helper (reverse (car (nthcdr y rt-rows)))) (car sol))
+          (list x y "up" (- (cadr sol) 1))
+          nil
    ))
            
  ;localize (x y matrix solutions)
@@ -186,18 +204,31 @@
 (defun localize (x y matrix solutions)
   (if (endp solutions)
       nil
-      (let* ((leftToRight (match-left-to-right x y (car (nthcdr x matrix)) (car solutions)))
-             (rightToLeft  (match-right-to-left x y  (reverse (car (nthcdr x matrix))) (car solutions)))
-             (upToDown (match-up-to-down x y (transpose(nthrdc (cadr solutions)(nthcdr x matrix)) (car solutions)0)))
-             (downToUp nil)) ;using nested ifs instead of cond so we have the else statement at the end
+      (let* ((leftToRight (match-left-to-right x y (car (nthcdr x matrix))
+                                               (car solutions)))
+             (rightToLeft (match-right-to-left x y  (reverse (car (nthcdr x matrix)))
+                                                (car solutions)))
+             (upToDown (match-up-to-down x y (transpose
+                                              (nthrdc (- (len (nthcdr x matrix)) (cadr (car solutions))) (nthcdr x matrix))
+                                              (len (car matrix))
+                                              0)
+                                         (car solutions)))
+
+              (downToUp (match-down-to-up x y (transpose (nthrdc (- (len (nthcdr (- (+ x 1) (cadr (car solutions))) matrix)) ;TODO cont here, move each item to its methods instead
+                                                                       (cadr (car solutions)))
+                                                                    (nthcdr (- (+ x 1) (cadr (car solutions))) matrix))
+                                                            (len (car matrix))
+                                                            0)
+                                             (car solutions)))) ;using nested ifs instead of cond so we have the else statement at the end
+     
         (if (not (equal leftToRight nil))
             leftToRight
             (if (not (equal rightToLeft nil))
                 rightToLeft
-                (if (not (equal upToDown nil))
-                    upToDown
-                    (if (not (equal downToUp nil))
-                        downToUp
+                (if (not (equal downToUp nil))
+                    downToUp
+                    (if (not (equal upToDown nil))
+                        upToDown
                         (localize x y matrix (cdr solutions))))))
 
         )))
@@ -278,9 +309,12 @@
                           (list "e" "d" "t" "r" "i" "r" "t" "f" "p")
                           (list "h" "d" "t" "a" "r" "a" "t" "f" "p")
                           (list "e" "w" "t" "p" "a" "p" "r" "o" "t")
-                          (list "i" "i" "u" "u" "q" "s" "o" "k" "n")
-                          (list "a" "u" "q" "s" "y" "f" "p" "s" "p")
-                          (list "e" "f" "d" "a" "q" "z" "j" "d" "c"))
+                          (list "i" "i" "u" "u" "q" "s" "o" "k" "j")
+                          (list "a" "u" "d" "d" "f" "j" "h" "w" "q")
+                          (list "j" "d" "f" "a" "g" "l" "f" "g" "d")
+                          (list "g" "d" "u" "x" "j" "n" "o" "o" "r")
+                          (list "d" "s" "j" "s" "k" "m" "x" "h" "x")
+                          (list "s" "w" "k" "q" "q" "a" "d" "c" "z"))
                     
                     (list (list "c" "a" "t"); example word list 
                           (list "d" "o" "g") 
@@ -289,6 +323,8 @@
                           (list "p" "a" "r" "r" "o" "t")
                           (list "s" "p" "a" "r" "r" "o" "w")
                           (list "w" "o" "r" "m")
+                          (list "f" "o" "x")
+                          (list "h" "o" "g")
                           )
                     )
 
