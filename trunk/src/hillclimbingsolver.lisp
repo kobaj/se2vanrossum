@@ -37,17 +37,93 @@
                   (len (car solutions)))(char-concat-count (cdr solutions)))
             ))
 
- ;localize (matrix solution)
+;clean-results (results)
+;This function takes the list of vectors
+;and removes all of the nil entries
+;that each search direction returns if 
+;the word was not found. This allows the
+;results to be human readable and easy to work with
+;for modularity.
+;results = the list of vectors
+(defun clean-results (results)
+  (if (endp results)
+      nil
+      (if (equal (car results) nil)
+          (clean-results (cdr results))
+          (cons (car results) (clean-results (cdr results)))
+          )))
+
+; nthrdc (xs)
+; This function is similar to nthcdr except we are 
+; going backwards and removing the nth elements
+; from the end of the list.
+; n = the number of elements to delete
+; xs = the list
+(defun nthrdc (n xs)
+ (reverse (nthcdr n (reverse xs))))
+
+
+
+;defun match-left-to-right (row sol y)
+;This function performs a match on the row for
+;a specific solution based on a col index.
+;row = the current row
+;sol = the target solution
+;y = the col index to start
+;x = the return x coord for the solution vector
+(defun match-left-to-right (x y row sol)
+  (if (>= (len (nthcdr y row)) (cadr sol))
+      (if (equal (car sol) (char-concat-helper (nthcdr y (nthrdc (- (len (nthcdr y row)) (cadr sol)) row))))
+          (list x y "right" (- (cadr sol) 1)) ;solution found
+          nil
+          )
+  nil ;solution cant fit, so its automatically not there
+  ))
+
+
+;defun match-right-to-left (r-row sol y)
+;This function performs a match on the row for
+;a specific solution based on a col index.
+;r-row = the current reversed  row
+;sol = the target solution
+;y = the col index to start
+;x = the return x coord for the solution vector
+(defun match-right-to-left (x y r-row sol)
+    (if (>= (len (nthcdr y r-row)) (cadr sol))
+        (if (equal (car sol)(char-concat-helper (nthcdr y (nthrdc (- (len (nthcdr y r-row)) (cadr sol)) r-row))))
+            (list x y "left" (- (cadr sol) 1)) ;solution found
+            nil
+            )
+  nil ;solution cant fit, so its automatically not there
+  ))
+           
+ ;localize (x y matrix solutions)
 ; This function performs a localized search in
-; all possible directions for a specific solution, at
+; all possible directions for each potential solution at
 ; a particular coordinate.
 ; x = starting x
 ; y = starting y
 ; matrix = a copy of the gameboard
-; solution = the word to find
+; solutions = the words to find
 (defun localize (x y matrix solutions)
-  (
-   ))
+  (if (endp solutions)
+      nil
+      (let* ((leftToRight (match-left-to-right x y (car (nthcdr x matrix)) (car solutions)))
+             (rightToLeft  (match-right-to-left x y  (reverse (car (nthcdr x matrix))) (car solutions)))
+             (upToDown nil)
+             (downToUp nil)) ;using nested ifs instead of cond so we have the else statement at the end
+        (if (not (equal leftToRight nil))
+            leftToRight
+            (if (not (equal rightToLeft nil))
+                rightToLeft
+                (if (not (equal upToDown nil))
+                    upToDown
+                    (if (not (equal downToUp nil))
+                        downToUp
+                        (localize x y matrix (cdr solutions))))))
+
+        )))
+
 
  
 ;char-match (char sols)
@@ -81,7 +157,7 @@
             (row-char-search (cdr row) sols rowIndex (+ colIndex 1) matrix);keep iterating
             (cons (localize rowIndex colIndex matrix matches) ;potential sol(s) found
                   (row-char-search (cdr row) sols rowIndex (+ colIndex 1) matrix))
-            )))
+            ))))
 
            
 
@@ -96,50 +172,42 @@
 (defun search-and-localize (matrix matrix-copy charWordLengths rowIndex)
  (if (endp matrix)
      nil
-     (cons (row-char-search row charWordLengths rowIndex 0 matrix-copy)
+     (cons (row-char-search (car matrix) charWordLengths rowIndex 0 matrix-copy)
            (search-and-localize (cdr matrix) matrix-copy charWordLengths (+ rowIndex 1)))
 ))
 
 
 ;hill-climbing-solver (matrix words)
 ;This is the entry point for the hill climbing
-;solver. It traverses the entire matrix only once and
-;performs localized searches based on matching the first
-;character of any of the words. The solution set is a list
-;of vectors like brute force solver's output.
 ;matrix = the gameboard
 ;words = the solutions to be found
 (defun hill-climbing-solver (matrix words)
-  (let*((charWordLengths(char-concat-count words))
-        (vects(search-and-Localize matrix matrix charWordLengths 0)))
-   ()
-   ))
+ (search-and-Localize matrix matrix (char-concat-count words) 0))
   
   ;TESTING...this is how we use this solver.
-;(hill-climbing-solver (list (list "w" "b" "y" "i" "g" "g" "d" "a" "w") ;example game board
-;                          (list "m" "l" "i" "d" "i" "q" "p" "u" "o") 
-;                          (list "p" "o" "t" "a" "c" "f" "d" "f" "r") 
-;                          (list "d" "o" "g" "t" "s" "c" "a" "c" "m")
-;                          (list "r" "p" "p" "t" "w" "w" "r" "g" "o")
-;                          (list "e" "p" "t" "o" "g" "o" "x" "z" "a")
-;                          (list "w" "f" "t" "r" "q" "r" "w" "d" "b")
-;                          (list "e" "d" "t" "r" "i" "r" "t" "f" "p")
-;                          (list "h" "d" "t" "a" "r" "a" "t" "f" "p")
-;                          (list "e" "w" "t" "p" "a" "p" "r" "o" "t")
-;                          (list "i" "i" "u" "u" "q" "s" "o" "k" "n")
-;                          (list "a" "u" "q" "s" "y" "f" "p" "s" "p")
-;                          (list "e" "f" "d" "a" "q" "z" "j" "d" "c"))
-;                    
-;                    (list (list "c" "a" "t"); example word list 
-;                          (list "d" "o" "g") 
-;                          (list "p" "i" "g")
-;                          (list "r" "a" "t")
-;                          (list "p" "a" "r" "r" "o" "t")
-;                          (list "s" "p" "a" "r" "r" "o" "w")
-;                          (list "w" "o" "r" "m")
-;                          )
-;                    )
-
+(hill-climbing-solver(list(list "w" "b" "y" "i" "g" "g" "d" "a" "w") ;example game board
+                          (list "m" "l" "i" "d" "i" "q" "p" "u" "o") 
+                          (list "p" "o" "t" "a" "c" "f" "d" "f" "r") 
+                          (list "d" "o" "g" "t" "s" "c" "a" "c" "m")
+                          (list "r" "p" "p" "t" "w" "w" "r" "g" "o")
+                          (list "e" "p" "t" "o" "g" "o" "x" "z" "a")
+                          (list "w" "f" "t" "r" "q" "r" "w" "d" "b")
+                          (list "e" "d" "t" "r" "i" "r" "t" "f" "p")
+                          (list "h" "d" "t" "a" "r" "a" "t" "f" "p")
+                          (list "e" "w" "t" "p" "a" "p" "r" "o" "t")
+                          (list "i" "i" "u" "u" "q" "s" "o" "k" "n")
+                          (list "a" "u" "q" "s" "y" "f" "p" "s" "p")
+                          (list "e" "f" "d" "a" "q" "z" "j" "d" "c"))
+                    
+                    (list (list "c" "a" "t"); example word list 
+                          (list "d" "o" "g") 
+                          (list "p" "i" "g")
+                          (list "r" "a" "t")
+                          (list "p" "a" "r" "r" "o" "t")
+                          (list "s" "p" "a" "r" "r" "o" "w")
+                          (list "w" "o" "r" "m")
+                          )
+                    )
 
 
 
