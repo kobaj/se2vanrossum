@@ -114,7 +114,7 @@
   (nth (rand (len coords) seed) coords))
 
 ; Function just gathers all needed info
-; returns coordinate for where to place
+; returns coordinate for where to pla2e
 (defun fit-coords (type word brd seed)
   (if (< type 2)
       (let* ((opn (open-brd-coords 0 brd)) ;opn-brd_>final-coords->wd-fits->plc-cord
@@ -122,13 +122,13 @@
              (wd-fits (do-fits word mf))
              (rcords (rand-coord seed (remove nil wd-fits)))
              (ret-cords (rand-start (car rcords) word seed type)))
-        ret-cords)
+       ret-cords)
       (let* ((opn (open-brd-coords 0 brd))
-             (mf (coords-vert 0 opn))
+             (mf (coords-vert 0 (openv 0  opn)))
              (wd-fits (do-fits-vert word mf))
-             (rcords (rand-coord seed (remove nil wd-fits)))
-             (ret-cords (rand-start (car rcords) word seed type)))
-        ret-cords)))
+            (rcords (rand-coord seed (remove nil wd-fits)))
+            (ret-cords (rand-start (car rcords) word seed type)))
+      ret-cords)))
 
 
 
@@ -144,7 +144,6 @@
          (y2 (caadr coords))
          (col (get-column brd col-num))
          (new-col (row-rep word y1 y2 0 col))
-         
          (new-brd (replace-col brd new-col col-num)))
     new-brd))
 
@@ -155,7 +154,7 @@
    (let* ((row-num (caar coords))
         (y1 (cadar coords)) ; y1 value for placement
         (y2 (cadadr coords)) ; y2 value for placement
-        (new-row (row-rep word y1 y2  0 (car brd)))
+        (new-row (row-rep word y1 y2  0 (nth row-num brd)))
           (new-brd 
          (update-row brd (len brd) new-row row-num 0))) ;upd8 brd row
     new-brd)) ; return new board    
