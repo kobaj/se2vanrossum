@@ -40,7 +40,7 @@
 ; depending on the correct selection
 (defun row-fill (row nums)
   (if (endp row) '()
-  (if (char-equal #\space (car row))
+  (if (char-equal #\. (car row))
       (cons (rand-let (rand 25 (car nums))) 
             (row-fill (cdr row) (cdr nums)))
       (cons (car row) (row-fill (cdr row) (cdr nums))))))
