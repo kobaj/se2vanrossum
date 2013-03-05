@@ -89,6 +89,24 @@ time log:
 	phase: Group Planning
 	comment: Discussion and completion of t9 and t10 for project.
 
+	- date: February 28, 2013
+	start time: 10:30AM
+	end time: 11:40AM
+	phase: Group Planning
+	comment: Discussion about delay regarding create board and reassignment of Femi to help Shane.
+
+	- date: March 5, 2013
+	start time: 10:26AM
+	end time: 11:42AM
+	phase: Group Planning
+	comment: Preperation for thursday's team meeting. 
+
+	- date: March 7, 2013
+	start time: 10:30AM
+	end time: 11:45AM
+	phase: Group Planning
+	comment: Presentation of progress thus far.
+
 new objects:
 reused objects:
 defect log:
@@ -102,3 +120,9 @@ defect log:
 	type: Group
 	fix time: 1
 	comment: Confusing over redistribution of algorithms and unit tests, solved by discussion.
+
+
+	- date: March 5, 2013
+	type: Group
+	fix time: 1
+	comment: how to implement JSON with the acl2 and python/webserver.
