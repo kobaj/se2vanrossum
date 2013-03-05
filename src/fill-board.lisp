@@ -38,17 +38,17 @@
 
 ; Fills each row with a random letter
 ; depending on the correct selection
-(defun row-fill (row nums)
+(defun row-fill (row seed)
   (if (endp row) '()
   (if (char-equal #\. (car row))
-      (cons (rand-let (rand 25 (car nums))) 
-            (row-fill (cdr row) (cdr nums)))
-      (cons (car row) (row-fill (cdr row) (cdr nums))))))
+      (cons (rand-let (rand 25 seed)) 
+            (row-fill (cdr row) (+ seed 1)))
+      (cons (car row) (row-fill (cdr row) (+ seed 1))))))
 
-(defun fill-brd (wdsrch seeds)
+(defun fill-brd (wdsrch seed)
   (if (endp wdsrch) '()
-      (cons (row-fill (car wdsrch) seeds)
-            (fill-brd (cdr wdsrch) (cdr seeds)))))
+      (cons (row-fill (car wdsrch) seed)
+            (fill-brd (cdr wdsrch) (+ seed 1)))))
 
 
 
