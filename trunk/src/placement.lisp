@@ -170,13 +170,13 @@
 
 
  ;Main workhorse of this module places word search
-(defun plc-wdsrch (words brd seeds)
+(defun plc-wdsrch (words brd seed)
   (if (endp words) '()
       (let* ((word (coerce (car words) 'list)) ;cnvrt str chrs
-             (type (rand 4 (car seeds))) ;get the type we are placing
-             (coords (fit-coords type word brd (car seeds)))
+             (type (rand 4 seed)) ;get the type we are placing
+             (coords (fit-coords type word brd (+ seed 1)))
              (new-brd (place brd word type  coords)));our new updated board
-        (cons new-brd (plc-wdsrch (cdr words) new-brd (cdr seeds))))))
+        (cons new-brd (plc-wdsrch (cdr words) new-brd (+ 1 seed))))))
 
 ;-------------------------------------------------------End Placement
 
