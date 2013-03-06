@@ -4,6 +4,8 @@
 
 ;1 random number and keep modifying it.
 
+(in-package "ACL2")
+
 (include-book "rand" :dir :teachpacks)
 ; Returns random letter
 (defun rand-let (num)
