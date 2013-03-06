@@ -5,6 +5,7 @@
 ; places the words within the word search
 ;
 
+(in-package "ACL2")
 
 (include-book "rand" :dir :teachpacks)
 (include-book "io-utilities" :dir :teachpacks)

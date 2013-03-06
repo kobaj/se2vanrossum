@@ -5,7 +5,7 @@
 ; Finds all of the appropriate places for the words
 ; to appear in the board when being built
 
-
+(in-package "ACL2")
 
 ;--------------------------------------------------------
 ;-----------------Start Find Placements------------------

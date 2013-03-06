@@ -1,5 +1,5 @@
 name: Jakob Griffith
-date: February 5, 2013
+date: January 17, 2013
 program: timelog
 instructor: Dr. Page
 
@@ -121,8 +121,12 @@ defect log:
 	fix time: 1
 	comment: Confusing over redistribution of algorithms and unit tests, solved by discussion.
 
-
 	- date: March 5, 2013
 	type: Group
 	fix time: 1
-	comment: how to implement JSON with the acl2 and python/webserver.
+	comment: How to implement JSON with the acl2 and python/webserver.
+
+	- date: March 6, 2013
+	type: Group
+	fix time: 13
+	comment: Getting the web server to work with ACL2. requires :program and :redef

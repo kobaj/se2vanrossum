@@ -4,6 +4,8 @@
 ; creates the game board
 ;
 
+(in-package "ACL2")
+
 (include-book "placement")
 (include-book "fill-board")
 ; Helper function to get largest element returns larger
@@ -27,7 +29,7 @@
 ; an integer for board size
 (defun gen-diff (words)
    (let ((n (largest-elem (car words) (cdr words))))
-    (+ n 5)))
+    (+ n n)))
 
 
 ; To construct rows for the matrix
