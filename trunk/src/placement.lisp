@@ -83,6 +83,19 @@
 
 ;----------------------------------------------End Board Modifications
 
+
+
+(defun rand-start-horiz (range word row-num seed)
+  (let* ((new-start (rand range seed))
+              (new-end (+ new-start (len word))))
+        (list (list row-num new-start) (list row-num new-end)) ))
+
+
+(defun rand-start-vert (range word row-num seed)
+  (let*  ((new-start (rand range seed))
+             (new-end (+ new-start (len word)))
+             )
+        (list (list new-start row-num) (list new-end row-num))))
 ;word len = 5 
 ; start 0 
 ; end 10
@@ -94,21 +107,21 @@
               (end (cadadr coords))
               (row-num (caar coords))
               (diff (- end start))
-              (range (- diff (len word)))
-              (new-start (rand range seed))
-              (new-end (+ new-start (len word))))
-        (list (list row-num new-start) (list row-num new-end)) )
+              (range (- diff (len word))))
+        (if (< range 2)
+            coords
+            (rand-start-horiz range word row-num (+ 1 seed))))
+              
       (let* ((start (caar coords))
              (row-num (cadar coords))
              (end (caadr coords))
              (diff (- end start)
                    )
-             (range (- diff (len word)))
-             (new-start (rand range seed))
-             (new-end (+ new-start (len word)))
-             )
-        (list (list new-start row-num) (list new-end row-num)))))
-
+             (range (- diff (len word))))
+     (if (< range 2)
+            coords
+            (rand-start-vert range word row-num (+ 1 seed))))))
+         
 
 ; Randomly picks a coord from coords list for placement
 (defun rand-coord (seed coords)
@@ -173,11 +186,11 @@
  ;Main workhorse of this module places word search
 (defun plc-wdsrch (words brd seed)
   (if (endp words) '()
-      (let* ((word (coerce (car words) 'list)) ;cnvrt str chrs
+      (let* ((word (str->chrs (car words))) ;cnvrt str chrs
              (type (rand 4 seed)) ;get the type we are placing
-             (coords (fit-coords type word brd (+ seed 1)))
+             (coords (fit-coords type word brd (+ seed 57)))
              (new-brd (place brd word type  coords)));our new updated board
-        (cons new-brd (plc-wdsrch (cdr words) new-brd (+ 1 seed))))))
+        (cons  new-brd (plc-wdsrch (cdr words) new-brd (+ 39 seed))))))
 
 ;-------------------------------------------------------End Placement
 
