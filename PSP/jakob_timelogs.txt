@@ -101,6 +101,12 @@ time log:
 	phase: Group Planning
 	comment: Preperation for thursday's team meeting. 
 
+	- date: March 6, 2013
+	start time: 8:43PM
+	end time: 10:38PM
+	phase: Code
+	comment: Working on HTML frontend, specifically redirected input so that php calls the create-board.
+
 	- date: March 7, 2013
 	start time: 10:30AM
 	end time: 11:45AM
@@ -130,3 +136,8 @@ defect log:
 	type: Group
 	fix time: 13
 	comment: Getting the web server to work with ACL2. requires :program and :redef
+
+	- date: March 6, 2013
+	type: Group
+	fix time: 2
+	comment: if is defined as (if t 1 2) not ((if t 1) 2). Drracket compiles but acl2 doesn't. Interesting bug.
