@@ -12,8 +12,8 @@
 ; of two words
 (defun largest-elem-helper (word1 word2)
   (if (>= (length word1) (length word2))
-      word1)
-  word2)
+      word1
+  word2))
 
 ; Finds the largest element
 ; of a list of words to decide
