@@ -142,6 +142,30 @@ time log:
           phase: implementation
 	  comment: Continued planning out the hill climbing search. Considering a row-by-row localized search procedure. 
 
+	- date: Feb 28, 2013
+	  start time: 10:25pm
+	  end time: 11:50pm
+          phase: meeting
+	  comment: Group worked on required docs and discussed future tasks.
+
+	- date: Mar 5, 2013
+	  start time: 10:33pm
+	  end time: 11:41pm
+          phase: meeting
+	  comment: Team prepared for the next progress report on thursday.
+
+	- date: Mar 5, 2013
+	  start time: 6:47pm
+	  end time: 8:23pm
+          phase: implementation
+	  comment: Continued debugging hill climbing solver for the right to left matching.
+
+	- date: Mar 6, 2013
+	  start time: 6:50pm
+	  end time: 8:36pm
+          phase: implementation
+	  comment: Finished debugging hill climbing solver's match-right-to-left function.
+
 defect log:
 
 	- date: Feb 8, 2013
@@ -158,6 +182,16 @@ defect log:
 	  type: search
 	  fix time: 10
 	  comment: Fixed the coordinates for search left.  
+
+	- date: Feb 26, 2013
+	  type: function
+	  fix time: 34
+	  comment: Had an issue with iterating and matching solutions to first letters.
+
+	- date: Feb 5, 2013
+	  type: function
+	  fix time: 50
+	  comment: Fixed the logic for match-right-to-left. 
 
 new objects:
 
