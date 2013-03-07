@@ -287,7 +287,65 @@ new objects:
 	  type: unit tests
 	  estimated lines: 38
 
+	- name: char-concat-count
+	  type: function
+	  estimated lines: 5
 
+	- name: char-concat-count-helper
+	  type: helper
+	  estimated lines: 4
+
+	- name: clean-results-tier3
+	  type: function
+	  estimated lines: 4
+
+	- name: clean-results-tier2
+	  type: function
+	  estimated lines: 4
+
+	- name: clean-results-tier1
+	  type: function
+	  estimated lines: 4
+
+	- name: clean-results-helper
+	  type: helper
+	  estimated lines: 5
+
+	- name: match-left-to-right
+	  type: function
+	  estimated lines: 5
+
+	- name: match-right-to-left
+	  type: function
+	  estimated lines: 7
+
+	- name: match-up-to-down
+	  type: function
+	  estimated lines: 5
+
+	- name: match-down-to-up
+	  type: function
+	  estimated lines: 5
+
+	- name: localize
+	  type: function
+	  estimated lines: 30
+
+	- name: char-match
+	  type: function
+	  estimated lines: 5
+
+	- name: row-char-search
+	  type: function
+	  estimated lines: 8
+
+	- name: search-and-localize
+	  type: function
+	  estimated lines: 4
+
+	- name: hill-climbing-solver
+	  type: init
+	  estimated lines: 4
 
 	
 
