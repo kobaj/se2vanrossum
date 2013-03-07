@@ -48,11 +48,11 @@
 (defun wdsrch-brd (words)
   (let* ((n (gen-diff words))
          (brd (mtx n n))
-        (seeds 1)
-        (wdsrch (car (last (plc-wdsrch words brd seeds))))
+        (seeds 388)
+        (wdsrch (car (last (plc-wdsrch words brd seeds)))))
     
-       (filld-srch (fill-brd wdsrch seeds)))
-        filld-srch))
+       ;(filld-srch (fill-brd wdsrch seeds)))
+        wdsrch))
 
 ;Generate Board for word-search
 ;(defun xwrd-brd (words)

@@ -46,6 +46,7 @@
   (if (endp coords) '()
       (cons (mtx-form-horiz-helper n (car coords)) 
             (mtx-form-horiz n (cdr coords)))))
+
 ; Horizontal coordinates
 (defun coords-horiz (n nums)
   (if (endp nums) '()
