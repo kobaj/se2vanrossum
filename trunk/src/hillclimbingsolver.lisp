@@ -120,14 +120,15 @@
 ;y = the col index to start
 ;x = the return x coord for the solution vector
 (defun match-right-to-left (x y r-row sol)
-    (if (>= (len (nthcdr y r-row)) (cadr sol))
+   (let* ((parse (nthrdc (- (len (nthcdr (- (len r-row) (+ y 1)) r-row)) (cadr sol)) r-row)))
+    (if (>= (len parse)(cadr sol))
         (if (equal (car sol)
-                   (char-concat-helper (nthcdr y (nthrdc (- (len (nthcdr y r-row)) (cadr sol)) r-row))))
+                   (char-concat-helper (nthcdr (- (len parse) (cadr sol)) parse)))
             (list x y "left" (- (cadr sol) 1)) ;solution found
-            nil
+           nil
             )
-  nil ;solution cant fit, so its automatically not there
-  ))
+        nil)) ;solution cant fit, so its automatically not there
+  )
 
 ;reverse-matrix (matrix)
 ; This function takes in a matrix
@@ -206,7 +207,7 @@
       nil
       (let* ((leftToRight (match-left-to-right x y (car (nthcdr x matrix))
                                                (car solutions)))
-             (rightToLeft (match-right-to-left x y  (reverse (car (nthcdr x matrix)))
+             (rightToLeft (match-right-to-left x y (reverse (car (nthcdr x matrix)))
                                                 (car solutions)))
              (upToDown (match-up-to-down x y (transpose
                                               (nthrdc (- (len (nthcdr x matrix))
@@ -304,8 +305,8 @@
   
   ;TESTING...this is how we use this solver.
 (hill-climbing-solver(list(list "w" "b" "y" "i" "g" "g" "d" "a" "w") ;example game board
-                          (list "m" "l" "i" "d" "i" "q" "p" "u" "o") 
-                          (list "p" "o" "t" "a" "c" "f" "d" "f" "r") 
+                          (list "t" "a" "c" "d" "i" "q" "p" "u" "o") 
+                          (list "p" "o" "t" "o" "c" "f" "d" "f" "r") 
                           (list "d" "o" "g" "t" "s" "c" "a" "c" "m")
                           (list "r" "p" "p" "t" "w" "w" "r" "g" "o")
                           (list "e" "p" "t" "o" "g" "o" "x" "z" "a")
@@ -316,7 +317,7 @@
                           (list "i" "i" "u" "u" "q" "s" "o" "k" "j")
                           (list "a" "u" "d" "d" "f" "j" "h" "w" "q")
                           (list "j" "d" "f" "a" "g" "l" "f" "g" "d")
-                          (list "g" "d" "u" "x" "j" "n" "o" "o" "r")
+                          (list "g" "d" "w" "o" "c" "n" "o" "o" "r")
                           (list "d" "s" "j" "s" "k" "m" "x" "h" "x")
                           (list "p" "i" "g" "q" "q" "a" "d" "c" "z"))
                     
@@ -328,9 +329,11 @@
                           (list "s" "p" "a" "r" "r" "o" "w") 
                           (list "w" "o" "r" "m")
                           (list "f" "o" "x") 
-                          (list "h" "o" "g") 
+                          (list "h" "o" "g")
+                          (list "c" "o" "w")
                           )
                     )
+
 
 
 
