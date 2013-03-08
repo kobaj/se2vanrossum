@@ -1,15 +1,28 @@
 <?php
-echo '<!DOCTYPE html><html><head></head><body>';
+echo '<!DOCTYPE html><html><head>' .
+'<!-- no cache -->' .
+'<meta http-equiv="pragma" content="no-cache" />' .
+'<meta http-equiv="expires" content="-1" />' .
+
+'<!-- jquery -->' .
+'<script src="js/jquery.js" type="text/javascript"></script>' .
+
+'<!-- style -->' .
+'<LINK href="css/style.css" rel="stylesheet" type="text/css">' .
+
+'<!-- everything else -->' .
+'<title>ACL2 Project</title>' .
+'</head><body>';
 
 echo '<p>Welcome to the online ACL2 Powered create-board v.01</p>';
-
-echo '<form method="get" action=""><textarea name="words">' . (isset($_GET['words']) ? $_GET['words'] : 'Put your words here.') . '</textarea><br /><input type="submit" value="Submit"></form>';
 
 if (run_setup())
 	run_create_board();
 
 function run_create_board()
 {
+	echo '<form method="get" action=""><textarea name="words">' . (isset ($_GET['words']) ? $_GET['words'] : 'Put your words here.') . '</textarea><br /><input type="submit" value="Submit"></form>';
+
 	if (isset ($_GET['words']))
 	{
 		// clean things up
@@ -17,10 +30,10 @@ function run_create_board()
 		foreach ($words as $key => $word)
 		{
 			$temp_word = trim($word);
-			if(!empty($temp_word))
+			if (!empty ($temp_word))
 				$words[$key] = $temp_word;
 			else
-				unset($words[$key]);
+				unset ($words[$key]);
 		}
 		$implode_words = '"' . implode('" "', $words) . '"';
 
@@ -52,7 +65,7 @@ function run_create_board()
 		echo '</p>';
 
 		//delete setup
-		//unlink($SETUP);
+		unlink($SETUP);
 	}
 }
 
@@ -63,7 +76,7 @@ function do_replacement($file_in, $words)
 	// do tag replacements or whatever you want
 	$data = str_replace('{WORDS}', $words, $data);
 	$data = str_replace('{ACL2_SRC_DIR}', ACL2_SRC_DIR, $data);
-	$data = str_replace('{ACL2_TEACHPACKS}', ACL2_TEACHPACKS, $data); 
+	$data = str_replace('{ACL2_TEACHPACKS}', ACL2_TEACHPACKS, $data);
 
 	//make a temp file
 	$tmpfname = tempnam(sys_get_temp_dir(), 'acl');
@@ -78,7 +91,7 @@ function do_replacement($file_in, $words)
 function run_setup()
 {
 	$running_local = false;
-	if ($_SERVER['REMOTE_ADDR'] == '::1')
+	if ($_SERVER['REMOTE_ADDR'] == '::1' || $_SERVER['REMOTE_ADDR'] == '127.0.0.1')
 		$running_local = true;
 
 	if ($running_local)
@@ -114,11 +127,10 @@ function run_setup()
 
 		//print a form to enter stuffs
 		echo '<form method="post" action="">';
-		echo '<span class="label">ACL2 EXE Directory</span><input type="text" name="ACL2_EXE_DIR" />';
-		echo '<span class="label">ACL2 SRC Directory</span><input type="text" name="ACL2_SRC_DIR" />';
-		echo '<span class="label">ACL2 Teachpacks</span><input type="text" name="ACL2_TEACHPACKS" />';
+		echo '<span class="label">ACL2 EXE Directory</span><input type="text" name="ACL2_EXE_DIR" /><br />';
+		echo '<span class="label">ACL2 SRC Directory</span><input type="text" name="ACL2_SRC_DIR" /><br />';
+		echo '<span class="label">ACL2 Teachpacks</span><input type="text" name="ACL2_TEACHPACKS" /><br />';
 		echo '<input type="submit" value="Submit"></form>';
-
 	}
 	else
 	{
@@ -141,16 +153,19 @@ function set_directories($ACL2_EXE_DIR, $ACL2_SRC_DIR, $ACL2_TEACHPACKS, $SETUP_
 	define('SETUP_TEMPLATE', $SETUP_TEMPLATE);
 	define('ACL2_TEACHPACKS', $ACL2_TEACHPACKS);
 
-	setcookie("user", "Alex Porter", time() + 3600);
-	setcookie("user", "Alex Porter", time() + 3600);
-	setcookie("user", "Alex Porter", time() + 3600);
+	set_cookies(time() + 36000);
 }
 
 function unset_directories()
 {
-	setcookie("user", "Alex Porter", time() - 3600);
-	setcookie("user", "Alex Porter", time() - 3600);
-	setcookie("user", "Alex Porter", time() - 3600);
+	set_cookies(time() - 36000);
+}
+
+function set_cookies($time)
+{
+	setcookie('ACL2_EXE_DIR', ACL2_EXE_DIR, $time);
+	setcookie('ACL2_SRC_DIR', ACL2_SRC_DIR, $time);
+	setcookie('ACL2_TEACHPACKS', ACL2_TEACHPACKS, $time);
 }
 
 echo '</body></html>';
