@@ -1,7 +1,0 @@
-:program
-:redef
-(in-package "ACL2")
-(add-include-book-dir :teachpacks "C:/Users/Jakob/AppData/Roaming/Racket/planet/300/5.2.1/cache/cce/dracula.plt/8/23/teachpacks")
-(include-book "C:/Users/Jakob/Desktop/School/Spring2013/se/svn/src/create-board")
-(set-iprint t)
-(create-board '("comma" "separated" "words" "and" "newline" "seperated" "blah") 1) 
