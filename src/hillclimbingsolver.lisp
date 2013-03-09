@@ -216,7 +216,7 @@
                                               0)
                                          (car solutions)))
 
-              (downToUp (if (> (- (+ x 1) (cadr (car solutions))) 0)
+              (downToUp (if (>= (- (+ x 1) (cadr (car solutions))) 0)
                          (match-down-to-up x y (transpose (nthrdc (- (len (nthcdr (- (+ x 1) (cadr (car solutions))) matrix))
                                                                        (cadr (car solutions)))
                                                                     (nthcdr (- (+ x 1) (cadr (car solutions))) matrix))
@@ -304,10 +304,10 @@
    (search-and-Localize matrix matrix (char-concat-count words) 0)))))
   
   ;TESTING...this is how we use this solver.
-;(hill-climbing-solver(list(list "w" "b" "y" "i" "g" "g" "d" "a" "w") ;example game board
-;                          (list "t" "a" "c" "d" "i" "q" "p" "u" "o") 
-;                          (list "p" "o" "t" "o" "c" "f" "d" "f" "r") 
-;                          (list "d" "o" "g" "t" "s" "c" "a" "c" "m")
+;(hill-climbing-solver(list(list "w" "b" "y" "i" "g" "g" "d" "a" "m") ;example game board
+;                          (list "t" "a" "c" "d" "i" "q" "p" "u" "r") 
+;                          (list "p" "o" "t" "o" "c" "f" "d" "f" "o") 
+;                          (list "d" "o" "g" "t" "s" "c" "a" "c" "w")
 ;                          (list "r" "p" "p" "t" "w" "w" "r" "g" "o")
 ;                          (list "e" "p" "t" "o" "g" "o" "x" "z" "a")
 ;                          (list "w" "f" "t" "r" "q" "r" "w" "d" "b")
@@ -327,7 +327,7 @@
 ;                          (list "r" "a" "t") 
 ;                          (list "p" "a" "r" "r" "o" "t") 
 ;                          (list "s" "p" "a" "r" "r" "o" "w") 
-;                          (list "w" "o" "r" "m")
+;                          (list "w" "o" "r" "m") ;not finding if on edge of board. 
 ;                          (list "f" "o" "x") 
 ;                          (list "h" "o" "g")
 ;                          (list "c" "o" "w")

@@ -166,6 +166,12 @@ time log:
           phase: implementation
 	  comment: Finished debugging hill climbing solver's match-right-to-left function.
 
+	- date: Mar 9, 2013
+	  start time: 12:32pm
+	  end time: 3:24pm
+          phase: unit testing
+	  comment: Implemented unit tests for hill climbing solver and fixed bugs along the way. 
+
 defect log:
 
 	- date: Feb 8, 2013
@@ -193,6 +199,16 @@ defect log:
 	  fix time: 50
 	  comment: Fixed the logic for match-right-to-left. 
 
+	- date: Feb 9, 2013
+	  type: function
+	  fix time: 45
+	  comment: There is a bug with finding a match from down to up on a small matrix.
+
+	- date: Feb 9, 2013
+	  type: function
+	  fix time: 15
+	  comment: There is a bug with matching right to left, again.
+ 
 new objects:
 
 	- name: concat-count
@@ -346,6 +362,10 @@ new objects:
 	- name: hill-climbing-solver
 	  type: init
 	  estimated lines: 4
+
+	- name: hill-climbing-solver tests
+	  type: unit tests
+	  estimated lines: 165
 
 	
 
