@@ -1,3 +1,5 @@
+(in-package "ACL2")
+
 (include-book "list-utilities" :dir :teachpacks)
 (include-book "io-utilities" :dir :teachpacks)
 (set-state-ok t)
@@ -16,13 +18,13 @@
 
 ; (just-words xs)
 ; This function takes in a list of lists of characters and returns
-; a list of lists of words of the form (("word1") ... ("wordN"))
+; a list of words of the form ("word1" ... "wordN")
 ; xs = list of lists of characters
 (defun just-words (xs)
   (if (consp xs)
       (let* ((first (chrs->str (car xs)))
              (rest (just-words (cdr xs))))
-        (cons (list first) rest))
+        (cons first rest))
       nil))
 
 ; (words-hints xs)
@@ -41,15 +43,15 @@
 ; (create-words-list gametype filename state)
 ; This function takes in a type of game, a file, and a state and
 ; returns a list of lists of strings
-; gametypes: 0 = wordsearch
-; 1 = crossword
-; 2 = something completely different
+; gametypes: 1 = wordsearch
+; 2 = crossword
+; 3 = something completely different
 ; gametype = type of game to create lists for
 ; filename = string representation of file to be read
 ; state = file->str state
 (defun create-words-list (gametype filename state)
-  (if (= gametype 0)
+  (if (= gametype 1)
       (just-words (bunch-of-chrs filename state))
-      (if (= gametype 1)
+      (if (= gametype 2)
           (words-hints (bunch-of-chrs filename state))
           nil)))
