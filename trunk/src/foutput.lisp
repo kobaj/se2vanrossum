@@ -1,7 +1,9 @@
 (in-package "ACL2")
 
 (include-book "create-board")
-(include-book "finput")
+
+(set-compile-fns t)
+(set-state-ok t)
 
 ; (mux xs ys)
 ; This function is taken directly from lecture 2 for SEI.
@@ -47,7 +49,17 @@
 ; gt = type of game to create lists for
 ; fn = string representation of file to be read
 ; state = file->str state
-(defun file->json (gt fn state)
-  (let* ((xss (create-board (create-words-list gt fn state) gt))
+
+;The way to call the function is as follows:
+;(file->json 1 "C:/pathname/filename.txt" t)
+;The file should be formatted as follows:
+;word1
+;word2
+;word3
+;...
+;wordN
+
+(defun create-board->json (gt words)
+  (let* ((xss (create-board words gt))
          (n (- (len xss) 1)))
     (concatenate 'string "[" (add-brackets n xss) "]")))

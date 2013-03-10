@@ -1,7 +1,7 @@
 :program
 :redef
+(set-iprint t)
 (in-package "ACL2")
 (add-include-book-dir :teachpacks "{ACL2_TEACHPACKS}")
-(include-book "{ACL2_SRC_DIR}create-board")
-(set-iprint t)
-(create-board '({WORDS}) 1) 
+(include-book "{ACL2_SRC_DIR}foutput")
+(create-board->json 1 '({LIST_WORDS}))

@@ -2,3 +2,13 @@
 	display: block;
 	width: 200px;
 }
+
+.table_letter{
+	display: inline-block;
+	width: 20px;
+	text-align: center;
+}
+
+.border{
+	border: 1px solid black;
+}

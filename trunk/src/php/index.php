@@ -6,6 +6,7 @@ echo '<!DOCTYPE html><html><head>' .
 
 '<!-- jquery -->' .
 '<script src="js/jquery.js" type="text/javascript"></script>' .
+'<script src="js/javascript.js" type="text/javascript"></script>' .
 
 '<!-- style -->' .
 '<LINK href="css/style.css" rel="stylesheet" type="text/css">' .
@@ -14,13 +15,16 @@ echo '<!DOCTYPE html><html><head>' .
 '<title>ACL2 Project</title>' .
 '</head><body>';
 
-echo '<p>Welcome to the online ACL2 Powered create-board v.01</p>';
-
 if (run_setup())
 	run_create_board();
 
 function run_create_board()
 {
+	define('INPUT_TEMPLATE', 'setup/create_board_file');
+	define('SETUP_TEMPLATE', 'setup/create_board_template');
+	
+	echo '<p>Welcome to the online ACL2 Powered create-board v.01</p>';
+	
 	echo '<form method="get" action=""><textarea name="words">' . (isset ($_GET['words']) ? $_GET['words'] : 'Put your words here.') . '</textarea><br /><input type="submit" value="Submit"></form>';
 
 	if (isset ($_GET['words']))
@@ -35,10 +39,10 @@ function run_create_board()
 			else
 				unset ($words[$key]);
 		}
-		$implode_words = '"' . implode('" "', $words) . '"';
+		$implode_words = '"' . implode('" "', $words) .'"';
 
-		// make our input file
-		$SETUP = do_replacement(ACL2_SRC_DIR . SETUP_TEMPLATE, $implode_words);
+		// then make our setup file
+		$SETUP = do_replacement(ACL2_SRC_DIR . SETUP_TEMPLATE, array('list_words' => $implode_words));
 
 		//output the words
 		echo '<ul>';
@@ -50,31 +54,48 @@ function run_create_board()
 		// NOTE for now this uses redirected input, but it will eventually
 		// use clay's ACL2 code
 		$final_call = ACL2_EXE_DIR . ' < ' . $SETUP;
-		echo '<p>' . $final_call . '</p>';
-		exec($final_call, $return);
-		echo '<p>';
-		$output = false;
-		foreach ($return as $key => $results)
+		echo '<p>Command: ' . $final_call . '</p>';
+		exec($final_call, $console_log);
+		echo '<p id="board_json">';
+		$json = '';
+		foreach ($console_log as $key => $results)
 		{
-			if (stristr($results, 'Iprinting has been enabled'))
-				- $output = true;
-
-			if ($output)
-				echo $results . '<br />';
+			if(starts_with($results, 'ACL2 p!>"[[') &&
+				ends_with($results, ']]"'))
+				{
+					//then just clean it
+					$json = str_replace('ACL2 p!>"[[', '[["', $results);
+					$json = str_replace(']]"', '"]]', $json);
+					
+					//first add back in our quotes
+					$json = str_replace('],[', ';', $json);
+					$json = str_replace(',', '","', $json);
+					$json = str_replace(';', '"],["', $json);
+					
+					
+					echo $json;
+				}
 		}
 		echo '</p>';
+		
+		echo '<p id="acl2_output">';
+		var_dump ($console_log);
+		echo '</p';
 
 		//delete setup
 		unlink($SETUP);
 	}
 }
 
-function do_replacement($file_in, $words)
+function do_replacement($file_in, $replace_array)
 {
 	$data = file_get_contents($file_in . '.txt');
 
 	// do tag replacements or whatever you want
-	$data = str_replace('{WORDS}', $words, $data);
+	foreach($replace_array as $key => $value)
+		$data = str_replace('{'.strtoupper($key) .'}', $value, $data);	
+	
+	//$data = str_replace('{WORDS}', $words, $data);
 	$data = str_replace('{ACL2_SRC_DIR}', ACL2_SRC_DIR, $data);
 	$data = str_replace('{ACL2_TEACHPACKS}', ACL2_TEACHPACKS, $data);
 
@@ -146,11 +167,10 @@ function run_setup()
 	return false;
 }
 
-function set_directories($ACL2_EXE_DIR, $ACL2_SRC_DIR, $ACL2_TEACHPACKS, $SETUP_TEMPLATE = 'setup/setup')
+function set_directories($ACL2_EXE_DIR, $ACL2_SRC_DIR, $ACL2_TEACHPACKS)
 {
 	define('ACL2_EXE_DIR', $ACL2_EXE_DIR);
 	define('ACL2_SRC_DIR', $ACL2_SRC_DIR);
-	define('SETUP_TEMPLATE', $SETUP_TEMPLATE);
 	define('ACL2_TEACHPACKS', $ACL2_TEACHPACKS);
 
 	set_cookies(time() + 36000);
@@ -166,6 +186,21 @@ function set_cookies($time)
 	setcookie('ACL2_EXE_DIR', ACL2_EXE_DIR, $time);
 	setcookie('ACL2_SRC_DIR', ACL2_SRC_DIR, $time);
 	setcookie('ACL2_TEACHPACKS', ACL2_TEACHPACKS, $time);
+}
+
+// thanks to http://stackoverflow.com/questions/834303/php-startswith-and-endswith-functions
+function starts_with($haystack, $needle)
+{
+    return !strncmp($haystack, $needle, strlen($needle));
+}
+
+function ends_with($haystack, $needle)
+{
+    $length = strlen($needle);
+    if ($length == 0) 
+        return true;
+
+    return (substr($haystack, -$length) === $needle);
 }
 
 echo '</body></html>';
