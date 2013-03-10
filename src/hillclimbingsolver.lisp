@@ -191,8 +191,8 @@
                         nil); solution wouldnt fit
                         )) 
 
-         (concatenate 'list (list leftToRight rightToLeft downToUp upToDown)
-                      (localize x y matrix (cdr solutions)))
+         (clean-results (concatenate 'list (list leftToRight rightToLeft downToUp upToDown)
+                      (localize x y matrix (cdr solutions))))
 
         )))
 
@@ -256,40 +256,39 @@
 ;Note: The results need to be cleaned up since we are performing lots 
 ;of localized searches within an overall search.
 (defun hill-climbing-solver (matrix words)
-(clean-results
-   (search-and-Localize matrix matrix (char-concat-count words) 0)))
+   (search-and-Localize matrix matrix (char-concat-count words) 0))
   
   ;TESTING...this is how we use this solver.
-;(hill-climbing-solver(list(list "w" "r" "y" "i" "g" "g" "d" "a" "m") ;example game board
-;                          (list "t" "a" "c" "g" "i" "q" "p" "u" "r") 
-;                          (list "p" "t" "t" "o" "c" "f" "d" "f" "o") 
-;                          (list "d" "o" "g" "t" "s" "c" "a" "c" "w")
-;                          (list "r" "p" "p" "t" "w" "w" "r" "g" "o")
-;                          (list "e" "p" "t" "o" "g" "o" "x" "z" "a")
-;                          (list "w" "f" "t" "r" "q" "r" "w" "d" "b")
-;                          (list "e" "d" "t" "r" "i" "r" "t" "f" "p")
-;                          (list "h" "d" "t" "a" "r" "a" "t" "f" "p")
-;                          (list "e" "w" "t" "p" "a" "p" "r" "o" "t")
-;                          (list "i" "i" "u" "u" "q" "s" "o" "k" "j")
-;                          (list "a" "u" "d" "d" "f" "j" "h" "w" "q")
-;                          (list "j" "d" "f" "a" "g" "l" "f" "g" "d")
-;                          (list "p" "d" "w" "o" "c" "n" "o" "o" "r")
-;                          (list "u" "s" "j" "s" "k" "m" "x" "h" "x")
-;                          (list "p" "i" "g" "p" "p" "p" "p" "p" "p"))
-;                    
-;                    (list (list "c" "a" "t"); example word list
-;                          (list "d" "o" "g") 
-;                          (list "p" "i" "g")
-;                          (list "r" "a" "t") 
-;                          (list "p" "u" "p") 
-;                          (list "p" "a" "r" "r" "o" "t") 
-;                         (list "s" "p" "a" "r" "r" "o" "w") 
-;                          (list "w" "o" "r" "m") 
-;                         (list "f" "o" "x") 
-;                          (list "h" "o" "g") 
-;                          (list "c" "o" "w") 
-;                          )
-;                    )
+(hill-climbing-solver(list(list "w" "r" "y" "i" "g" "g" "d" "a" "m") ;example game board
+                          (list "t" "a" "c" "g" "i" "q" "p" "u" "r") 
+                          (list "p" "t" "t" "o" "c" "f" "d" "f" "o") 
+                          (list "d" "o" "g" "t" "s" "c" "a" "c" "w")
+                          (list "r" "p" "p" "t" "w" "w" "r" "g" "o")
+                          (list "e" "p" "t" "o" "g" "o" "x" "z" "a")
+                          (list "w" "f" "t" "r" "q" "r" "w" "d" "b")
+                          (list "e" "d" "t" "r" "i" "r" "t" "f" "p")
+                          (list "h" "d" "t" "a" "r" "a" "t" "f" "p")
+                          (list "e" "w" "t" "p" "a" "p" "r" "o" "t")
+                          (list "i" "i" "u" "u" "q" "s" "o" "k" "j")
+                          (list "a" "u" "d" "d" "f" "j" "h" "w" "q")
+                          (list "j" "d" "f" "a" "g" "l" "f" "g" "d")
+                          (list "p" "d" "w" "o" "c" "n" "o" "o" "r")
+                          (list "u" "s" "j" "s" "k" "m" "x" "h" "x")
+                          (list "p" "i" "g" "p" "p" "p" "p" "p" "p"))
+                    
+                    (list (list "c" "a" "t"); example word list
+                          (list "d" "o" "g") 
+                          (list "p" "i" "g")
+                          (list "r" "a" "t") 
+                          (list "p" "u" "p") 
+                          (list "p" "a" "r" "r" "o" "t") 
+                         (list "s" "p" "a" "r" "r" "o" "w") 
+                          (list "w" "o" "r" "m") 
+                         (list "f" "o" "x") 
+                          (list "h" "o" "g") 
+                          (list "c" "o" "w") 
+                          )
+                    )
 
 
 
