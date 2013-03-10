@@ -311,18 +311,6 @@ new objects:
 	  type: helper
 	  estimated lines: 4
 
-	- name: clean-results-tier3
-	  type: function
-	  estimated lines: 4
-
-	- name: clean-results-tier2
-	  type: function
-	  estimated lines: 4
-
-	- name: clean-results-tier1
-	  type: function
-	  estimated lines: 4
-
 	- name: clean-results-helper
 	  type: helper
 	  estimated lines: 5
