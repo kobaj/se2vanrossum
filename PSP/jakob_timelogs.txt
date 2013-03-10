@@ -4,7 +4,7 @@ program: timelog
 instructor: Dr. Page
 
 actual base lines: 0
-actual added lines: 0
+actual added lines: 171
 actual modified lines: 0
 actual removed lines: 0
 
@@ -113,8 +113,48 @@ time log:
 	phase: Group Planning
 	comment: Presentation of progress thus far.
 
+	- date: March 9, 2013
+	start time: 5:11PM
+	end time: 11:45AM
+	phase: Code
+	comment: After clay got the json parsed output printed, I can now import it with jquery.
+
 new objects:
+
+	- name: run_create_board
+	  type: function-php
+	  estimated lines: 25
+
+	- name: do_replacement
+	  type: function-php
+	  estimated lines: 10
+
+	- name: run_setup
+	  type: function-php
+	  estimated lines: 25
+
+	- name: set_directories
+	  type: function-php
+	  estimated lines: 10
+
+	- name: unset_directories
+	  type: function-php
+	  estimated lines: 5
+
+	- name: set_cookies
+	  type: function-php
+	  estimated lines: 5
+
+	- name: remaining
+	  type: function-php
+	  estimated lines: 25
+
 reused objects:
+
+	- name: Functions from StackOverflow, startsWith and EndsWith
+	estimated base: 12
+	type: function-php
+
 defect log:
 	
 	- date: January 29, 2013
@@ -133,11 +173,26 @@ defect log:
 	comment: How to implement JSON with the acl2 and python/webserver.
 
 	- date: March 6, 2013
-	type: Group
+	type: ACL2
 	fix time: 13
 	comment: Getting the web server to work with ACL2. requires :program and :redef
 
 	- date: March 6, 2013
-	type: Group
+	type: Code
 	fix time: 2
 	comment: if is defined as (if t 1 2) not ((if t 1) 2). Drracket compiles but acl2 doesn't. Interesting bug.
+
+	- date: March 9, 2013
+	type: Code
+	fix time: 2
+	comment: Be sure to specify arrays with => not = >
+
+	- date: March 9, 2013
+	type: Code
+	fix time: 2
+	comment: Be sure to specify arrays with => not = >
+
+	- date: March 9, 2013
+	type: Code
+	fix time: 240
+	comment: command line mv-let can only be called by a parent mv-let of size 1 less than child mv-let. This means, rip your hair out for 4 hours and then screw it and use another function.
