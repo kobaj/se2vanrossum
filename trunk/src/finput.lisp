@@ -16,6 +16,28 @@
          (chrs (str->chrs rawinput)))
     (tokens '(#\return #\newline #\>) chrs)))
 
+; (chrs->stringss xs)
+; This function takes a list of characters and converts it to a list
+; of single character strings.
+; xs = list of characters
+(defun chrs->strings (xs)
+  (if (consp xs)
+      (let* ((first (chrs->str (list (car xs))))
+             (rest (chrs->strings (cdr xs))))
+        (cons first rest))
+      nil))
+
+; (chrs-matrix->strings-matrix xss)
+; This function takes a list of lists of characters and converts it
+; to a list of lists of single character strings.
+; xss = list of lists of characters
+(defun chrs-matrix->strings-matrix (xss)
+  (if (consp xss)
+      (let* ((first (car xss))
+             (rest (chrs-matrix->strings-matrix (cdr xss))))
+        (cons (chrs->strings first) rest))
+      nil))
+
 ; (just-words xs)
 ; This function takes in a list of lists of characters and returns
 ; a list of words of the form ("word1" ... "wordN")
