@@ -56,31 +56,31 @@
               )
 
 ;localize
-(check-expect (localize 0 2  (list (list "a" "b" "a" "d") 
+(check-expect (car(localize 0 2  (list (list "a" "b" "a" "d") 
                                    (list "e" "f" "g" "h"))
                         (list (list "ag" 2)
-                              (list "ac" 2)))
+                              (list "ac" 2))))
               (list 0 2 "down" 1)
               )
 
-(check-expect (localize 1 2  (list (list "a" "b" "g" "d") 
+(check-expect (car (localize 1 2  (list (list "a" "b" "g" "d") 
                                    (list "e" "f" "a" "h"))
                         (list (list "ag" 2)
-                              (list "ac" 2)))
+                              (list "ac" 2))))
               (list 1 2 "up" 1)
               )
 
-(check-expect (localize 1 1  (list (list "a" "b" "g" "d") 
+(check-expect (car (localize 1 1  (list (list "a" "b" "g" "d") 
                                    (list "e" "f" "a" "h"))
                         (list (list "ag" 2)
-                              (list "fa" 2)))
+                              (list "fa" 2))))
               (list 1 1 "right" 1)
               )
 
-(check-expect (localize 0 3  (list (list "a" "b" "g" "d") 
+(check-expect (car (localize 0 3  (list (list "a" "b" "g" "d") 
                                    (list "e" "f" "a" "h"))
                         (list (list "dg" 2)
-                              (list "fa" 2)))
+                              (list "fa" 2))))
               (list 0 3 "left" 1)
               )
 
@@ -112,7 +112,7 @@
                     (list (list "c" "a" "t"); example word list 
                           (list "d" "o" "g") 
                           (list "p" "i" "g")
-                          (list "r" "a" "t") 
+                          (list "r" "a" "t") ;rat appears twice
                           (list "p" "a" "r" "r" "o" "t") 
                           (list "s" "p" "a" "r" "r" "o" "w") 
                           (list "w" "o" "r" "m") ;not finding if on edge of board. 
@@ -121,16 +121,18 @@
                           (list "c" "o" "w")
                           )
                     )
- (list (list 1 2 "left" 2)
+(list (list 1 2 "left" 2)
  (list 3 0 "right" 2)
+ (list 3 8 "up" 3)
  (list 8 4 "right" 2)
+ (list 8 4 "left" 2)
  (list 9 3 "up" 5)
  (list 10 5 "up" 6)
  (list 12 6 "down" 2)
  (list 13 4 "left" 2)
  (list 14 7 "up" 2)
- (list 15 0 "right" 2))
-)
+ (list 15 0 "right" 2)
+))
 
 (check-expect (hill-climbing-solver(list(list "r" "i" "g" "h" "t" "f" "e" "l" "l") ;example game board
                                         (list "k" "a" "c" "d" "i" "q" "k" "u" "r") 
