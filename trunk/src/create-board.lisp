@@ -8,6 +8,9 @@
 
 (include-book "placement")
 (include-book "fill-board")
+
+
+
 ; Helper function to get largest element returns larger
 ; of two words
 (defun largest-elem-helper (word1 word2)
@@ -49,12 +52,15 @@
   (let* ((n (gen-diff words))
          (brd (mtx n n))
         (seeds 388)
-        (wdsrch (car (last (plc-wdsrch words brd seeds)))) ;sorry
-    
-       (filld-srch (fill-brd wdsrch seeds)))
-        filld-srch))
+        (wdsrch (car (last (plc-wdsrch words brd seeds))))) ;sorry
+       ;(filld-srch (fill-brd wdsrch seeds)))
+        ;filld-srch))
+    wdsrch))
 
-;Generate Board for word-search
+
+
+
+;Generate Board for xword
 ;(defun xwrd-brd (words)
 ;  (let* ((brd (mtx (len words) (len words)))
 ;        (xwrd (plc-words brd words)))        
@@ -63,16 +69,19 @@
 
 
 
-; Initial call to crate appropriate board
+; Initial call to create appropriate board
 (defun create-board (words game)
    (cond ((= game 1) (wdsrch-brd words))
-	 ((= game 2) nil)) 
-)
+	 ((= game 2) nil)))
 
+
+; Helper to convert board to string
 (defun string-brd-helper (row)
   (if (endp row) '()
-      (cons (chrs->str (list (car row))) (string-brd-helper (cdr row)))))
+      (cons (chrs->str (list (car row))) 
+            (string-brd-helper (cdr row)))))
 
+; Convert from characters to strings
 (defun string-brd (brd)
   (if (endp brd) '()
       (cons (string-brd-helper (car brd))
