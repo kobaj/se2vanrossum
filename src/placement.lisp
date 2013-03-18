@@ -56,17 +56,35 @@
 
 
 
-; Changing values of a row puts the
-; correct spot utilizing coordinates
-(defun row-rep (chrs y1 y2 cnt row)
-  (if (= (+ 1 cnt) (len row)) (last row) ;we reached end of row
-  (if  (and (not (endp chrs)) (and (>= cnt y1) (< cnt y2)))
-      (cons (car chrs) ; where we put characters into board
-            (row-rep (cdr chrs) y1 y2 (+ 1 cnt) row)) 
-    (cons (nth cnt  row) ; kee going until we are in range
-         (row-rep chrs y1 y2 (+ 1 cnt) row)
-  
-))))
+(defun col-rep (brd chrs y col)
+  (if (endp chrs) brd
+      (let* ((new-brd (plc-indx brd y col (car chrs)))
+             )
+        (col-rep new-brd (cdr chrs) (+ 1 y) col))))
+
+
+
+(defun row-rep (brd chrs y col)
+  (if (endp chrs) brd
+      (let* ((new-brd (plc-indx brd y col (car chrs)))
+             )
+        (row-rep new-brd (cdr chrs) y (+ 1 col) ))))
+
+;; Changing values of a row puts the
+;; correct spot utilizing coordinates
+;(defun row-rep (chrs y1 y2 cnt row)
+;  (if  (=  cnt (len row)) 
+;       (if (null chrs) '()
+;           (list (car chrs)));we reached end of row
+;  (if  (and (not (endp chrs)) (and (>= cnt y1) (< cnt y2)))
+;      (cons (car chrs) ; where we put characters into board
+;            (row-rep (cdr chrs) y1 y2 (+ 1 cnt) row)) 
+;    (cons (nth cnt  row) ; kee going until we are in range
+;         (row-rep chrs y1 y2 (+ 1 cnt) row)
+;  
+;))))
+
+
 
 
 ; Returns the column for replacement
@@ -75,10 +93,10 @@
   (cons (nth col (car brd)) 
         (get-column (cdr brd) col))))
 
-(defun replace-col (brd col col-num)
-  (if (endp col) brd
-      (cons (row-rep col col-num (+ 1 col-num) 0 (car brd))
-            (replace-col (cdr brd) (cdr col) col-num))))
+;(defun replace-col (brd col col-num)
+;  (if (endp col) brd
+;      (cons (row-rep col col-num (+ 1 col-num) 0 (car brd))
+;            (replace-col (cdr brd) (cdr col) col-num))))
 
 
 ;----------------------------------------------End Board Modifications
@@ -108,7 +126,7 @@
               (row-num (caar coords))
               (diff (- end start))
               (range (- diff (len word))))
-        (if (< range 2)
+        (if (<= range 2)
             coords
             (rand-start-horiz range word row-num (+ 1 seed))))
               
@@ -118,7 +136,7 @@
              (diff (- end start)
                    )
              (range (- diff (len word))))
-     (if (< range 2)
+     (if (<= range 2)
             coords
             (rand-start-vert range word row-num (+ 1 seed))))))
          
@@ -138,10 +156,11 @@
              (ret-cords (rand-start (car rcords) word seed type)))
        ret-cords)
       (let* ((opn (open-brd-coords 0 brd))
+             
              (mf (coords-vert 0 (openv 0  opn)))
              (wd-fits (do-fits-vert word mf))
             (rcords (rand-coord seed (remove nil wd-fits)))
-            (ret-cords (rand-start (car rcords) word seed type)))
+        (ret-cords (rand-start (car rcords) word seed type)))
       ret-cords)))
 
 
@@ -156,9 +175,7 @@
   (let* ((col-num (cadar coords))
          (y1 (caar coords))
          (y2 (caadr coords))
-         (col (get-column brd col-num))
-         (new-col (row-rep word y1 y2 0 col))
-         (new-brd (replace-col brd new-col col-num)))
+         (new-brd (col-rep brd word y1 col-num )))
     new-brd))
 
 
@@ -168,9 +185,7 @@
    (let* ((row-num (caar coords))
         (y1 (cadar coords)) ; y1 value for placement
         (y2 (cadadr coords)) ; y2 value for placement
-        (new-row (row-rep word y1 y2  0 (nth row-num brd)))
-          (new-brd 
-         (update-row brd (len brd) new-row row-num 0))) ;upd8 brd row
+        (new-brd (row-rep brd word row-num y1)))
     new-brd)) ; return new board    
 
 
@@ -190,7 +205,7 @@
              (type (rand 4 seed)) ;get the type we are placing
              (coords (fit-coords type word brd (+ seed 57)))
              (new-brd (place brd word type  coords)));our new updated board
-        (cons  new-brd (plc-wdsrch (cdr words) new-brd (+ 39 seed))))))
+        (cons new-brd (plc-wdsrch (cdr words) new-brd (+ 39 seed))))))
 
 ;-------------------------------------------------------End Placement
 
