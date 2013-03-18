@@ -7,28 +7,21 @@
 
 (in-package "ACL2")
 
+
 (include-book "rand" :dir :teachpacks)
 (include-book "io-utilities" :dir :teachpacks)
 (include-book "list-utilities" :dir :teachpacks)
+
+
 (include-book "fits")
-
-;-------------------------------------------------------------------
-;---------Start board elems retrieval and Modification--------------
-;-------------------------------------------------------------------
-
 
 ;----------------------------------------------------------------
 ;---------X,Y placement-----------------------------------------
 ;---------------------------------------------------------------
+
+;Get specified row of the board
 (defun get-row (brd n)
   (nth n brd))
-
-; Helper method
-(defun plc-indx-helper (n y row char)
-  (if (endp row) '()
-    (if (= n y )
-	(cons char (plc-indx-helper (+ 1 n) y (cdr row) char))
-      (cons (car row) (plc-indx-helper (+ 1 n) y (cdr row) char)))))
 
 
 
@@ -43,49 +36,38 @@
       (cons (car brd) 
             (update-row (cdr brd) brd-length 
                         row  
-                        row-num 
-                        (+ 1 n)))) ))
+                        row-num   
+                      (+ 1 n)))) ))
+
+; Helper method for placing at spec indx
+(defun plc-indx-helper (n y row char)
+  (if (endp row) '()
+    (if (= n y )
+	(cons char (plc-indx-helper (+ 1 n) y (cdr row) char))
+      (cons (car row) (plc-indx-helper (+ 1 n) y (cdr row) char)))))
+
+
 
 ; Places character at specified index
 (defun plc-indx (brd x y char)
   (let* ((row (get-row brd x))
-	 (new-row (plc-indx-helper 0 y row char))
-	 )
+	 (new-row (plc-indx-helper 0 y row char)))
      (update-row brd (len brd) new-row x 0)))
 
 
 
-
+; Replaces column
 (defun col-rep (brd chrs y col)
   (if (endp chrs) brd
-      (let* ((new-brd (plc-indx brd y col (car chrs)))
-             )
+      (let* ((new-brd (plc-indx brd y col (car chrs))))
         (col-rep new-brd (cdr chrs) (+ 1 y) col))))
 
 
-
+;Replace row
 (defun row-rep (brd chrs y col)
   (if (endp chrs) brd
-      (let* ((new-brd (plc-indx brd y col (car chrs)))
-             )
+      (let* ((new-brd (plc-indx brd y col (car chrs))))
         (row-rep new-brd (cdr chrs) y (+ 1 col) ))))
-
-;; Changing values of a row puts the
-;; correct spot utilizing coordinates
-;(defun row-rep (chrs y1 y2 cnt row)
-;  (if  (=  cnt (len row)) 
-;       (if (null chrs) '()
-;           (list (car chrs)));we reached end of row
-;  (if  (and (not (endp chrs)) (and (>= cnt y1) (< cnt y2)))
-;      (cons (car chrs) ; where we put characters into board
-;            (row-rep (cdr chrs) y1 y2 (+ 1 cnt) row)) 
-;    (cons (nth cnt  row) ; kee going until we are in range
-;         (row-rep chrs y1 y2 (+ 1 cnt) row)
-;  
-;))))
-
-
-
 
 ; Returns the column for replacement
 (defun get-column (brd  col)
@@ -93,27 +75,22 @@
   (cons (nth col (car brd)) 
         (get-column (cdr brd) col))))
 
-;(defun replace-col (brd col col-num)
-;  (if (endp col) brd
-;      (cons (row-rep col col-num (+ 1 col-num) 0 (car brd))
-;            (replace-col (cdr brd) (cdr col) col-num))))
-
 
 ;----------------------------------------------End Board Modifications
 
 
-
+; Picks a random starting point for horizontal placement
 (defun rand-start-horiz (range word row-num seed)
   (let* ((new-start (rand range seed))
               (new-end (+ new-start (len word))))
         (list (list row-num new-start) (list row-num new-end)) ))
 
-
+; Picks a random starting point for vertical placement
 (defun rand-start-vert (range word row-num seed)
   (let*  ((new-start (rand range seed))
-             (new-end (+ new-start (len word)))
-             )
+             (new-end (+ new-start (len word))))
         (list (list new-start row-num) (list new-end row-num))))
+
 ;word len = 5 
 ; start 0 
 ; end 10
@@ -128,13 +105,11 @@
               (range (- diff (len word))))
         (if (<= range 2)
             coords
-            (rand-start-horiz range word row-num (+ 1 seed))))
-              
+            (rand-start-horiz range word row-num (+ 1 seed)))) ;ugly function              
       (let* ((start (caar coords))
              (row-num (cadar coords))
              (end (caadr coords))
-             (diff (- end start)
-                   )
+             (diff (- end start))
              (range (- diff (len word))))
      (if (<= range 2)
             coords
@@ -174,7 +149,6 @@
 (defun plc-vert (brd word coords)
   (let* ((col-num (cadar coords))
          (y1 (caar coords))
-         (y2 (caadr coords))
          (new-brd (col-rep brd word y1 col-num )))
     new-brd))
 
@@ -184,7 +158,6 @@
 (defun plc-horiz (brd word coords)
    (let* ((row-num (caar coords))
         (y1 (cadar coords)) ; y1 value for placement
-        (y2 (cadadr coords)) ; y2 value for placement
         (new-brd (row-rep brd word row-num y1)))
     new-brd)) ; return new board    
 
@@ -208,5 +181,26 @@
         (cons new-brd (plc-wdsrch (cdr words) new-brd (+ 39 seed))))))
 
 ;-------------------------------------------------------End Placement
+
+;-------------------------------------------------------Unused
+
+;; Changing values of a row puts the
+;; correct spot utilizing coordinates
+;(defun row-rep (chrs y1 y2 cnt row)
+;  (if  (=  cnt (len row)) 
+;       (if (null chrs) '()
+;           (list (car chrs)));we reached end of row
+;  (if  (and (not (endp chrs)) (and (>= cnt y1) (< cnt y2)))
+;      (cons (car chrs) ; where we put characters into board
+;            (row-rep (cdr chrs) y1 y2 (+ 1 cnt) row)) 
+;    (cons (nth cnt  row) ; kee going until we are in range
+;         (row-rep chrs y1 y2 (+ 1 cnt) row)
+;  
+;))))
+
+;(defun replace-col (brd col col-num)
+;  (if (endp col) brd
+;      (cons (row-rep col col-num (+ 1 col-num) 0 (car brd))
+;            (replace-col (cdr brd) (cdr col) col-num))))
 
 ;End placement.lisp

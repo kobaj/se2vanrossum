@@ -10,6 +10,7 @@
 ;--------------------------------------------------------
 ;-----------------Start Find Placements------------------
 ;--------------------------------------------------------
+
 ; Gets the end coordinate for the row
 (defun get-end (n nums)
   (if (endp nums) n
@@ -33,7 +34,8 @@
 ; Init the start end coords
 (defun do-start-end (nums)
   (if (endp nums) '()
-      (cons (start-end 0 (car nums)) (do-start-end (cdr nums)))))
+      (cons (start-end 0 (car nums)) 
+            (do-start-end (cdr nums)))))
 
 
 ; now we will have the form for the coordinates
@@ -76,6 +78,7 @@
 ;-----------------------------------------------------------
 ;------------------Find fits Horiz--------------------------
 ;-----------------------------------------------------------
+
 ; Filter list down to coordinates that fit
 (defun fitsp (word coords)
     (if ( <= (len word) 
@@ -84,7 +87,7 @@
 	 t
          nil)) 
 
-
+; Find our fit horizontally
 (defun fits (word coords)
   (if (endp coords) '()
       (if (fitsp word (car coords))
@@ -143,7 +146,7 @@
       (cons (mtx-form-vert-helper n (car coords)) 
             (mtx-form-vert n (cdr coords)))))
 
-
+; Predicate if number is same for number wea re looking
 (defun indxp (col num)
   (if (= col num)
       t
@@ -155,6 +158,7 @@
           (cons row (openv-helper col (+ 1 row) (cdr nums)))
       (openv-helper col (+ 1 row) (cdr nums)))))
 
+; Find all of the open spots for vertical placement
 (defun openv (col nums)
   (if (= col (len nums)) '()
       (cons (openv-helper col 0 nums) (openv (+ 1 col) nums))))
@@ -172,8 +176,8 @@
 
 
 
-;------------------------------
-;---------- Unused ------------
+;---------------------------------------------------------
+;---------- Unused ---------------------------------------
 ;---------------------------------------------------------
 
 
