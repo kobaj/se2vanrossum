@@ -87,7 +87,7 @@
 
 ; Picks a random starting point for vertical placement
 (defun rand-start-vert (range word row-num seed)
-  (let*  ((new-start (rand range seed))
+  (let*  ((new-start (rand (- range 1) seed))
              (new-end (+ new-start (len word))))
         (list (list new-start row-num) (list new-end row-num))))
 
