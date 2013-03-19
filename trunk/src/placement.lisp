@@ -23,6 +23,11 @@
 (defun get-row (brd n)
   (nth n brd))
 
+; Returns the column for replacement
+(defun get-column (brd  col)
+  (if (endp brd) '()
+  (cons (nth col (car brd)) 
+        (get-column (cdr brd) col))))
 
 
 ;Updates the board by putting the modified row
@@ -69,11 +74,7 @@
       (let* ((new-brd (plc-indx brd y col (car chrs))))
         (row-rep new-brd (cdr chrs) y (+ 1 col) ))))
 
-; Returns the column for replacement
-(defun get-column (brd  col)
-  (if (endp brd) '()
-  (cons (nth col (car brd)) 
-        (get-column (cdr brd) col))))
+
 
 
 ;----------------------------------------------End Board Modifications
