@@ -119,6 +119,30 @@ time log:
 	phase: Code
 	comment: After clay got the json parsed output printed, I can now import it with jquery.
 
+	- date: March 12, 2013
+	start time: 10:32AM
+	end time: 11:38AM
+	phase: Group Planning
+	comment: Meeting to discuss t13 and t15.
+
+	- date: March 15, 2013
+	start time: 10:29AM
+	end time: 10:49AM
+	phase: Group Planning
+	comment: Short meeting to discuss what is to be completed over the break
+
+	- date: March 26, 2013
+	start time: 10:32AM
+	end time: 11:44AM
+	phase: Group Planning
+	comment: Rewrite our t12 and prepare for the next big group discussion day.
+
+	- date: March 28, 2013
+	start time: 10:32AM
+	end time: 11:44AM
+	phase: Group Planning
+	comment: Presentation with the prof and realignment of the goal.
+
 new objects:
 
 	- name: run_create_board
