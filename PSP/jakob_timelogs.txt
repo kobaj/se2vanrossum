@@ -115,7 +115,7 @@ time log:
 
 	- date: March 9, 2013
 	start time: 5:11PM
-	end time: 11:45AM
+	end time: 9:53PM
 	phase: Code
 	comment: After clay got the json parsed output printed, I can now import it with jquery.
 
@@ -136,6 +136,18 @@ time log:
 	end time: 11:44AM
 	phase: Group Planning
 	comment: Rewrite our t12 and prepare for the next big group discussion day.
+
+	- date: March 27, 2013
+	start time: 6:47PM
+	end time: 7:22PM
+	phase: Code
+	comment: refactoring HTML to allow abstractness and make its presentation more respectable.
+
+	- date: March 27, 2013
+	start time: 10:36PM
+	end time: 10:43PM
+	phase: Code
+	comment: Running through the process of create board to make it look better.
 
 	- date: March 28, 2013
 	start time: 10:32AM
@@ -220,3 +232,8 @@ defect log:
 	type: Code
 	fix time: 240
 	comment: command line mv-let can only be called by a parent mv-let of size 1 less than child mv-let. This means, rip your hair out for 4 hours and then screw it and use another function.
+
+	- date: March 27, 2013
+	type: Code
+	fix time: 15
+	comment: To enable ACL2 via command line without guard checking (reduced the number of errors produced) use (set-guard-checking :none).
