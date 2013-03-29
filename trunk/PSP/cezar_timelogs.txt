@@ -172,6 +172,24 @@ time log:
           phase: unit testing
 	  comment: Implemented unit tests for hill climbing solver and fixed bugs along the way. 
 
+	- date: Mar 12, 2013
+	  start time: 10:30am
+	  end time: 11:38pm
+          phase: meeting
+	  comment: Group discussed bug fixes for create board and other functions.
+
+	- date: Mar 26, 2013
+	  start time: 10:33am
+	  end time: 11:44pm
+          phase: meeting
+	  comment: Group planned and implemented a progress report for Dr. Page to be presented the following meeting.
+
+	- date: Mar 28, 2013
+	  start time: 10:30am
+	  end time: 11:40am
+          phase: meeting
+	  comment: A progress report was conducted for Dr. Page. Afterwards we began planning the future for future tasks, including the presentation. 
+
 defect log:
 
 	- date: Feb 8, 2013
