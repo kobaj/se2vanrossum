@@ -179,7 +179,7 @@
              (type (rand 4 seed)) ;get the type we are placing
              (coords (fit-coords type word brd (+ seed 57)))
              (new-brd (place brd word type  coords)));our new updated board
-        (cons new-brd (plc-wdsrch (cdr words) new-brd (+ 39 seed))))))
+        (cons (cons (cons (car words) coords) new-brd) (plc-wdsrch (cdr words) new-brd (+ 39 seed))))))
 
 ;-------------------------------------------------------End Placement
 
