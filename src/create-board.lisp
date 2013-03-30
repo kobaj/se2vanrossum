@@ -32,7 +32,7 @@
 ; an integer for board size
 (defun gen-diff (words)
    (let ((n (largest-elem (car words) (cdr words))))
-    (+ n n)))
+    (+ 3(+ n n))))
 
 
 ; To construct rows for the matrix
@@ -46,16 +46,42 @@
     (if (equal n 0) nil
       (cons (mtx-row m) (mtx m (- n 1)))))
 
+; Extrac tthe coords from the mess
+;@param mess of boards words and coordinates
+;@return word and respective coordinates
+(defun extrct-coords (brds)
+  (if (endp brds) '()
+      (cons (caar brds) (extrct-coords (cdr brds)))))
+; Extrac tthe coords from the mess
+;@param mess of boards words and coordinates
+;@return the boards as they were places
+(defun extrct-brds (brds)
+  (if (endp brds) '()
+      (cons (cdar brds) (extrct-brds (cdr brds)))))
+
+; since we are returning the coords of words
+; as well as the boards we need to split this
+; shiznit up to have both
+;Utilize two helper methods to do this
+(defun split-coords-brds (brds)
+  (let* ((coords (extrct-coords brds))
+         (brds (extrct-brds brds)))
+    (mv coords brds)))
+
 
 ;Generate Board for word-search
 (defun wdsrch-brd (words)
   (let* ((n (gen-diff words))
          (brd (mtx n n))
-        (seeds 388)
-        (wdsrch (plc-wdsrch words brd seeds))) ;sorry
-       ;(filld-srch (fill-brd wdsrch seeds)))
-        ;filld-srch))
-    wdsrch))
+        (seeds 23)
+        (brds-coords (plc-wdsrch words brd seeds))
+        (clean-brds-coords (split-coords-brds brds-coords))
+        (wds-coords (car clean-brds-coords))
+        (brds (cadr clean-brds-coords))
+        (wdsrch (car (last (last brds))));sorry
+       (filld-srch (fill-brd wdsrch seeds)))
+   
+    (mv filld-srch wds-coords)))
 
 
 
