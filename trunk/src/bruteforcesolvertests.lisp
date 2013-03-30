@@ -4,7 +4,7 @@
 
 (include-book "bruteforcesolver")
 (include-book "testing" :dir :teachpacks)
-
+(include-book "doublecheck" :dir :teachpacks)
 
 ;concat-count tests
 (check-expect (concat-count (list (list "d" "o" "g")(list "r" "a" "t")(list "s" "q" "u" "i" "r" "r" "e" "l")(list "s" "n" "a" "k" "e")))
@@ -311,7 +311,60 @@
               nil
               )
 
+;properties
 
+;concat-count always returns a list with the same number of elements passed in.
+
+(defproperty concat-count-always-gives-list :repeat 2000
+  (xs :value (random-list-of (random-list-of (random-string))))
+    (implies (consp xs)
+             (= (len xs) (len (concat-count xs)))))
+
+;reverse always gives the same number of rows afterwards
+(defproperty reverse-always-generates-grid :repeat 2000
+  (xs :value (random-list-of (random-list-of (random-string))))
+    (implies (consp xs)
+             (= (len xs) (len (reverse xs)))))
+
+;tranpose always gives the same number of rows afterwards
+(defproperty tranpose-always-generates-grid :repeat 2000
+  (xs :value (random-list-of (random-list-of (random-string) :size 10):size 10))
+    (implies (consp xs)
+             (= (len xs) (len (transpose xs (len (car xs)) 0)))))
+
+;The length of a list after nthrdc will always be less than or equal the origin length
+(defproperty nthrdc-less-than-equal-orig-length :repeat 2000
+  (xs :value (random-list-of (random-string))
+    pos :value (random-between 0 (len xs)))
+    (implies (consp xs)
+             (>= (len xs) (len (nthrdc pos xs)))))
+
+
+;theorems of those properties
+
+
+(defthm concat-count-always-gives-list 
+    (implies (consp xs)
+             (= (len xs) (len (concat-count xs)))))
+
+(defthm reverse-always-generates-grid 
+    (implies (consp xs)
+             (= (len xs) (len (reverse xs)))))
+
+(defthm tranpose-always-generates-grid
+    (implies (consp xs)
+             (= (len xs) (len (transpose xs (len (car xs)) 0)))))
+
+(defthm nthrdc-less-than-equal-orig-length 
+    (implies (consp xs)
+             (>= (len xs) (len (nthrdc pos xs)))))
+
+
+
+
+
+
+  
 
 
 
