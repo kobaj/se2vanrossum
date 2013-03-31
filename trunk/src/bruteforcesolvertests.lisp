@@ -343,21 +343,21 @@
 ;theorems of those properties
 
 
-(defthm concat-count-always-gives-list 
-    (implies (consp xs)
-             (= (len xs) (len (concat-count xs)))))
-
-(defthm reverse-always-generates-grid 
-    (implies (consp xs)
-             (= (len xs) (len (reverse xs)))))
-
-(defthm tranpose-always-generates-grid
-    (implies (consp xs)
-             (= (len xs) (len (transpose xs (len (car xs)) 0)))))
-
-(defthm nthrdc-less-than-equal-orig-length 
-    (implies (consp xs)
-             (>= (len xs) (len (nthrdc pos xs)))))
+;(defthm concat-count-always-gives-list 
+;    (implies (consp xs)
+;             (= (len xs) (len (concat-count xs)))))
+;
+;(defthm reverse-always-generates-grid 
+;    (implies (consp xs)
+;             (= (len xs) (len (reverse xs)))))
+;
+;(defthm tranpose-always-generates-grid
+;    (implies (consp xs)
+;             (= (len xs) (len (transpose xs (len (car xs)) 0)))))
+;
+;(defthm nthrdc-less-than-equal-orig-length 
+;    (implies (consp xs)
+;             (>= (len xs) (len (nthrdc pos xs)))))
 
 
 

@@ -41,7 +41,7 @@
 
 ;match-down-to-up
 (check-expect (match-down-to-up 1 2 (transpose-hill
-                                            (nthrdc 
+                                            (nthrdc-hill 
                                               (- (len (nthcdr (- (+ 1 1) 
                                                        (cadr (list "gc" 2))) 
                                                               (list (list "a" "b" "c" "d") (list "e" "f" "g" "h"))))
