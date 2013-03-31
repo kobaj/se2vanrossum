@@ -10,6 +10,8 @@
 ;
 ;Authored by Cezar Delucca
 
+(include-book "bruteforcesolver")
+
 ;char-concat-count-helper (strList)
 ;This function is a helper function for concatenating a list of strings into a 
 ;single string
@@ -49,13 +51,13 @@
           (clean-results-hill(cdr results))
           (cons  (car results) (clean-results-hill (cdr results))))))
 
-; nthrdc (xs)
+; nthrdc-hill (xs)
 ; This function is similar to nthcdr except we are 
 ; going backwards and removing the nth elements
 ; from the end of the list.
 ; n = the number of elements to delete
 ; xs = the list
-(defun nthrdc (n xs)
+(defun nthrdc-hill (n xs)
   (if (or (< (len xs) n) (< n 0))
       nil
       (reverse (nthcdr n (reverse xs)))))
@@ -69,7 +71,7 @@
 ;x = the return x coord for the solution vector
 (defun match-left-to-right (x y row sol)
   (if (>= (len (nthcdr y row)) (cadr sol))
-      (if (equal (car sol) (char-concat-helper (nthcdr y (nthrdc (- (len (nthcdr y row)) (cadr sol)) row))))
+      (if (equal (car sol) (char-concat-helper (nthcdr y (nthrdc-hill (- (len (nthcdr y row)) (cadr sol)) row))))
           (list x y "right" (- (cadr sol) 1)) ;solution found
           nil
           )
@@ -85,7 +87,7 @@
 ;y = the col index to start
 ;x = the return x coord for the solution vector
 (defun match-right-to-left (x y r-row sol)
-   (let* ((parse (nthrdc (- (len (nthcdr (- (len r-row) (+ y 1)) r-row)) (cadr sol)) r-row)))
+   (let* ((parse (nthrdc-hill (- (len (nthcdr (- (len r-row) (+ y 1)) r-row)) (cadr sol)) r-row)))
     (if (>= (len parse)(cadr sol))
         (if (equal (car sol)
                    (char-concat-helper (nthcdr (- (len parse) (cadr sol)) parse)))
@@ -99,10 +101,10 @@
 ; This function takes in a matrix
 ;in row order form and reverses it.
 ;matrix = the matrix to be reversed
-(defun reverse-matrix (matrix)
+(defun reverse-matrix-hill (matrix)
   (if (endp matrix)
       nil
-      (cons (reverse (car matrix))(reverse-matrix (cdr matrix)))
+      (cons (reverse (car matrix))(reverse-matrix-hill (cdr matrix)))
    ))
 
 ;transpose-helper (matrix index)
@@ -175,14 +177,14 @@
              (rightToLeft (match-right-to-left x y (reverse (car (nthcdr x matrix)))
                                                 (car solutions)))
              (upToDown (match-up-to-down x y (transpose-hill
-                                              (nthrdc (- (len (nthcdr x matrix))
+                                              (nthrdc-hill (- (len (nthcdr x matrix))
                                                          (cadr (car solutions))) (nthcdr x matrix))
                                               (len (car matrix))
                                               0)
                                          (car solutions)))
 
               (downToUp (if (>= (- (+ x 1) (cadr (car solutions))) 0)
-                         (match-down-to-up x y (transpose-hill (nthrdc (- (len (nthcdr (- (+ x 1) (cadr (car solutions))) matrix))
+                         (match-down-to-up x y (transpose-hill (nthrdc-hill (- (len (nthcdr (- (+ x 1) (cadr (car solutions))) matrix))
                                                                        (cadr (car solutions)))
                                                                     (nthcdr (- (+ x 1) (cadr (car solutions))) matrix))
                                                             (len (car matrix))
