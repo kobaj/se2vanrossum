@@ -155,6 +155,19 @@ time log:
 	phase: Group Planning
 	comment: Presentation with the prof and realignment of the goal.
 
+	- date: March 31, 2013
+	start time: 11:33AM
+	end time: 11:54AM
+	phase: Group Planning
+	comment: Working on json output code to be updated with shanes inclusion of a solution
+
+
+	- date: March 31, 2013
+	start time: 12:04PM
+	end time: 11:54PM
+	phase: Group Planning
+	comment: continued work on the json output above
+
 new objects:
 
 	- name: run_create_board
@@ -237,3 +250,23 @@ defect log:
 	type: Code
 	fix time: 15
 	comment: To enable ACL2 via command line without guard checking (reduced the number of errors produced) use (set-guard-checking :none).
+
+	- date: March 31, 2013
+	type: Code
+	fix time: 23
+	comment: concatenate 'string does not accept integer values use (rat->str r d) instead
+
+	- date: March 31, 2013
+	type: Code
+	fix time: 2
+	comment: when let*ing be sure to set your variables as such (variable_name (
+
+	- date: March 31, 2013
+	type: Code
+	fix time: 1
+	comment: be sure to call methods (like this) not like (this)
+
+	- date: March 31, 2013
+	type: Code
+	fix time: 1
+	comment: be sure to to call a method with variables in the correct order
