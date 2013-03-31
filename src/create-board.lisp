@@ -74,12 +74,12 @@
   (let* ((n (gen-diff words))
          (brd (mtx n n))
         (seeds 23)
-        (brds-coords (plc-wdsrch words brd seeds))
-        (clean-brds-coords (split-coords-brds brds-coords))
+        (brds-coords (plc-wdsrch words brd seeds)) ;board and words with coords
+        (clean-brds-coords (split-coords-brds brds-coords)); split brd and coords
         (wds-coords (car clean-brds-coords))
         (brds (cadr clean-brds-coords))
-        (wdsrch (car (last (last brds))));sorry
-       (filld-srch (fill-brd wdsrch seeds)))
+        (wdsrch (car (last (last brds)))));sorry
+       ;(filld-srch (fill-brd wdsrch seeds)))
    
     (list wdsrch wds-coords)))
 
