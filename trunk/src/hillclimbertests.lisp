@@ -33,14 +33,14 @@
              nil)
 
 ;match-up-to-down
-(check-expect (match-up-to-down 0 1 (transpose(list (list "s" "c" "g" "j" ) (list "s" "d" "y" "u" )) 4 0) (list "cd" 2))
+(check-expect (match-up-to-down 0 1 (transpose-hill(list (list "s" "c" "g" "j" ) (list "s" "d" "y" "u" )) 4 0) (list "cd" 2))
               (list 0 1 "down" 1))
 
-(check-expect (match-up-to-down 0 2 (transpose(list (list "s" "c" "g" "j" ) (list "s" "d" "y" "u" )) 4 0) (list "gy" 2))
+(check-expect (match-up-to-down 0 2 (transpose-hill(list (list "s" "c" "g" "j" ) (list "s" "d" "y" "u" )) 4 0) (list "gy" 2))
               (list 0 2 "down" 1))
 
 ;match-down-to-up
-(check-expect (match-down-to-up 1 2 (transpose
+(check-expect (match-down-to-up 1 2 (transpose-hill
                                             (nthrdc 
                                               (- (len (nthcdr (- (+ 1 1) 
                                                        (cadr (list "gc" 2))) 
