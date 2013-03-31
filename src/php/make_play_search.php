@@ -10,14 +10,11 @@ function run_create_board()
 	define('SETUP_TEMPLATE', 'setup/create_board_template');
 	
 	echo '<div class="pad10">';
-	
-	echo 'Enter a list of words to make a wordsearch. The words can be seperated by space, dash, comma, underscore, or newlines.';
-	
-	echo '<form method="get" action=""><center><textarea name="words">' . (isset ($_GET['words']) ? $_GET['words'] : 'Put your words here.') . '</textarea>' .
-			'<br /><input type="submit" value="Submit"></center></form>';
 
 	if (isset ($_GET['words']))
 	{
+		echo 'Click letters to play the word search or <a href="make_play_search.php">click here</a> to make a new board.';
+		
 		// clean things up
 		$words = preg_split("/[\s,.\-_\n]+/", $_GET['words']);
 		foreach ($words as $key => $word)
@@ -33,30 +30,42 @@ function run_create_board()
 		// then make our setup file
 		$SETUP = do_replacement(ACL2_SRC_DIR . SETUP_TEMPLATE, array('list_words' => $implode_words));
 
+		echo '<table id="main_table"><tr><td>';
+
 		//output the words
-		echo '<ul>';
+		echo '<ul id="word_list">';
 		foreach ($words as $word)
 			echo '<li>' . $word . '</li>';
 		echo '</ul>';
+		
+		echo '</td><td><center>';
 
 		// run command
 		// NOTE for now this uses redirected input, but it will eventually
 		// use clay's ACL2 code
 		$final_call = ACL2_EXE_DIR . ' < ' . $SETUP;
-		echo '<p >Command: ' . $final_call . '</p>';
+		//echo '<p >Command: ' . $final_call . '</p>';
 		exec($final_call, $console_log);
 		
+		$output_found = false;
 		foreach ($console_log as $key => $results)
 		{
-			if(starts_with($results, 'ACL2 p!>"[[') &&
-				ends_with($results, ']]"'))
+			$head = 'ACL2 p>("[[';
+			$tail = ']]"';
+			
+			if(starts_with($results, $head) &&
+				stristr($results, $tail))
 				{
+					// first the board output
+					$explode_results = explode($tail, $results);
+					$results = $explode_results[0] . $tail;
+					
 					echo '<p id="board_json">';
 					$json = '';
 					
 					//then just clean it
-					$json = str_replace('ACL2 p!>"[[', '[["', $results);
-					$json = str_replace(']]"', '"]]', $json);
+					$json = str_replace($head, '[["', $results);
+					$json = str_replace($tail, '"]]', $json);
 					
 					//first add back in our quotes
 					$json = str_replace('],[', ';', $json);
@@ -66,10 +75,28 @@ function run_create_board()
 					echo $json;
 					
 					echo '</p>';
-					break;
+					
+					$output_found = true;
+					
+					echo '<p id="board_solution">';
 				}
+				else if($output_found)
+				{
+					if(starts_with($results, 'ACL2 p>Bye.'))
+					{
+						echo '</p>';
+						break;
+					}
+					
+					echo $results;	
+					
+				}
+
 		}
 		
+		echo '</center></td></tr></table>';
+		
+		echo '<div id="output_display">Show Output</div>';
 		echo '<div id="acl2_output">';
 		var_dump ($console_log);
 		echo '</div>';
@@ -77,7 +104,14 @@ function run_create_board()
 		echo '</div>';
 
 		//delete setup
-		//unlink($SETUP);
+		unlink($SETUP);
+	}
+	else
+	{
+		echo 'Enter a list of words to make a wordsearch. The words can be seperated by space, dash, comma, underscore, or newlines.';
+	
+		echo '<form method="get" action=""><center><textarea name="words">' . (isset ($_GET['words']) ? $_GET['words'] : 'Put your words here.') . '</textarea>' .
+			'<br /><input type="submit" value="Submit"></center></form>';	
 	}
 }
 

@@ -1,4 +1,6 @@
 $(document).ready(function(){
+	
+	/* convert json to board */
 	var json = $('#board_json').html();
 	var obj = jQuery.parseJSON(json);
 	
@@ -8,7 +10,7 @@ $(document).ready(function(){
 		table += '<div>'
 		$.each(item, function(e, row) {
 		 
-			table += '<span class="border table_letter">' + row + '</span>';
+			table += '<span y="'+ i +'" x="'+ e +'" class="border table_letter">' + row + '</span>';
 			
 		});
 		table += '<div>'
@@ -17,4 +19,19 @@ $(document).ready(function(){
 	table += '</div>'
 		
 	$('#board_json').html(table);
+	
+	/* show or hide output */
+	
+	$('#output_display').on('click', function(){
+		$('#acl2_output').slideToggle();
+	});
+	
+	/* and solve the board */
+	
+	$('.table_letter').on('click', function(){
+		var x = $(this).attr('x');
+		var y = $(this).attr('y');
+		
+		
+	});
 });
