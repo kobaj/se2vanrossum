@@ -1,6 +1,7 @@
 (in-package "ACL2")
 
 (include-book "create-board")
+(include-book "io-utilities" :dir :teachpacks)
 
 (set-compile-fns t)
 (set-state-ok t)
@@ -41,6 +42,22 @@
              (rest (add-brackets n (cdr xss))))
         (concatenate 'string first rest))
       (concatenate 'string "[" (add-commas n (car xss)) "]")))
+; 
+(defun add-brackets-soln-pos (pos)
+  (concatenate 'string "{x:"
+               (rat->str (car pos) 0)
+               ",y:"
+               (rat->str (second pos) 0)
+               "}"))
+  
+(defun add-brackets-soln (xss)
+      (let* ((word_n_pos (car xss))
+             (start (concatenate 'string "start:" (add-brackets-soln-pos (second word_n_pos)) ""))
+             (end (concatenate 'string "end:" (add-brackets-soln-pos (third word_n_pos)) ""))
+             (output (concatenate 'string "{word:" (first word_n_pos) ", " start ", " end "}")))
+        (if (consp (cdr xss))
+            (concatenate 'string output ", " (add-brackets-soln (cdr xss)))
+            output)))         
 
 ; (file->json gametype filename state)
 ; This function takes in a type of game, a file, and a state and
@@ -60,6 +77,10 @@
 ;wordN
 
 (defun create-board->json (gt words)
-  (let* ((xss (create-board words gt))
-         (n (- (len xss) 1)))
-    (concatenate 'string "[" (add-brackets n xss) "]")))
+  (let* ((board (create-board words gt))
+         (xss (car board))
+         (soln (second board))
+         (n (- (len xss) 1))
+         (json-xss (concatenate 'string "[" (add-brackets n xss) "]"))
+         (json-soln (concatenate 'string "[" (add-brackets-soln soln) "]")))
+    json-soln))
