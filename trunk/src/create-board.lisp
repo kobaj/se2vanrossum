@@ -66,7 +66,7 @@
 (defun split-coords-brds (brds)
   (let* ((coords (extrct-coords brds))
          (brds (extrct-brds brds)))
-    (mv coords brds)))
+    (list coords brds)))
 
 
 ;Generate Board for word-search
@@ -81,7 +81,7 @@
         (wdsrch (car (last (last brds))));sorry
        (filld-srch (fill-brd wdsrch seeds)))
    
-    (mv filld-srch wds-coords)))
+    (list filld-srch wds-coords)))
 
 
 
