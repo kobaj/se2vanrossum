@@ -275,3 +275,18 @@ defect log:
 	type: Code
 	fix time: 4
 	comment: No using MV nor MV-let...seriously...
+
+	- date: March 31, 2013
+	type: Code
+	fix time: 4
+	comment: break-at-nth is not zero index based (which is stupid).
+
+	- date: March 31, 2013
+	type: Code
+	fix time: 6
+	comment: when checking the solution space, ensure your x and y are within bounds
+
+	- date: March 31, 2013
+	type: Code
+	fix time: 1
+	comment: if your x is equal in solution space, vary the y, not the x
