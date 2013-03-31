@@ -44,13 +44,13 @@
   (if (endp row) '()
   (if (char-equal #\. (car row))
       (cons (rand-let (rand 25 seed)) 
-            (row-fill (cdr row) (+ seed 1)))
-      (cons (car row) (row-fill (cdr row) (+ seed 1))))))
+            (row-fill (cdr row) (+ seed 42)))
+      (cons (car row) (row-fill (cdr row) (+ seed 31))))))
 
 (defun fill-brd (wdsrch seed)
   (if (endp wdsrch) '()
       (cons (row-fill (car wdsrch) seed)
-            (fill-brd (cdr wdsrch) (+ seed 1)))))
+            (fill-brd (cdr wdsrch) (+ seed 61)))))
 
 
 
