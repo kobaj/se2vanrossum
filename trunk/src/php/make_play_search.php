@@ -1,12 +1,12 @@
 <?php
 include 'header.php';
+require_once 'magic_file_builder.php';
 
 if (run_setup())
 	run_create_board();
 
 function run_create_board()
 {
-	define('INPUT_TEMPLATE', 'setup/create_board_file');
 	define('SETUP_TEMPLATE', 'setup/create_board_template');
 	
 	echo '<div class="pad10">';
@@ -44,8 +44,9 @@ function run_create_board()
 		// NOTE for now this uses redirected input, but it will eventually
 		// use clay's ACL2 code
 		$final_call = ACL2_EXE_DIR . ' < ' . $SETUP;
-		//echo '<p >Command: ' . $final_call . '</p>';
 		exec($final_call, $console_log);
+		
+		//echo '<p >Command: ' . $final_call . '</p>';
 		
 		$output_found = false;
 		foreach ($console_log as $key => $results)
@@ -88,8 +89,7 @@ function run_create_board()
 						break;
 					}
 					
-					echo $results;	
-					
+					echo str_replace('))))', ')))', $results);	
 				}
 
 		}
@@ -113,28 +113,6 @@ function run_create_board()
 		echo '<form method="get" action=""><center><textarea name="words">' . (isset ($_GET['words']) ? $_GET['words'] : 'Put your words here.') . '</textarea>' .
 			'<br /><input type="submit" value="Submit"></center></form>';	
 	}
-}
-
-function do_replacement($file_in, $replace_array)
-{
-	$data = file_get_contents($file_in . '.txt');
-
-	// do tag replacements or whatever you want
-	foreach($replace_array as $key => $value)
-		$data = str_replace('{'.strtoupper($key) .'}', $value, $data);	
-	
-	//$data = str_replace('{WORDS}', $words, $data);
-	$data = str_replace('{ACL2_SRC_DIR}', ACL2_SRC_DIR, $data);
-	$data = str_replace('{ACL2_TEACHPACKS}', ACL2_TEACHPACKS, $data);
-
-	//make a temp file
-	$tmpfname = tempnam(sys_get_temp_dir(), 'acl');
-
-	$handle = fopen($tmpfname, "w");
-	fwrite($handle, $data);
-	fclose($handle);
-
-	return $tmpfname;
 }
 
 function run_setup()

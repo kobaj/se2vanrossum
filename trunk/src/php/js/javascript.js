@@ -10,7 +10,7 @@ $(document).ready(function(){
 		table += '<div>'
 		$.each(item, function(e, row) {
 		 
-			table += '<span y="'+ i +'" x="'+ e +'" class="border table_letter">' + row + '</span>';
+			table += '<span x="'+ i +'" y="'+ e +'" class="border table_letter">' + row + '</span>';
 			
 		});
 		table += '<div>'
@@ -31,7 +31,20 @@ $(document).ready(function(){
 	$('.table_letter').on('click', function(){
 		var x = $(this).attr('x');
 		var y = $(this).attr('y');
+		var letter = $(this).html();
 		
+		var solution = $('board_solution').html();
 		
+		$.getJSON('wordsearch_play.php', {'action': 'check_letter',
+			'letter': letter,
+			'x': x,
+			'y': y,
+			'solution': solution}, function(j) {
+			if(j.success)
+			{
+				if(j.correct)
+					alert ('you got one!');
+			}
+		});	
 	});
 });
