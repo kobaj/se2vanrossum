@@ -38,16 +38,16 @@
             ))
 
 
-;defun clean-results-tier2 (results)
+;defun clean-results-hill (results)
 ;This is essentially a second helper for the clean-results
 ;that goes through the cleaned list and gets rid of the final nil elements.
 ;results = the "cleaned" results
-(defun clean-results (results)
+(defun clean-results-hill (results)
   (if (endp results)
       nil
       (if (equal (car results) nil)
-          (clean-results(cdr results))
-          (cons  (car results) (clean-results (cdr results))))))
+          (clean-results-hill(cdr results))
+          (cons  (car results) (clean-results-hill (cdr results))))))
 
 ; nthrdc (xs)
 ; This function is similar to nthcdr except we are 
@@ -111,11 +111,11 @@
 ;out of the given row index.
 ;matrix = the matrix to be flipped
 ;index = the row index
-(defun transpose-helper (matrix index)
+(defun transpose-helper-hill (matrix index)
   (if (endp matrix)
       nil
       (cons (car (nthcdr index (car matrix)))
-            (transpose-helper (cdr matrix) index))
+            (transpose-helper-hill (cdr matrix) index))
       ))
 
 ;transpose (matrix)
@@ -124,11 +124,11 @@
 ;matrix = the matrix to flip
 ;rowLength = the size of every row in the matrix
 ;Note: To be used for searching up to down and down to up
-(defun transpose (matrix rowLength index)
+(defun transpose-hill (matrix rowLength index)
   (if (= rowLength index)
       nil
-      (cons (transpose-helper matrix index)
-            (transpose matrix rowLength (+ index 1)))
+      (cons (transpose-helper-hill matrix index)
+            (transpose-hill matrix rowLength (+ index 1)))
       ))
 
 ;defun match-up-to-down (x y rows sol)
@@ -174,7 +174,7 @@
                                                (car solutions)))
              (rightToLeft (match-right-to-left x y (reverse (car (nthcdr x matrix)))
                                                 (car solutions)))
-             (upToDown (match-up-to-down x y (transpose
+             (upToDown (match-up-to-down x y (transpose-hill
                                               (nthrdc (- (len (nthcdr x matrix))
                                                          (cadr (car solutions))) (nthcdr x matrix))
                                               (len (car matrix))
@@ -182,7 +182,7 @@
                                          (car solutions)))
 
               (downToUp (if (>= (- (+ x 1) (cadr (car solutions))) 0)
-                         (match-down-to-up x y (transpose (nthrdc (- (len (nthcdr (- (+ x 1) (cadr (car solutions))) matrix))
+                         (match-down-to-up x y (transpose-hill (nthrdc (- (len (nthcdr (- (+ x 1) (cadr (car solutions))) matrix))
                                                                        (cadr (car solutions)))
                                                                     (nthcdr (- (+ x 1) (cadr (car solutions))) matrix))
                                                             (len (car matrix))
@@ -191,7 +191,7 @@
                         nil); solution wouldnt fit
                         )) 
 
-         (clean-results (concatenate 'list (list leftToRight rightToLeft downToUp upToDown)
+         (clean-results-hill (concatenate 'list (list leftToRight rightToLeft downToUp upToDown)
                       (localize x y matrix (cdr solutions))))
 
         )))
@@ -259,36 +259,36 @@
    (search-and-Localize matrix matrix (char-concat-count words) 0))
   
   ;TESTING...this is how we use this solver.
-;(hill-climbing-solver(list(list "w" "r" "y" "i" "g" "g" "d" "a" "m") ;example game board
-;                          (list "t" "a" "c" "g" "i" "q" "p" "u" "r") 
-;                          (list "p" "t" "t" "o" "c" "f" "d" "f" "o") 
-;                          (list "d" "o" "g" "t" "s" "c" "a" "c" "w")
-;                          (list "r" "p" "p" "t" "w" "w" "r" "g" "o")
-;                          (list "e" "p" "t" "o" "g" "o" "x" "z" "a")
-;                          (list "w" "f" "t" "r" "q" "r" "w" "d" "b")
-;                          (list "e" "d" "t" "r" "i" "r" "t" "f" "p")
-;                          (list "h" "d" "t" "a" "r" "a" "t" "f" "p")
-;                          (list "e" "w" "t" "p" "a" "p" "r" "o" "t")
-;                          (list "i" "i" "u" "u" "q" "s" "o" "k" "j")
-;                          (list "a" "u" "d" "d" "f" "j" "h" "w" "q")
-;                          (list "j" "d" "f" "a" "g" "l" "f" "g" "d")
-;                          (list "p" "d" "w" "o" "c" "n" "o" "o" "r")
-;                          (list "u" "s" "j" "s" "k" "m" "x" "h" "x")
-;                          (list "p" "i" "g" "p" "p" "p" "p" "p" "p"))
-;                    
-;                    (list (list "c" "a" "t"); example word list
-;                          (list "d" "o" "g") 
-;                          (list "p" "i" "g")
-;                          (list "r" "a" "t") 
-;                          (list "p" "u" "p") 
-;                          (list "p" "a" "r" "r" "o" "t") 
-;                          (list "s" "p" "a" "r" "r" "o" "w") 
-;                          (list "w" "o" "r" "m") 
-;                          (list "f" "o" "x") 
-;                          (list "h" "o" "g") 
-;                          (list "c" "o" "w") 
-;                          )
-;                    )
+(hill-climbing-solver(list(list "w" "r" "y" "i" "g" "g" "d" "a" "m") ;example game board
+                          (list "t" "a" "c" "g" "i" "q" "p" "u" "r") 
+                          (list "p" "t" "t" "o" "c" "f" "d" "f" "o") 
+                          (list "d" "o" "g" "t" "s" "c" "a" "c" "w")
+                          (list "r" "p" "p" "t" "w" "w" "r" "g" "o")
+                          (list "e" "p" "t" "o" "g" "o" "x" "z" "a")
+                          (list "w" "f" "t" "r" "q" "r" "w" "d" "b")
+                          (list "e" "d" "t" "r" "i" "r" "t" "f" "p")
+                          (list "h" "d" "t" "a" "r" "a" "t" "f" "p")
+                          (list "e" "w" "t" "p" "a" "p" "r" "o" "t")
+                          (list "i" "i" "u" "u" "q" "s" "o" "k" "j")
+                          (list "a" "u" "d" "d" "f" "j" "h" "w" "q")
+                          (list "j" "d" "f" "a" "g" "l" "f" "g" "d")
+                          (list "p" "d" "w" "o" "c" "n" "o" "o" "r")
+                          (list "u" "s" "j" "s" "k" "m" "x" "h" "x")
+                          (list "p" "i" "g" "p" "p" "p" "p" "p" "p"))
+                    
+                    (list (list "c" "a" "t"); example word list
+                          (list "d" "o" "g") 
+                          (list "p" "i" "g")
+                          (list "r" "a" "t") 
+                          (list "p" "u" "p") 
+                          (list "p" "a" "r" "r" "o" "t") 
+                          (list "s" "p" "a" "r" "r" "o" "w") 
+                          (list "w" "o" "r" "m") 
+                          (list "f" "o" "x") 
+                          (list "h" "o" "g") 
+                          (list "c" "o" "w") 
+                          )
+                    )
 
 
 
