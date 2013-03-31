@@ -47,5 +47,37 @@ textarea[name="words"]{
 }
 
 #acl2_output{
+	display: none;
+	max-width: inherit;
+    overflow: auto;
+    position: relative
+}
+
+#output_display{
+	cursor: pointer;
+}
+
+#board_solution{
+	display: none;
+}
+
+#board_json{
 	position: relative;
+}
+
+#word_list{
+	position: relative;
+}
+
+#inside_container{
+	clear: both;
+	overflow: auto;
+}
+
+#main_table{
+	width: 100%;
+}
+
+.table_letter{
+	cursor: pointer;
 }
