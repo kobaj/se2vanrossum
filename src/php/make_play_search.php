@@ -19,7 +19,7 @@ function run_create_board()
 	if (isset ($_GET['words']))
 	{
 		// clean things up
-		$words = preg_split("/[\s,\-_\n]+/", $_GET['words']);
+		$words = preg_split("/[\s,.\-_\n]+/", $_GET['words']);
 		foreach ($words as $key => $word)
 		{
 			$temp_word = trim($word);
@@ -43,15 +43,17 @@ function run_create_board()
 		// NOTE for now this uses redirected input, but it will eventually
 		// use clay's ACL2 code
 		$final_call = ACL2_EXE_DIR . ' < ' . $SETUP;
-		//echo '<p >Command: ' . $final_call . '</p>';
+		echo '<p >Command: ' . $final_call . '</p>';
 		exec($final_call, $console_log);
-		echo '<p id="board_json">';
-		$json = '';
+		
 		foreach ($console_log as $key => $results)
 		{
 			if(starts_with($results, 'ACL2 p!>"[[') &&
 				ends_with($results, ']]"'))
 				{
+					echo '<p id="board_json">';
+					$json = '';
+					
 					//then just clean it
 					$json = str_replace('ACL2 p!>"[[', '[["', $results);
 					$json = str_replace(']]"', '"]]', $json);
@@ -60,22 +62,22 @@ function run_create_board()
 					$json = str_replace('],[', ';', $json);
 					$json = str_replace(',', '","', $json);
 					$json = str_replace(';', '"],["', $json);
-					
-					
+									
 					echo $json;
+					
+					echo '</p>';
 					break;
 				}
 		}
-		echo '</p>';
 		
-		echo '<p id="acl2_output">';
+		echo '<div id="acl2_output">';
 		var_dump ($console_log);
-		echo '</p>';
+		echo '</div>';
 
 		echo '</div>';
 
 		//delete setup
-		unlink($SETUP);
+		//unlink($SETUP);
 	}
 }
 

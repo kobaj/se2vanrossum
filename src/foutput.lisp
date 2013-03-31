@@ -41,23 +41,7 @@
              (first (concatenate 'string "[" f "],"))
              (rest (add-brackets n (cdr xss))))
         (concatenate 'string first rest))
-      (concatenate 'string "[" (add-commas n (car xss)) "]")))
-; 
-(defun add-brackets-soln-pos (pos)
-  (concatenate 'string "{x:"
-               (rat->str (car pos) 0)
-               ",y:"
-               (rat->str (second pos) 0)
-               "}"))
-  
-(defun add-brackets-soln (xss)
-      (let* ((word_n_pos (car xss))
-             (start (concatenate 'string "start:" (add-brackets-soln-pos (second word_n_pos)) ""))
-             (end (concatenate 'string "end:" (add-brackets-soln-pos (third word_n_pos)) ""))
-             (output (concatenate 'string "{word:" (first word_n_pos) ", " start ", " end "}")))
-        (if (consp (cdr xss))
-            (concatenate 'string output ", " (add-brackets-soln (cdr xss)))
-            output)))         
+      (concatenate 'string "[" (add-commas n (car xss)) "]")))     
 
 ; (file->json gametype filename state)
 ; This function takes in a type of game, a file, and a state and
@@ -81,6 +65,5 @@
          (xss (car board))
          (soln (second board))
          (n (- (len xss) 1))
-         (json-xss (concatenate 'string "[" (add-brackets n xss) "]"))
-         (json-soln (concatenate 'string "[" (add-brackets-soln soln) "]")))
-    json-soln))
+         (json-xss (concatenate 'string "[" (add-brackets n xss) "]")))
+    (list json-xss soln)))
