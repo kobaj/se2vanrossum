@@ -81,9 +81,7 @@
         (wdsrch (car (last (last brds))));sorry
        (filld-srch (fill-brd wdsrch seeds)))
    
-    (list filld-srch wds-coords)))
-
-
+    (list wdsrch wds-coords)))
 
 
 ;Generate Board for xword
@@ -91,8 +89,6 @@
 ;  (let* ((brd (mtx (len words) (len words)))
 ;        (xwrd (plc-words brd words)))        
 ;        xwrd))
-
-
 
 
 ; Initial call to create appropriate board

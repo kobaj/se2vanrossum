@@ -81,14 +81,14 @@
 
 
 ; Picks a random starting point for horizontal placement
-(defun rand-start-horiz (range word row-num seed)
-  (let* ((new-start (rand range seed))
+(defun rand-start-horiz (start range word row-num seed)
+  (let* ((new-start (+ start (rand range seed)))
               (new-end (+ new-start (len word))))
         (list (list row-num new-start) (list row-num new-end)) ))
 
 ; Picks a random starting point for vertical placement
-(defun rand-start-vert (range word row-num seed)
-  (let*  ((new-start (rand (- range 1) seed))
+(defun rand-start-vert (start range word row-num seed)
+  (let*  ((new-start (+ start (rand (- range 1) seed)))
              (new-end (+ new-start (len word))))
         (list (list new-start row-num) (list new-end row-num))))
 
@@ -106,7 +106,7 @@
               (range (- diff (len word))))
         (if (<= range 2)
             coords
-            (rand-start-horiz range word row-num (+ 1 seed)))) ;ugly function              
+            (rand-start-horiz start range word row-num (+ 19 seed)))) ;ugly function              
       (let* ((start (caar coords))
              (row-num (cadar coords))
              (end (caadr coords))
@@ -114,7 +114,7 @@
              (range (- diff (len word))))
      (if (<= range 2)
             coords
-            (rand-start-vert range word row-num (+ 1 seed))))))
+            (rand-start-vert start range word row-num (+ 12 seed))))))
          
 
 ; Randomly picks a coord from coords list for placement
@@ -124,14 +124,14 @@
 ; Function just gathers all needed info
 ; returns coordinate for where to pla2e
 (defun fit-coords (type word brd seed)
-  (if (< type 2)
+  (if (< type 2) ; horizontal placement
       (let* ((opn (open-brd-coords 0 brd)) ;opn-brd_>final-coords->wd-fits->plc-cord
              (mf (coords-horiz 0 opn))
              (wd-fits (do-fits word mf))
              (rcords (rand-coord seed (remove nil wd-fits)))
              (ret-cords (rand-start (car rcords) word seed type)))
        ret-cords)
-      (let* ((opn (open-brd-coords 0 brd))
+      (let* ((opn (open-brd-coords 0 brd)) ; else vertical placement
              
              (mf (coords-vert 0 (openv 0  opn)))
              (wd-fits (do-fits-vert word mf))
@@ -179,7 +179,12 @@
              (type (rand 4 seed)) ;get the type we are placing
              (coords (fit-coords type word brd (+ seed 57)))
              (new-brd (place brd word type  coords)));our new updated board
-        (cons (cons (cons (car words) coords) new-brd) (plc-wdsrch (cdr words) new-brd (+ 39 seed))))))
+       
+        (if (or (= type 1) (= type 3))
+            (cons (cons (cons (car words) (reverse coords)) new-brd) ;swap coords if reversed
+                  (plc-wdsrch (cdr words) new-brd (+ 99 seed)))
+        (cons (cons (cons (car words) coords) new-brd) ; else just coords
+              (plc-wdsrch (cdr words) new-brd (+ 39 seed)))))))
 
 ;-------------------------------------------------------End Placement
 
