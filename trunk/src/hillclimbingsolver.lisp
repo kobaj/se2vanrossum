@@ -10,7 +10,6 @@
 ;
 ;Authored by Cezar Delucca
 
-(include-book "bruteforcesolver")
 
 ;char-concat-count-helper (strList)
 ;This function is a helper function for concatenating a list of strings into a 
