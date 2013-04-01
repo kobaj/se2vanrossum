@@ -1,3 +1,6 @@
+var green = '#33FF33';
+var red = 'red';
+
 $(document).ready(function(){
 	
 	/* convert json to board */
@@ -49,10 +52,64 @@ $(document).ready(function(){
 			if(j.success)
 			{
 				if(j.correct)
-					my_this.css('background-color', '#33FF33');
+					my_this.css('background-color', green);
 				else
-					my_this.css('background-color', 'red');
+					my_this.css('background-color', red);
 			}
 		});	
 	});
+	
+	/* solver json */
+	
+	var solver_json = $('#solved_json').html();
+	if(solver_json != undefined && solver_json != '')
+	{
+		var obj = jQuery.parseJSON(solver_json);
+	
+		$.each(obj, function(i, item){
+			var x = parseInt(item.x);
+			var y = parseInt(item.y);
+			var direction = item.direction;
+			var spaces = parseInt(item.numberofspaces) + 1;
+			
+			if(spaces != 0)
+			{
+				if(direction == 'up')
+				{
+					for (var i = 0; i < spaces; i++)
+					{ 
+						set_green(x - i, y);
+					}
+				}
+				else if(direction == 'down')
+					for (var i = 0; i < spaces; i++)
+						set_green(x + i, y);
+				else if(direction == 'left')
+					for (var i = 0; i < spaces; i++)
+						set_green(x, y - i);
+				else if(direction == 'right')
+					for (var i = 0; i < spaces; i++)
+						set_green(x, y + i);
+			}
+		});
+		
+		$('#solved_json').html('');
+	}
 });
+
+function set_green(x, y)
+{
+	var letters = $('.table_letter');
+	$.each(letters, function(i, item){
+		var tx = $(this).attr('x');
+		var ty = $(this).attr('y');
+		
+		var my_this = $(this);
+		
+		if(tx == x && ty == y)
+		{
+			my_this.css('background-color', green);
+			return false;
+		}
+	});
+}

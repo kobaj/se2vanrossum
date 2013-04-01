@@ -2,12 +2,21 @@ body{
 	background-color: #DDD;
 }
 
-body, textarea, input{
+textarea, input, select{
+	font-family: "Courier New", Courier, monospace
+}
+
+body{
 	font-family: helvetica, sans-serif;
 }
 
 textarea[name="words"]{
 	width: 500px;
+	height: 300px;
+}
+
+.solver_textarea{
+	width: 300px !important;
 	height: 300px;
 }
 
