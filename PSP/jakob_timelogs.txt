@@ -4,7 +4,7 @@ program: timelog
 instructor: Dr. Page
 
 actual base lines: 0
-actual added lines: 171
+actual added lines: 746
 actual modified lines: 0
 actual removed lines: 0
 
@@ -161,10 +161,9 @@ time log:
 	phase: Code
 	comment: Working on json output code to be updated with shanes inclusion of a solution
 
-
 	- date: March 31, 2013
 	start time: 12:04PM
-	end time: 11:54PM
+	end time: 9:36PM
 	phase: Code
 	comment: continued work on the json output above
 
@@ -237,6 +236,10 @@ new objects:
 	- name: split_words
 	  type: function-php
 	  estimated lines: 25
+
+	- name: set_green
+	  type: function-javascript
+	  estimated lines: 5
 
 reused objects:
 
