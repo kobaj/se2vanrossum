@@ -198,6 +198,42 @@ new objects:
 	  type: function-php
 	  estimated lines: 25
 
+	- name: get_n
+	  type: function-acl2
+	  estimated lines: 5
+
+	- name: make_nil_char
+	  type: function-acl2
+	  estimated lines: 5
+
+	- name: check-one-solution-horizontal
+	  type: function-acl2
+	  estimated lines: 5
+
+	- name: check-one-solution-vertical
+	  type: function-acl2
+	  estimated lines: 5
+
+	- name: check-one-solution
+	  type: function-acl2
+	  estimated lines: 25
+
+	- name: check-solution
+	  type: function-acl2
+	  estimated lines: 10
+
+	- name: check-solution-entry
+	  type: function-acl2
+	  estimated lines: 5
+
+	- name: document-ready
+	  type: function-javascript
+	  estimated lines: 50
+
+	- name: ajax-check_letter
+	  type: function-php
+	  estimated lines: 50
+
 reused objects:
 
 	- name: Functions from StackOverflow, startsWith and EndsWith
@@ -290,3 +326,13 @@ defect log:
 	type: Code
 	fix time: 1
 	comment: if your x is equal in solution space, vary the y, not the x
+
+	- date: March 31, 2013
+	type: Code
+	fix time: 1
+	comment: be sure to count your brackets, haha.
+
+	- date: March 31, 2013
+	type: Code
+	fix time: 1
+	comment: do not use the same dummy variables as other teammates to 'store' information.
