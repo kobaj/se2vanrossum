@@ -1,4 +1,6 @@
 <?php
+include 'magic_file_builder.php';
+
 $action = (isset ($_REQUEST['action']) ? $_REQUEST['action'] : '');
 
 switch ($action)
@@ -32,23 +34,40 @@ switch ($action)
 		
 				define('SETUP_TEMPLATE', 'setup/check_board_template');
 		
-				$x = filter_input(INPUT_GET, 'x', FILTER_SANITIZE_STRING);
-				$y = filter_input(INPUT_GET, 'y', FILTER_SANITIZE_STRING);
-				$letter = filter_input(INPUT_GET, '', FILTER_SANITIZE_STRING);
-				$solution = filter_input(INPUT_GET, 'x', FILTER_SANITIZE_STRING);
+				$x = filter_input(INPUT_GET, 'x', FILTER_SANITIZE_NUMBER_INT);
+				$y = filter_input(INPUT_GET, 'y', FILTER_SANITIZE_NUMBER_INT);
+				$letter = filter_input(INPUT_GET, 'letter', FILTER_SANITIZE_STRING);
+				$solution = urldecode(filter_input(INPUT_GET, 'solution', FILTER_SANITIZE_STRING));
+				$solution = str_replace('&#34;', '"', $solution);
+				$solution = preg_replace('/\s+/', ' ', $solution);
+				$solution = trim($solution);
 				
 				// then make our setup file
-				$SETUP = do_replacement(ACL2_SRC_DIR . SETUP_TEMPLATE, array('x' => $x,
-																			 'y' => $y,
-																			 'letter' => $letter,
-																			 'solution' => $solution));
+				$SETUP = do_replacement(ACL2_SRC_DIR . SETUP_TEMPLATE, array('X' => $x,
+																			 'Y' => $y,
+																			 'LETTER' => $letter,
+																			 'SOLUTIONS' => $solution));
 																			 
 				$final_call = ACL2_EXE_DIR . ' < ' . $SETUP;
 				exec($final_call, $console_log);
-																	 
-				var_dump ($console_log);
 				
-				//unlink($SETUP);
+				//echo $final_call;
+				
+				$returned_string = $console_log[count($console_log) - 2];
+				if($returned_string == 'ACL2 p>#\\' . $letter)
+				{
+					$json['success'] = true;
+					$json['correct'] = true;
+				}
+				else if($returned_string == 'ACL2 p>NIL')
+				{
+					$json['success'] = true;
+					$json['correct'] = false;	
+				}
+																	 
+				//var_dump ($console_log);
+				
+				unlink($SETUP);
 			}
 		}
 		
@@ -56,6 +75,4 @@ switch ($action)
 		exit (0);
 		break;
 }
-
-include 'magic_file_builder.php';
 ?>

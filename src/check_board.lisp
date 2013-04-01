@@ -13,7 +13,7 @@
 (defun make_nil_char (char)
   (if (characterp char)
       char
-      #\.))
+      #\~))
 
 ; x and y are the start position of letter, zero indexed
 ; letter is the char we are checking, 

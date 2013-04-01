@@ -2,23 +2,27 @@ $(document).ready(function(){
 	
 	/* convert json to board */
 	var json = $('#board_json').html();
-	var obj = jQuery.parseJSON(json);
 	
-	var table = '<div>'
-	$.each(obj, function(i, item) {
+	if(json != undefined && json != '')
+	{
+		var obj = jQuery.parseJSON(json);
+	
+		var table = '<div>'
+		$.each(obj, function(i, item) {
 	   
-		table += '<div>'
-		$.each(item, function(e, row) {
+			table += '<div>'
+			$.each(item, function(e, row) {
 		 
-			table += '<span x="'+ i +'" y="'+ e +'" class="border table_letter">' + row + '</span>';
+				table += '<span x="'+ i +'" y="'+ e +'" class="border table_letter">' + row + '</span>';
 			
+			});
+			table += '<div>'
+		
 		});
-		table += '<div>'
+		table += '</div>'
 		
-	});
-	table += '</div>'
-		
-	$('#board_json').html(table);
+		$('#board_json').html(table);
+	}
 	
 	/* show or hide output */
 	
@@ -29,11 +33,13 @@ $(document).ready(function(){
 	/* and solve the board */
 	
 	$('.table_letter').on('click', function(){
+		var my_this = $(this);
+		
 		var x = $(this).attr('x');
 		var y = $(this).attr('y');
 		var letter = $(this).html();
 		
-		var solution = $('board_solution').html();
+		var solution = $('#board_solution').html();
 		
 		$.getJSON('wordsearch_play.php', {'action': 'check_letter',
 			'letter': letter,
@@ -43,7 +49,9 @@ $(document).ready(function(){
 			if(j.success)
 			{
 				if(j.correct)
-					alert ('you got one!');
+					my_this.css('background-color', '#33FF33');
+				else
+					my_this.css('background-color', 'red');
 			}
 		});	
 	});

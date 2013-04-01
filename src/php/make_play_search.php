@@ -16,7 +16,7 @@ function run_create_board()
 		echo 'Click letters to play the word search or <a href="make_play_search.php">click here</a> to make a new board.';
 		
 		// clean things up
-		$words = preg_split("/[\s,.\-_\n]+/", $_GET['words']);
+		$words = preg_split("/[\s,~.\-_\n]+/", $_GET['words']);
 		foreach ($words as $key => $word)
 		{
 			$temp_word = trim($word);
