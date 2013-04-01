@@ -42,7 +42,7 @@
          (y (rat->str (cadr xs) 0))
          (dir (caddr xs))
          (nos (rat->str (cadddr xs) 0)))
-    (concatenate 'string "x:" x ",y:" y ",direction:" dir ",number-of-spaces:" nos)))
+    (concatenate 'string "x:" x ",y:" y ",direction:" dir ",numberofspaces:" nos)))
 
 ; (add-brackets n xss)
 ; This function takes in a list of lists of characters and returns

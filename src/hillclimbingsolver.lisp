@@ -1,3 +1,5 @@
+(in-package "ACL2")
+
 ;This file contains the hill climbing functions for solving a wordsearch puzzle. 
 ;
 ;Example format for a 4x4 matrix is as follows

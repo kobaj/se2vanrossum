@@ -158,14 +158,14 @@ time log:
 	- date: March 31, 2013
 	start time: 11:33AM
 	end time: 11:54AM
-	phase: Group Planning
+	phase: Code
 	comment: Working on json output code to be updated with shanes inclusion of a solution
 
 
 	- date: March 31, 2013
 	start time: 12:04PM
 	end time: 11:54PM
-	phase: Group Planning
+	phase: Code
 	comment: continued work on the json output above
 
 new objects:
@@ -233,6 +233,10 @@ new objects:
 	- name: ajax-check_letter
 	  type: function-php
 	  estimated lines: 50
+
+	- name: split_words
+	  type: function-php
+	  estimated lines: 25
 
 reused objects:
 
@@ -336,3 +340,13 @@ defect log:
 	type: Code
 	fix time: 1
 	comment: do not use the same dummy variables as other teammates to 'store' information.
+
+	- date: March 31, 2013
+	type: Code
+	fix time: 1
+	comment: Be sure to always specify (in-package "ACL2")
+
+	- date: March 31, 2013
+	type: Code
+	fix time: 1
+	comment: Again, dont mix up x and y

@@ -17,8 +17,10 @@ echo '<!DOCTYPE html><html><head>' .
 '</head><body>';
 
 echo '<center><h1>ACL2 WordGames</h1></center>';
-echo '<center><h3><a href="make_play_search.php">WordSearch</a> &middot; CrossWord &middot; Solver</h3></center>';
+echo '<center><h3><a href="make_play_search.php">WordSearch</a> &middot; CrossWord &middot; <a href="make_play_solver.php">Solver</a></h3></center>';
 
 echo '<div class="center">';
+
+echo '<div class="pad10">';
 
 ?>

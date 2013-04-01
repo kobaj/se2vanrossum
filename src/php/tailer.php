@@ -2,6 +2,8 @@
 
 echo '</div>';
 
+echo '</div>';
+
 echo '</body></html>';
 
 ?>
