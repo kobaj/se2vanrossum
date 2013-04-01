@@ -1,6 +1,8 @@
 (in-package "ACL2")
 
 (include-book "create-board")
+(include-book "bruteforcesolver")
+(include-book "hillclimbingsolver")
 (include-book "io-utilities" :dir :teachpacks)
 
 (set-compile-fns t)
@@ -30,6 +32,18 @@
          (xsys (mux xs ys)))
     (chrs->str xsys)))
 
+; (add-dict-elements xs)
+; This function takes in a list similar to
+; (1 2 "right" 3) and returns a string of the form
+; "x:1,y:2,direction:right,number-of-spaces:3"
+; xs = list representing single word in solution
+(defun add-dict-elements (xs)
+  (let* ((x (rat->str (car xs) 0))
+         (y (rat->str (cadr xs) 0))
+         (dir (caddr xs))
+         (nos (rat->str (cadddr xs) 0)))
+    (concatenate 'string "x:" x ",y:" y ",direction:" dir ",number-of-spaces:" nos)))
+
 ; (add-brackets n xss)
 ; This function takes in a list of lists of characters and returns
 ; a string of the form "[x00,x01,x02],[x10,x11,x12],[x20,x21,x22]".
@@ -41,7 +55,22 @@
              (first (concatenate 'string "[" f "],"))
              (rest (add-brackets n (cdr xss))))
         (concatenate 'string first rest))
-      (concatenate 'string "[" (add-commas n (car xss)) "]")))     
+      (concatenate 'string "[" (add-commas n (car xss)) "]")))
+
+; (add-braces xss)
+; This function takes in a list of lists representing the solution
+; of a wordsearch. Inner lists are of the form
+; (x y "direction" number-of-spaces), and the function returns a
+; string of the form "{x:x1,y:y1,direction:dir1,number-of-spaces:n1},
+; ...{x:xN,y:yN,direction:dirN,number-of-spaces:nN}
+; xss = list of lists representing solution of wordsearch
+(defun add-braces (xss)
+  (if (consp (cdr xss))
+      (let* ((f (add-dict-elements (car xss)))
+             (first (concatenate 'string "{" f "},"))
+             (rest (add-braces (cdr xss))))
+        (concatenate 'string first rest))
+      (concatenate 'string "{" (add-dict-elements (car xss)) "}")))
 
 ; (file->json gametype filename state)
 ; This function takes in a type of game, a file, and a state and
@@ -67,3 +96,21 @@
          (n (- (len xss) 1))
          (json-xss (concatenate 'string "[" (add-brackets n xss) "]")))
     (list json-xss soln)))
+
+; (solver->json matrix solutions solvertype)
+; This function takes a matrix representing a wordsearch table,
+; a list of lists of characters representing words to find in
+; said wordsearch table, and a number representing which type
+; of solver to use, and returns a string resembling JSON
+; formatting of the data as a dictionary.
+; solvertype 1: brute force solver method
+; solvertype 2: hill climber solver mehtod
+; matrix = wordsearch table
+; solutions = words list
+; solvertype = which solver to use
+(defun solver->json (matrix solutions solvertype)
+  (if (= solvertype 1) ;use brute force method
+      (concatenate 'string "[" (add-braces (brute-force-solver matrix solutions)) "]")
+      (if (= solvertype 2) ;use hill climber method
+          (concatenate 'string "[" (add-braces (hill-climbing-solver matrix solutions)) "]")
+          nil))) ;else you're using a bogus solvertype, get out
