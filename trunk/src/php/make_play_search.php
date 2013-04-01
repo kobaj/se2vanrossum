@@ -12,7 +12,7 @@ function run_create_board()
 
 	if (isset ($_GET['words']))
 	{
-		echo 'Click letters to play the wordsearch or <a href="make_play_search.php">click here</a> to make a new board.';
+		echo 'Click letters to play the wordsearch or <a href="make_play_search.php">click here</a> to make a new board.<br /><br />';
 		
 		// clean things up
 		$words = preg_split("/[\s,~.\-_\n]+/", $_GET['words']);
@@ -105,10 +105,10 @@ function run_create_board()
 	}
 	else
 	{
-		echo 'Enter a list of words to make a wordsearch. The words can be seperated by space, dash, comma, underscore, or newlines.';
+		echo 'Enter a list of words to make a wordsearch. The words can be seperated by space, dash, comma, underscore, or newlines.<br /><br />';
 	
 		echo '<form method="get" action=""><center><textarea name="words">' . (isset ($_GET['words']) ? $_GET['words'] : 'Put your words here') . '</textarea>' .
-			'<br /><input type="submit" value="Submit"></center></form>';	
+			'<br /><br /><input type="submit" value="Submit"></center></form>';	
 	}
 }
 

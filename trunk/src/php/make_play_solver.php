@@ -12,7 +12,7 @@ function run_create_board()
 
 	if (isset ($_POST['submit']))
 	{
-		echo 'Check out the solved board or <a href="make_play_solver.php">click here</a> to solve a new board.';
+		echo 'Check out the solved board or <a href="make_play_solver.php">click here</a> to solve a new board.<br /><br />';
 		
 		// clean things up
 		$words = preg_split("/[\s,~.\-_\n]+/", $_POST['words']);
@@ -114,7 +114,7 @@ function run_create_board()
 	}
 	else
 	{
-		echo 'Enter a generated board and your prefered solving method to have the wordsearch solved.';
+		echo 'Enter a generated board and your prefered solving method to have the wordsearch solved.<br /><br />';
 	
 		echo '<form method="post" action=""><center><table id="main_table"><tr><td>' .
 				'<center><textarea name="words" class="solver_textarea">Put your example list of words here, and your board over there</textarea></center>' .
