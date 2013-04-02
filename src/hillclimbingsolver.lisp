@@ -42,8 +42,7 @@
 
 
 ;defun clean-results-hill (results)
-;This is essentially a second helper for the clean-results
-;that goes through the cleaned list and gets rid of the final nil elements.
+;This goes through the resulting list and gets rid of the final nil elements.
 ;results = the "cleaned" results
 (defun clean-results-hill (results)
   (if (endp results)

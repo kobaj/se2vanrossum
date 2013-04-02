@@ -2,7 +2,7 @@
 
 (include-book "hillclimbingsolver")
 (include-book "testing" :dir :teachpacks)
-
+(include-book "doublecheck" :dir :teachpacks)
 
 ;char-concat-count tests
 (check-expect (char-concat-count 
@@ -115,7 +115,7 @@
                           (list "r" "a" "t") ;rat appears twice
                           (list "p" "a" "r" "r" "o" "t") 
                           (list "s" "p" "a" "r" "r" "o" "w") 
-                          (list "w" "o" "r" "m") ;not finding if on edge of board. 
+                          (list "w" "o" "r" "m") 
                           (list "f" "o" "x") 
                           (list "h" "o" "g")
                           (list "c" "o" "w")
@@ -169,6 +169,19 @@
  (list 15 8 "up" 1))
 )
 
-         
-          
+;properties
+
+;char-concat-count always returns a list with the same number of elements passed in.
+(defproperty char-concat-count-always-gives-list :repeat 2000
+  (xs :value (random-list-of (random-list-of (random-string))))
+    (implies (consp xs)
+             (= (len xs) (len (char-concat-count xs)))))
+
+;clean-results-hill will always return a list with less than or equal the number of elements than its original.
+(defproperty clean-results-always-cleans :repeat 2000
+  (xs :value (random-list-of (random-element-of (list nil nil "test" nil nil "test" nil "test"))))
+  (implies (consp xs)
+           (>= (len xs) (len (clean-results-hill xs)))))
+
+      
 
