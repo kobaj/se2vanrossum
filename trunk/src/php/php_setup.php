@@ -88,7 +88,7 @@ function starts_with($haystack, $needle)
 function ends_with($haystack, $needle)
 {
     $length = strlen($needle);
-    if ($length == 0) 
+    if ($length == 0)
         return true;
 
     return (substr($haystack, -$length) === $needle);

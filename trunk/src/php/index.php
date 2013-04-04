@@ -2,11 +2,13 @@
 
 include 'header.php';
 
+header_print();
+
 echo '<div class="pad10">';
 
 echo 'Welcome to the <span class="red">Team VanRossum</span> series of WordGames. Programmed in ACL2 (with some magic php sprinkled in) we are able to bring you' .
 		'a whole host of fun including a WordSearch generator, CrossWord puzzle generator, and a Solver for both.';
-		
+
 echo '<br /><br />';
 
 echo 'The individuals who make up Team VanRossume include CS students in Dr. Page\'s Software Engineering II class at the University of Oklahoma.';

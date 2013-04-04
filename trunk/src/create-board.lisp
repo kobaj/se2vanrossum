@@ -78,10 +78,10 @@
         (clean-brds-coords (split-coords-brds brds-coords)); split brd and coords
         (wds-coords (car clean-brds-coords))
         (brds (cadr clean-brds-coords))
-        (wdsrch (car (last (last brds)))));sorry
-       ;(filld-srch (fill-brd wdsrch seeds)))
+        (wdsrch (car (last (last brds))));sorry
+       (filld-srch (fill-brd wdsrch seeds)))
    
-    (list wdsrch wds-coords)))
+    (list filld-srch wds-coords)))
 
 
 ;Generate Board for xword

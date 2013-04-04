@@ -1,5 +1,8 @@
 <?php
 
+function header_print()
+{
+
 echo '<!DOCTYPE html><html><head>' .
 '<!-- no cache -->' .
 '<meta http-equiv="pragma" content="no-cache" />' .
@@ -22,5 +25,6 @@ echo '<center><h3><a href="make_play_search.php">WordSearch</a> &middot; CrossWo
 echo '<div class="center">';
 
 echo '<div class="pad10">';
+}
 
 ?>
