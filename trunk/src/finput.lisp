@@ -16,7 +16,7 @@
          (chrs (str->chrs rawinput)))
     (tokens '(#\return #\newline #\>) chrs)))
 
-; (chrs->stringss xs)
+; (chrs->strings xs)
 ; This function takes a list of characters and converts it to a list
 ; of single character strings.
 ; xs = list of characters
