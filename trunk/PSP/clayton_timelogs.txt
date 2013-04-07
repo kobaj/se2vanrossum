@@ -3,8 +3,8 @@ date: January 17, 2013
 Program: capstone
 instructor: Dr. Page
 
-actual added lines: 23
-actual base lines: 0
+actual added lines: 72
+actual base lines: 7
 
 time log:
 
@@ -109,6 +109,150 @@ time log:
 		  end time: 11:47AM
 		  phase: documentation
 		  comment: Worked on t9 and t10.
+		  
+		- date: Feb 28, 2013
+		  start time: 10:34AM
+		  end time: 11:46AM
+		  phase: discussion
+		  comment: Discussed t11: Progress Report C.
+		  
+		- date: Mar 5, 2013
+		  start time: 10:48AM
+		  end time: 11:42AM
+		  phase: design
+		  comment: Discussed changing text I/O to JSON formatting.
+		  
+		- date: Mar 7, 2013
+		  start time: 10:30AM
+		  end time: 10:47AM
+		  phase: discussion
+		  comment: Presented our progress to Dr. Page.
+		  
+		- date: Mar 7, 2013
+		  start time: 10:48AM
+		  end time: 11:37AM
+		  phase: planning
+		  comment: Discussed final enhancements to project and what else needed to be done/who needs to work on what.
+		  
+		- date: Mar 8, 2013
+		  start time: 1:48PM
+		  end time: 2:49PM
+		  phase: planning
+		  comment: Went through create-board and solver code to determine how to get from text input to JSON output, and what kind of intermediary conversion functions would be necessary.
+		  
+		- date: Mar 8, 2013
+		  start time: 6:02PM
+		  end time: 8:00PM
+		  phase: planning
+		  comment: Worked more on getting the output of create-board to look like JSON output. Tried messing around with different approaches to formatting ACL2 output in the interactions pane.
+		  
+		- date: Mar 9, 2013
+		  start time: 12:17PM
+		  end time: 1:28PM
+		  phase: design
+		  comment: Worked on how to get output of create-board to look like JSON output, with actual pseudo-code and ACL2 code to test things out. Ultimately decided to create a new module for output (it made a lot more sense than having the input module handle the output).
+		  
+		- date: Mar 9, 2013
+		  start time: 1:38PM
+		  end time: 2:15PM
+		  phase: design
+		  comment: Designed add-commas, add-brackets, and file->json functions.
+		  
+		- date: Mar 9, 2013
+		  start time: 2:15PM
+		  end time: 2:49PM
+		  phase: code
+		  comment: Implemented add-commas, add-brackets, and file->json functions.
+		  
+		- date: Mar 9, 2013
+		  start time: 4:26PM
+		  end time: 5:06PM
+		  phase: planning
+		  comment: Looked at solver code to determine best way to format solver output as JSON-esque output. Decided that the first course of action would require a conversion from nested character lists to nested string lists.
+		  
+		- date: Mar 9, 2013
+		  start time: 5:06PM
+		  end time: 5:54PM
+		  phase: design
+		  comment: Designed chrs-matrix->strings-matrix and chrs->strings functions.
+		  
+		- date: Mar 9, 2013
+		  start time: 5:54PM
+		  end time: 6:04PM
+		  phase: code
+		  comment: Implemented chrs-matrix->strings-matrix and chrs->strings functions.
+		  
+		- date: Mar 12, 2013
+		  start time: 10:35AM
+		  end time: 11:45AM
+		  phase: discussion
+		  comment: Discussed what we needed to have done by the end of Spring Break.
+		  
+		- date: Mar 26, 2013
+		  start time: 10:38AM
+		  end time: 11:46AM
+		  phase: plannning
+		  comment: Worked on what we would present for t12: Progress Report D.
+		  
+		- date: Mar 28, 2013
+		  start time: 10:50AM
+		  end time: 11:00AM
+		  phase: discussion
+		  comment: Presented Progress Report D. Discussed what is done, what needs to be done, and how soon we need to have it done by.
+		  
+		- date: Mar 28, 2013
+		  start time: 11:07AM
+		  end time: 11:20AM
+		  phase: code
+		  comment: Attempted to figure out what caused the JSON output formatting functions to break. Discovered that it was due to a change in the create-board function.
+		  
+		- date: Mar 31, 2013
+		  start time: 3:27PM
+		  end time: 5:29PM
+		  phase: planning
+		  comment: Examined best approach to convert solver output to JSON formatting.
+		  
+		- date: Mar 31, 2013
+		  start time: 5:29PM
+		  end time: 5:57PM
+		  phase: planning
+		  comment: Worked on add-dict-elements, add-braces, and solver->json functions.
+		  
+		- date: Mar 31, 2013
+		  start time: 6:35PM
+		  end time: 7:05PM
+		  phase: code
+		  comment: Implemented add-dict-elements, add-braces, and solver->json functions.
+		  
+		- date: Apr 2, 2013
+		  start time: 10:33AM
+		  end time: 11:41AM
+		  phase: planning
+		  comment: Worked on deciding who would take which portions of the presentation.
+		  
+		- date: Apr 6, 2013
+		  start time: 2:08PM
+		  end time: 2:22PM
+		  phase: planning
+		  comment: Worked on check-expects for finput module.
+		  
+		- date: Apr 6, 2013
+		  start time: 2:22PM
+		  end time: 2:45PM
+		  phase: code
+		  comment: Implemented finput check-expects.
+		  
+		- date: Apr 6, 2013
+		  start time: 2:48PM
+		  end time: 3:01PM
+		  phase: planning
+		  comment: Worked on check-expects for foutput module.
+		  
+		- date: Apr 6, 2013
+		  start time: 3:01PM
+		  end time: 3:07PM
+		  phase: code
+		  comment: Implemented foutput check-expects.
 		
 new objects:
 
@@ -117,6 +261,14 @@ new objects:
 		- name: bunch-of-chrs
 		  estimated lines: 5
 		  type: I/O
+		  
+		- name: chrs->strings
+		  estimated lines: 5
+		  type: Parse/Format
+		  
+		- name: chrs-matrix->strings-matrix
+		  estimated lines: 5
+		  type: Parse/Format
 		  
 		- name: words-hints
 		  estimated lines: 5
@@ -130,6 +282,37 @@ new objects:
 		  estimated lines: 5
 		  type: I/O
 		
+		#### foutput module ####
+		
+		- name: add-commas
+		  estimated lines: 5
+		  type: Parse/Format
+		  
+		- name: add-dict-elements
+		  estimated lines: 5
+		  type: Parse/Format
+		  
+		- name: add-brackets
+		  estimated lines: 7
+		  type: Parse/Format
+		  
+		- name: add-braces
+		  estimated lines: 7
+		  type: Parse/Format
+		  
+		- name: file->json
+		  estimated lines: 5
+		  type: I/O
+		  
+		- name: solver->json
+		  estimated lines: 5
+		  type: Parse/Format
+		  
+reused objects:
+
+		- name: mux
+		  type: ListOp
+		  estimated base: 7
 
 defect log:
 
@@ -137,3 +320,28 @@ defect log:
 		  type: Conceptual
 		  fix time: 5
 		  comment: I found it difficult to create word/hint pairs just based on a space as a delimiter, since hints could have zero or more spaces in them. I fixed this by using the '>' character as a delimiter to seperate word/hint pairs in the input text file.
+		  
+		- date: Mar 8, 2013
+		  type: Mismatch
+		  fix time: 1
+		  comment: I noticed that the create-board code uses 1 to denote that the gametype is wordsearch, and 2 to denote that it is a crossword puzzle. I changed the create-words-list function to match up with this (instead of create-words-list having gametype 0 = wordsearch, 1 = crossword, 2 = something completely different).
+		  
+		- date: Mar 8, 2013
+		  type: Mismatch
+		  fix time: 2
+		  comment: I realized that the create-board function expected a list of strings, instead of a list of lists of strings, so I changed the just-words function to reflect this.
+		  
+		- date: Mar 9, 2013
+		  type: Syntax
+		  fix time: 15
+		  comment: I forgot to put 'string in my concatenate function, so naturally DrRacket gives me some crazy error that sends me on a wild goose chase. I have the bright idea to try using the debugger, but can't figure out how to set breakpoints, so I end up clicking on "step" a ton of times, since the code doesn't get called until towards the end. As I'm clicking like crazy, I notice my mistake. I still hate the terrible, unhelpful error messages, though.
+		  
+		- date: Mar 28, 2013
+		  type: Formatting
+		  fix time: 2
+		  comment: The create-board function was changed to output multiple boards for testing purposes, but we forgot to change it back. This caused the create-board->json function to not behave correctly.
+		  
+		- date: Mar 31, 2013
+		  type: ACL2
+		  fix time: 8
+		  comment: There were duplicate functions in the two solvers (brute force and hill climber), which made it such that the two modules could not be included together. Cezar fixed this by renaming duplicate functions in the hill climbing solver.
