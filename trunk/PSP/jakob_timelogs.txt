@@ -167,6 +167,30 @@ time log:
 	phase: Code
 	comment: continued work on the json output above
 
+	- date: April 2, 2013
+	start time: 10:39AM
+	end time: 11:15AM
+	phase: Group Planning
+	comment: Feeling a bit under the weather, we ensured everyone was able to finish their work from the past weekend.
+
+	- date: April 4, 2013
+	start time: 10:34AM
+	end time: 11:12AM
+	phase: Group Plannning
+	comment: We showed off some of the final features of the wordsearch and double checked everything was in working order.
+
+	- date: April 4, 2013
+	start time: 11:12AM
+	end time: 11:52AM
+	phase: Code
+	comment: Fixed a few bugs that popped up in the php and acl2 including the random period replacer.
+
+	- date: April 7, 2013
+	start time: 12:23PM
+	end time: 4:52PM
+	phase: Documentation
+	comment: Working on the large powerpoint presentation due tuesday.
+
 new objects:
 
 	- name: run_create_board
