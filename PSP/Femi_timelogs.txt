@@ -1,0 +1,141 @@
+name: Olufemi Fashanu	
+date: February 6, 2013
+program: Final Capstone Project
+instructor: Dr. Page
+language: ACL2
+
+actual added lines: 0
+actual base lines: 0
+
+time log:
+
+	- date: Jan 17, 2013
+	  start time: 10:30AM
+	  end time: 11:45PM
+	  phase: design
+	  comment: Idea generation for team project: image manipulator;matrix calculator; regular expressions
+
+	- date: Jan 24, 2013
+	  start time: 10:30AM
+	  end time: 11:45PM
+	  phase: design
+	  comment: Each member worked on their individual part of the project; We decided on presentation format and when to complete and practice the presentation.
+
+	- date: Jan 29, 2013
+	  start time: 10:30AM
+	  end time: 11:45PM
+	  phase: design
+	  comment: Each worked on individual parts of the project; Decided on presentation format and when to complete and practice the presentation.
+
+	- date: Jan 31, 2013
+	  start time: 10:30AM
+	  end time: 11:45PM
+	  phase: Presentation
+	  comment: Group Presentations
+
+	- date: Feb 05, 2013
+	  start time: 10:30AM
+	  end time: 11:45PM
+	  phase: design
+	  comment: We worked on project proposals and teamwork report. We also designated individual functions to each team member.
+
+	- date: Feb 07, 2013
+	  start time: 10:30AM
+	  end time: 11:45PM
+	  phase: coding
+	  comment: Progress report; Started writing stub codes for my individual part including a random number generator function, and a user input correctness function
+
+	- date: Feb, 12, 2013
+	  start time: 7:00PM
+	  end time: 8:17PM
+	  phase: coding
+	  comment: Started coding on Random Number Generator function
+
+	- date: Feb 14, 2013
+	  start time: 10:305AM
+	  end time: 11:27AM
+	  phase: Write-up
+	  comment: Each added individual time logs to t7
+
+	- date: Feb 14, 2013
+	  start time: 11:30AM
+	  end time: 11:45PM
+	  phase: Agenda
+	  comment: Wrote up the agenda on today's meeting
+
+	- date: Feb 19, 2013
+	  start time: 10:30AM
+	  end time: 11:30PM
+	  phase: progress report
+	  comment: Discussed and wrote up progress report B
+
+	- date: Feb 19, 2013
+	  start time: 11:30AM
+	  end time: 11:45PM
+	  phase: Agenda
+	  comment: Wrote up the agenda on today's meeting
+
+	- date: Mar 05, 2013
+	  start time: 11:14AM
+	  end time: 11:45PM
+	  phase: coding
+	  comment: Helping with code for the create board function for crossword
+
+	- date: Mar 06, 2013
+	  start time: 5:12PM
+	  end time: 7:37PM
+	  phase: coding
+	  comment: Worked on the create-board for the crossword puzzle. Mainly figuring out how the create-board for the word-search works in order to utilize it for this function
+
+	- date: Mar 20, 2013
+	  start time: 3:21AM
+	  end time: 9:00PM
+	  phase: coding
+	  comment: Worked on making words intersect for words with similar letters.
+
+	- date: Mar 26, 2013
+	  start time: 10:30AM
+	  end time: 11:41PM
+	  phase: planning
+	  comment: Decided what major parts of the project need to be finished up by the weekend. Created chart and talking points for the progress report at the next meeting.
+
+	- date: Mar 26, 2013
+	  start time: 10:30AM
+	  end time: 11:41PM
+	  phase: planning
+	  comment: Worked on the final project presentation with the rest of the group; Decided to each work on specific parts of the presentation, and make our own slides for those parts
+
+	- date: Mar 29, 2013
+	  start time: 7:17PM
+	  end time: 10:50PM
+	  phase: coding
+	  comment: Tried enhancing the fit-coords function in the Placement file to check to compare the current input word with the words already on the board; if they have any similar letters, combine the current word with the matched word instead of randomly placing it on the board as with word-search.
+
+	- date: Mar 29, 2013
+	  start time: 7:17PM
+	  end time: 10:50PM
+	  phase: coding
+	  comment: Started working on the intermediate checking code to ensure the user inputs the right word on the word search; finished by teammate.
+
+
+new objects:
+reused objects:
+defect log:
+
+	- date: March 05, 2013
+	  type: Testing code
+	  fix time: 1
+	  comment: Did not include the "fits.lisp" file when testing the create-board function for the word-search. Fixed by including the file in the program
+
+	- date: March 26, 2013
+	  type: coding
+	  fix time: 20
+	  comment: getting a divisible by zero error. Figured out that it only does this when the input words list is empty or cannot fit into the board.
+
+	- date: March 29, 2013
+	  type: coding
+	  fix time: 20
+	  comment: When trying to intersect/combine words on the board, smaller words get replaced by words already on the board; some words never make it to the board because the function never finds a place that fits.
+
+
+
