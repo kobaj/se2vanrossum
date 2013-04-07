@@ -2,7 +2,7 @@ name: Shane Moore
 date: Jan 17,2013
 program: SE2 Final Project
 instructor: Dr. Page
-actual added lines: 348
+actual added lines: 672
 
 time log:
 
@@ -120,7 +120,139 @@ time log:
   start time: 10:30AM
   end time: 11:45AM
   phase: Coding/Planning
-  comment: Discussed where we are at with our code and worked on some of the create board
+  comment: Discussed where we are at with our code and worked on some of the create board also what we will be doing for our progress report
+
+- date: Feb 20,2013
+  start time: 01:20PM
+  end time: 2:45PM
+  phase: Coding
+  comment: Got the horizontal working and working on some functions for vertical
+
+- date: Feb 21,2013
+  start time: 10:30AM
+  end time: 11:45AM
+  phase: Planning
+  comment: Discussed where we are at with the project with Dr.Page got some good feedback and discusssed issues we have had
+
+- date: Feb 23,2013
+  start time: 2:35PM
+  end time: 4:11PM
+  phase: Coding
+  comment: Achieved vertical and horizontal placement is working still have undefined for zero problem but will fix accordingly now we just need front end
+
+- date: Feb 26,2013
+  start time: 10:30AM
+  end time: 11:45AM
+  phase: Coding/Planning
+  comment: Worked on some tests for the create-board function nothing too major just some check expects found out cannto really do good check-expects for some of the functions as we have rand
+
+- date: Feb 26,2013
+  start time: 2:35PM
+  end time: 4:11PM
+  phase: Coding/Planning
+  comment: Worked on some tests for the create-board function nothing too major just some check expects found out cannto really do good check-expects for some of the functions as we have random letter/number generation
+om letter/number generation. Also prepared t9/t10 for submission on Thursday
+
+- date: Feb 28,2013
+  start time: 10:30PM
+  end time: 11:45PM
+  phase: Coding/Planning
+  comment: Was a short meeting got our stuff handed in and discussed some test suites etc I will be doing just need to drum up some motivation
+
+- date: Mar 1,2013
+  start time: 7:15PM
+  end time: 8:57PM
+  phase: Coding
+  comment: Tinkering around with the create-board discovered that there is the undefined by 0 for certain sets of words discovered it is caused when there is a word that does not fit into the board need to write a handler but changed board size
+
+- date: Mar 5,2013
+  start time: 10:30AM
+  end time: 11:45AM
+  phase: Coding/Planning
+  comment: Got together what we need to do for our progress report discussed how Femi will be doing the portion of the crossword puzzle. 
+
+- date: Mar 7,2013
+  start time: 10:30AM
+  end time: 11:45AM
+  phase: Coding/Planning
+  comment: Got together what we need to do for our progress report discussed how Femi will be doing the portion of the crossword puzzle. 
+
+
+- date: Mar 11,2013
+  start time: 10:30AM
+  end time: 11:45AM
+  phase: Coding/Planning
+  comment: Got together what we need to do for our progress report discussed how Femi will be doing the portion of the crossword puzzle. 
+
+- date: Mar 12,2013
+  start time: 10:30AM
+  end time: 11:45AM
+  phase: Coding/Planning
+  comment: Got together what we need to do for our progress report discussed how Femi will be doing the portion of the crossword puzzle. 
+
+- date: Mar 14,2013
+  start time: 10:30AM
+  end time: 11:45AM
+  phase: Coding/Planning
+  comment: Got together what we need to do for our progress report discussed how Femi will be doing the portion of the crossword puzzle. 
+
+- date: Mar 16,2013
+  start time: 4:47PM
+  end time: 6:51PM
+  phase: Coding
+  comment: Collision problem discovered when Jakob was running the code fixed due to off by one error took a while to find but fix was quick and easy
+
+- date: Mar 21,2013
+  start time: 8:21PM
+  end time: 9:13PM
+  phase: Coding
+  comment: Another problem with initial word placement collision fixed much like the previous placement collision problem just with the starting point this time
+
+- date: Mar 23,2013
+  start time: 10:13AM
+  end time: 12:44PM
+  phase: Coding
+  comment: Not really much coding  just cleanign up some code adding some more commments/documentation to make it easier for next group to utilize
+
+
+- date: Mar 26,2013
+  start time: 10:30AM
+  end time: 11:45AM
+  phase: Coding/Planning
+  comment: Decided we needed to change the output of create board as to give the coordinates of the words when they are output. 
+
+- date: Mar 30,2013
+  start time: 11:22 AM
+  end time: 2:10PM
+  phase: Coding
+  comment: edited the create board function to show the information in regards to the placement of the words so we have a sort of answer key as well as the board itself
+
+- date: Mar 31,2013
+  start time: 12:13 PM
+  end time: 2:42PM
+  phase: Coding
+  comment: The random placmeent of letters in fill-board module does not work correctly as there is some type of order they are being placed in changed increment of the seed to more than 1 and decided to do this for the rest of places where we increment a seed
+
+- date: Apr 2,2013
+  start time: 10:30 AM
+  end time: 11:45 AM
+  phase: Presentation
+  comment: Decided who will be doing which portions of the presentation
+
+- date: Apr 4,2013
+  start time: 10:30 AM
+  end time: 11:45 AM
+  phase: Presentation
+  comment: Worked on presentation as we will be presenting our project on Thursday
+
+
+- date: Apr 6,2013
+  start time: 1:45 PM
+  end time: 4:40PM
+  phase: Presentation
+  comment: Did majority of the work needed on the presentation
+
+
 
 
 defect log:
@@ -172,6 +304,39 @@ defect log:
   type: Conceptual
   fix time: 40
   comment: Did not realize how difficult it is to work with a random set of numbers in ACL2 and need to get Horizonal placement correct so it is not going into first fit
+
+- date: Feb 23, 2013
+  type: Conceptual
+  fix time: 35
+  comment: Vertical placement was causing problems we were having a collision between some of the horizontal words so they would not be lined up correctly. The fix was to ensure the letters were placed anywhere there will be a collision
+
+- date: Feb 26, 2013
+  type: Conceptual
+  fix time: 10
+  comment: Realize that some of my tests were not appropriate for the project as we have randomness and cannot effectively create check expects.
+
+
+- date: Mar 1, 2013
+  type: Conceptual
+  fix time: 10
+  comment: Recieve the undefined for zero error for a large set of words which can be problematic. This is because there are not enough room to fit certain words. Switched the size of board to be 2x the largest word. Also may create some type of handling for this error
+
+
+- date: Mar 16, 2013
+  type: Code
+  fix time: 45
+  comment: Collision problems with the words that are initially placed on the board  the issue was due to the random start an off by one error it seemed so just subtracted 1 from endpoint
+
+- date: Mar 21, 2013
+  type: Code
+  fix time: 30
+  comment: Collision problems again!!!!!! this was quickly found as it had to do with the start point have to subtract one from that as well quick and easy fix but rather frustrating
+
+
+- date: Mar 31, 2013
+  type: Conceptual
+  fix time: 5
+  comment: Jakob pointed out that the letters being placed on the board were following a pattern this was due to the incrementation of the seed by 1 this was fixed and will make it so that the seed is incremented by more than 1 for the rest of them
 
 
 
@@ -282,4 +447,54 @@ new objects:
 	  type: non-io
 	  estimated lines: 7
 
+	- name: get-end
+	  type: non-io
+	  estimated lines: 5
 
+	- name: mtx-form-vert-helper
+	  type: non-io
+	  estimated lines: 3
+
+	- name: mtx-form-vert
+	  type: non-io
+	  estimated lines: 4
+
+	- name: openv
+	  type: non-io
+	  estimated lines: 5
+
+	- name: openv-helper
+	  type: non-io
+	  estimated lines: 3
+
+	- name: coords-vert
+	  type: non-io
+	  estimated lines: 6
+
+	- name: update-mult-row
+	  type: non-io
+	  estimated lines: 7
+	  
+	- name: fitsp
+	  type: non-io
+	  estimated lines: 5
+
+	- name: fits
+	  type: non-io
+	  estimated lines: 6
+
+	- name: do-fits
+	  type: non-io
+	  estimated lines: 4
+
+	- name: split-coords-brd
+	  type: non-io
+	  estimated lines: 3
+
+	- name: extrct-brds
+	  type: non-io
+	  estimated lines: 4
+
+	- name: extrct coords
+	  type: non-io
+	  estimated lines: 4
