@@ -212,17 +212,17 @@ defect log:
 	  fix time: 34
 	  comment: Had an issue with iterating and matching solutions to first letters.
 
-	- date: Feb 5, 2013
+	- date: Mar 5, 2013
 	  type: function
 	  fix time: 50
 	  comment: Fixed the logic for match-right-to-left. 
 
-	- date: Feb 9, 2013
+	- date: Mar 9, 2013
 	  type: function
 	  fix time: 45
 	  comment: There is a bug with finding a match from down to up on a small matrix.
 
-	- date: Feb 9, 2013
+	- date: Mar 9, 2013
 	  type: function
 	  fix time: 15
 	  comment: There is a bug with matching right to left, again.
