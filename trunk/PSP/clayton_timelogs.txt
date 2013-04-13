@@ -253,6 +253,18 @@ time log:
 		  end time: 3:07PM
 		  phase: code
 		  comment: Implemented foutput check-expects.
+		  
+		- date: Apr 7, 2013
+		  start time: 10:49AM
+		  end time: 12:17PM
+		  phase: documentation
+		  comment: Worked on slides for presentation. More specifically, worked on Software Architecture slides for presentation.
+		  
+		- date: Apr 8, 2013
+		  start time: 4:41PM
+		  end time: 7:12PM
+		  phase: documentation
+		  comment: Finished up Software Architecture slides.
 		
 new objects:
 
