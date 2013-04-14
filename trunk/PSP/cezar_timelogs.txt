@@ -190,6 +190,30 @@ time log:
           phase: meeting
 	  comment: A progress report was conducted for Dr. Page. Afterwards we began planning the future for future tasks, including the presentation. 
 
+	- date: Apr 2, 2013
+	  start time: 10:29am
+	  end time: 11:42am
+          phase: meeting
+	  comment: Group began preparations for hte upcming software demonstration presentation. 
+
+	- date: Apr 4, 2013
+	  start time: 10:31am
+	  end time: 11:46am
+          phase: meeting
+	  comment: Group continued preparing the the upcoming presentation and separated portions.
+
+	- date: Apr 9, 2013
+	  start time: 10:30am
+	  end time: 12:15pm
+          phase: presentation
+	  comment: Presentation day. The team presented the semester-long project to the class and individuals out in the field.
+
+	- date: Apr 11, 2013
+	  start time: 10:30am
+	  end time: 12:20pm
+          phase: presentation
+	  comment: We watched others present their semester-long projects today.
+
 defect log:
 
 	- date: Feb 8, 2013
