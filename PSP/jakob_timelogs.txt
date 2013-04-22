@@ -13,51 +13,49 @@ time log:
 	start time: 10:30AM
 	end time: 11:45AM
 	phase: Group Planning
-	comment: Got to remeet old group and team, as well as discuss ideas for the project.
+	comment: Today was a fantastic chance to regroup with the old team and see what they've been up to recently. Of course we also discussed some ideas for the project. I was interested in doing some form of image manipulation (blur, outline, etc via shaders) while Shane was interested in doing matrix manipulation. The rest of the group was not very vocal in what they were intersted in doing. 
 	
 	- date: January 22, 2013
 	start time: 10:28AM
 	end time: 11:50AM
 	phase: Group Planning
-	comment: Worked on t2 with group, project proposal for
-	Crossword/wordsearch games.
+	comment: We came together and decided to make a wordsearch and crossword generator and solver. Everyone seems rather interested in the subject and with all the different features we imagine that we will have a large and complex project to sustain us over the semester. With a deep interest in the project we began work on t2, the group proposal. I wish we would use Google docs for this.
 	
 	- date: January 24, 2013
 	start time: 10:32AM
 	end time: 11:48AM
 	phase: Group Planning
-	comment: Proposal laid out, deligated work regarding engineering
-	standards and presentation.
+	comment: The proposal came together rather well. I'm really glad the group is still energized and wanting to work hard on this project. For today's meeting we deligated work for the engineering standards (t3) and the presentation (t1) that are due. I ended up tradeing off a little less work on the standards document so I could get more work on the presentation. I really want to knock peoples socks off with this!
 
 	- date: January 29, 2013
 	start time: 10:30AM
 	end time: 11:45AM
 	phase: Group Planning
-	comment: Wrapped up work on t1,t2,t3, began practice for presentation.
+	comment: Today was very productive. We finished and reviewed all work on all documents so far (t1, t2, t3). Also we practiced for the presentation in a few days. I'm a little weary because some of the group members are nervous infront of crowdes but it shouldn't really penalize us too much.
 
 	- date: January 29, 2013
 	start time: 6:04PM
 	end time: 7:10PM
 	phase: Individual Practice
-	comment: Performed my section of the presentation to ensure proper time and information goals were met.
+	comment: One of the requirements for the presentation (t1) was that it could only be 11 minutes or so in length. My part is a bit long at the moment so I'm practicing and revising it to see if I can cut it down in length. Additionally, from our practice earlier I saw that the presentation is really dry, I'll see if I can add a joke or something to spice it up.
 
 	- date: January 31, 2013
 	start time: 10:30AM	
 	end time: 11:45AM
 	phase: Group Presentation	
-	comment: Team presentation day, showing off the Word Games Project.
+	comment: Team presentation day, showing off the Word Games Project. I think our presentation was a great success! (Everyone laughed at the joke.) But Dr. Page didn't really seem intersted in the project, I wonder if he thinks its a bad idea? Regardless, I'm glad we decided not to go with image generation as another team picked that project already.
 
 	- date: February 5, 2013
 	start time: 10:25AM
 	end time: 11:59AM
 	phase: Group Planning
-	comment: Deligated next section of work (t4), and prepared for next thursday's presentation.
+	comment: Today wasn't very productive, just a lot of discussion. We used the time to plan out t4, our first progress report of the work we're doing. But at the very least I convinced the group to start using Google docs, a nice way of unifing everything. For the progress report we're going to have a little presentation and have some good questions planned out for Dr. Page.
 
 	- date: February 7, 2013
 	start time: 10:20AM
 	end time: 11:50AM
 	phase: Group Planning
-	comment: Discussion and presentation of progress so far with dr. Page. Lots of concern over random number generation.
+	comment: Today is our first progress report, I admit, I was very nervous. But it turned out to be a lot less formal than I previously imagined. 
 
 	- date: February 12, 2013
 	start time: 10:25AM
@@ -190,6 +188,12 @@ time log:
 	end time: 4:52PM
 	phase: Documentation
 	comment: Working on the large powerpoint presentation due tuesday.
+
+	- date: April 16, 2013
+	start time: 12:23PM
+	end time: 4:52PM
+	phase: Group Planning
+	comment: Discussion of what to do with team Godel's project.
 
 new objects:
 
