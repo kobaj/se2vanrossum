@@ -214,6 +214,24 @@ time log:
           phase: presentation
 	  comment: We watched others present their semester-long projects today.
 
+	- date: Apr 16, 2013
+	  start time: 10:30am
+	  end time: 11:45pm
+          phase: meeting
+	  comment: The team began planning for Godel's project improvement. 
+
+	- date: Apr 18, 2013
+	  start time: 10:30am
+	  end time: 11:15pm
+          phase: cancelled
+	  comment: The meeting with the guest speaker was cancelled.
+
+	- date: Apr 23, 2013
+	  start time: 10:30am
+	  end time: 12:46pm
+          phase: meeting
+	  comment: The team allocated work for the cellular automata project.
+
 defect log:
 
 	- date: Feb 8, 2013
