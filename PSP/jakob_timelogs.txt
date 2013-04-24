@@ -13,7 +13,7 @@ time log:
 	start time: 10:30AM
 	end time: 11:45AM
 	phase: Group Planning
-	comment: Today was a fantastic chance to regroup with the old team and see what they've been up to recently. Of course we also discussed some ideas for the project. I was interested in doing some form of image manipulation (blur, outline, etc via shaders) while Shane was interested in doing matrix manipulation. The rest of the group was not very vocal in what they were intersted in doing. 
+	comment: This was a fantastic chance to regroup with the old team and see what they've been up to recently. Of course we also discussed some ideas for the project. I was interested in doing some form of image manipulation (blur, outline, etc via shaders) while Shane was interested in doing matrix manipulation. The rest of the group was not very vocal in what they were intersted in doing. 
 	
 	- date: January 22, 2013
 	start time: 10:28AM
@@ -31,7 +31,7 @@ time log:
 	start time: 10:30AM
 	end time: 11:45AM
 	phase: Group Planning
-	comment: Today was very productive. We finished and reviewed all work on all documents so far (t1, t2, t3). Also we practiced for the presentation in a few days. I'm a little weary because some of the group members are nervous infront of crowdes but it shouldn't really penalize us too much.
+	comment: This was a very productive day. We finished and reviewed all work on all documents so far (t1, t2, t3). Also we practiced for the presentation in a few days. I'm a little weary because some of the group members are nervous infront of crowdes but it shouldn't really penalize us too much.
 
 	- date: January 29, 2013
 	start time: 6:04PM
@@ -49,13 +49,13 @@ time log:
 	start time: 10:25AM
 	end time: 11:59AM
 	phase: Group Planning
-	comment: Today wasn't very productive, just a lot of discussion. We used the time to plan out t4, our first progress report of the work we're doing. But at the very least I convinced the group to start using Google docs, a nice way of unifing everything. For the progress report we're going to have a little presentation and have some good questions planned out for Dr. Page.
+	comment: Mostly discussion today We used the time to plan out t4, our first progress report of the work we're doing. But at the very least I convinced the group to start using Google docs, a nice way of unifing everything. For the progress report we're going to have a little presentation and have some good questions planned out for Dr. Page.
 
 	- date: February 7, 2013
 	start time: 10:20AM
 	end time: 11:50AM
 	phase: Group Planning
-	comment: Today is our first progress report, I admit, I was very nervous. But it turned out to be a lot less formal than I previously imagined. 
+	comment: This is our first progress report, I admit, I was very nervous. But it turned out to be a lot less formal than I previously imagined. 
 
 	- date: February 12, 2013
 	start time: 10:25AM
@@ -194,6 +194,18 @@ time log:
 	end time: 4:52PM
 	phase: Group Planning
 	comment: Discussion of what to do with team Godel's project.
+
+	- date: April 23, 2013
+	start time: 10:28AM
+	end time: 11:54AM
+	phase: Group Planning
+	comment: Today we devided out what we were going to do on team Godel's Project. I will be looking into websockets and trying to make their project be available online. Shane and Cezar will be working on a reverse function. And Clay and Femi will be looking into saving (possibly a gif) and loading enhancements.
+
+	- date: April 23, 2013
+	start time: 4:03PM
+	end time: 7:40PM
+	phase: Code
+	comment: Researching how to do websockets in Python. The process is fairly straight forward, however team Godel chose to use a very obscure version of Python (3.3) which is difficult to work with.
 
 new objects:
 
@@ -381,3 +393,18 @@ defect log:
 	type: Code
 	fix time: 1
 	comment: Again, dont mix up x and y
+
+	- date: April 23, 2013
+	type: Code
+	fix time: 3
+	comment: replace b'string with string in python 3 encode systems
+
+	- date: April 23, 2013
+	type: Code
+	fix time: 10
+	comment: ensure websocket key and decryption are correct
+
+	- date: April 23, 2013
+	type: Code
+	fix time: 4
+	comment: seriously, string conversion is a pain in python 3 
