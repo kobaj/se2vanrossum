@@ -201,11 +201,17 @@ time log:
 	phase: Group Planning
 	comment: Today we devided out what we were going to do on team Godel's Project. I will be looking into websockets and trying to make their project be available online. Shane and Cezar will be working on a reverse function. And Clay and Femi will be looking into saving (possibly a gif) and loading enhancements.
 
-	- date: April 23, 2013
-	start time: 4:03PM
-	end time: 7:40PM
+	- date: April 24, 2013
+	start time: 10:56PM
+	end time: 11:59PM
 	phase: Code
-	comment: Researching how to do websockets in Python. The process is fairly straight forward, however team Godel chose to use a very obscure version of Python (3.3) which is difficult to work with.
+	comment: Further implementing web sockets into the actual system.
+
+	- date: April 24, 2013
+	start time: 12:00AM
+	end time: 1:38AM
+	phase: Code
+	comment: Further implementing web sockets into the actual system.
 
 new objects:
 
@@ -408,3 +414,13 @@ defect log:
 	type: Code
 	fix time: 4
 	comment: seriously, string conversion is a pain in python 3 
+
+	- date: April 25, 2013
+	type: Code
+	fix time: 35
+	comment: Threading in python is surprisingly easy, but ensure that you kill your threads properly or you'll get stack overflows that will drive you mad
+
+	- date: April 25, 2013
+	type: Code
+	fix time: 12
+	comment: use ''.join string concatenation to build strings 
