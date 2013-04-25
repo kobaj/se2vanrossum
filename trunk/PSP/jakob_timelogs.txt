@@ -213,6 +213,18 @@ time log:
 	phase: Code
 	comment: Further implementing web sockets into the actual system.
 
+	- date: April 25, 2013
+	start time: 10:12AM
+	end time: 11:54AM
+	phase: Group Planning and Code
+	comment: Display of the initial socket system to the team and then began work on refineing it.
+
+	- date: April 25, 2013
+	start time: 1:23PM
+	end time: 3:12PM
+	phase: Code
+	comment: Further implementing web sockets into the actual system.
+
 new objects:
 
 	- name: run_create_board
@@ -424,3 +436,8 @@ defect log:
 	type: Code
 	fix time: 12
 	comment: use ''.join string concatenation to build strings 
+
+	- date: April 25, 2013
+	type: Code
+	fix time: 312
+	comment: When sending a message larger than 128 bits you must change the structure of the message, not just send more of them. Fun way to learn websockets!
