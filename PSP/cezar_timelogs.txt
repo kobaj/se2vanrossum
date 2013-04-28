@@ -228,9 +228,15 @@ time log:
 
 	- date: Apr 23, 2013
 	  start time: 10:30am
-	  end time: 12:46pm
+	  end time: 11:46pm
           phase: meeting
 	  comment: The team allocated work for the cellular automata project.
+
+	- date: Apr 25, 2013
+	  start time: 10:28am
+	  end time: 11:43pm
+          phase: meeting
+	  comment: Team split final pieces of the improvements for the cellular automata project and worked independentally on them.
 
 defect log:
 
