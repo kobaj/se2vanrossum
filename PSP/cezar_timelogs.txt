@@ -236,7 +236,7 @@ time log:
 	  start time: 10:28am
 	  end time: 11:43pm
           phase: meeting
-	  comment: Team split final pieces of the improvements for the cellular automata project and worked independentally on them.
+	  comment: Team split final pieces of the improvements for the cellular automata project and worked independently on them.
 
 defect log:
 
