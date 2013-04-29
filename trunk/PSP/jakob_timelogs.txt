@@ -55,97 +55,97 @@ time log:
 	start time: 10:20AM
 	end time: 11:50AM
 	phase: Group Planning
-	comment: This is our first progress report, I admit, I was very nervous. But it turned out to be a lot less formal than I previously imagined. 
+	comment: This is our first progress report, I admit, I was very nervous. But it turned out to be a lot less formal than I previously imagined. We discussed random and how to implement it properly. Lots of different ideas were suggested, including Python random, or ACL2 based random.
 
 	- date: February 12, 2013
 	start time: 10:25AM
 	end time: 11:59AM
 	phase: Group Planning
-	comment: Review of design between members, required new markup of old t5.
+	comment: Review of design between members, required new markup of old t5. Our t5 could no longer have revision notes and needed to be more full with probe estimates and a deeper multilevel design. But we wrote it up well and I think it fits better.
 
 	- date: February 14, 2013
 	start time: 10:35AM
 	end time: 11:40AM
 	phase: Group Planning
-	comment: Delegation of a new run of work (t7) and recap of current progress.
+	comment: Delegation of a new run of work (t7) which will be our first design and probe estimate revisions. Some significant work was accomplished during this meeting. It all ended with a recap on our current progress. It seems Shane might be having some problems with create-board.
 
 	- date: February 19, 2013
 	start time: 10:32AM
 	end time: 11:15AM
 	phase: Group Planning
-	comment: Regroup on problems regarding create board while planning out t8.
+	comment: Regroup and talking about some problems shane was having with create-board. It seems that some of it stems from random implementation and the other problems come from just difficulties in ACL2. At the very least it is some progress.
 
 	- date: February 22, 2013
 	start time: 10:30AM
 	end time: 11:40AM
 	phase: Group Planning
-	comment: Meeting with prof and presentation of progress thus far.
+	comment: Meeting with prof and presentation of progress thus far. It was much more lax now, which we are greatful for. Page helped more with random implementation and discussed some of the bugs we are having in the create-board.
 
 	- date: February 26, 2013
 	start time: 10:38AM
 	end time: 11:45AM
 	phase: Group Planning
-	comment: Discussion and completion of t9 and t10 for project.
+	comment: Discussion and completion of t9 and t10 for project. We delegated the work and wrote everything out concerning the design and implementation of defect database and test suits. I'm pretty glad we got this work completed quickly.
 
 	- date: February 28, 2013
 	start time: 10:30AM
 	end time: 11:40AM
 	phase: Group Planning
-	comment: Discussion about delay regarding create board and reassignment of Femi to help Shane.
+	comment: Shane ended up having enough problems and bugs that the group has decided to re-assign Femi to help shane with the create-board. Hopefully the create-board will go faster and better from here forward.
 
 	- date: March 5, 2013
 	start time: 10:26AM
 	end time: 11:42AM
 	phase: Group Planning
-	comment: Preperation for thursday's team meeting. 
+	comment: Sadly not much work was accomplished today, we mostly prepared for the presentation on thursday. I personally began looking into redirected input for the web based frontend.
 
 	- date: March 6, 2013
 	start time: 8:43PM
 	end time: 10:38PM
 	phase: Code
-	comment: Working on HTML frontend, specifically redirected input so that php calls the create-board.
+	comment: PHP calls are not nearly as difficult as I thought. Redirected input works well for calling ACL2 and returning a function. It did require a bit of parsing for the return string, but overall this came together quickly. 
 
 	- date: March 7, 2013
 	start time: 10:30AM
 	end time: 11:45AM
 	phase: Group Planning
-	comment: Presentation of progress thus far.
+	comment: Presentation of progress thus far, simple as that.
 
 	- date: March 9, 2013
 	start time: 5:11PM
 	end time: 9:53PM
 	phase: Code
-	comment: After clay got the json parsed output printed, I can now import it with jquery.
+	comment: Clay was happy to let me know that in today's meeting he finished the JSON output. It converts the ACL2 strings to JSON. So now I can pass the JSON straight to Jquery/javascript and have the web front end work.
 
 	- date: March 12, 2013
 	start time: 10:32AM
 	end time: 11:38AM
 	phase: Group Planning
-	comment: Meeting to discuss t13 and t15.
+	comment: t13 and t15 are coming up, so this class time was spent discussing how we would delegate and finish the work for those two projects. Jakob and Femi helped t13 to make the installation guide while Clay, Cezar, and Shane worked on the documentation for the product.
 
 	- date: March 15, 2013
 	start time: 10:29AM
 	end time: 10:49AM
 	phase: Group Planning
-	comment: Short meeting to discuss what is to be completed over the break
+	comment: Short meeting to discuss what is to be completed over the break. We wanted to head out quickly so not much work was accomplished.
 
 	- date: March 26, 2013
 	start time: 10:32AM
 	end time: 11:44AM
 	phase: Group Planning
-	comment: Rewrite our t12 and prepare for the next big group discussion day.
+	comment: Progress report D was unsatisfactory, so we ended up rewriting our t12 and prepare for the next big group discussion day.
 
 	- date: March 27, 2013
 	start time: 6:47PM
 	end time: 7:22PM
 	phase: Code
-	comment: refactoring HTML to allow abstractness and make its presentation more respectable.
+	comment: I took a look at the HTML and decided it should look a bit better and be easier to work with. So I refactored HTML to allow abstractness and make its presentation more respectable.
 
 	- date: March 27, 2013
 	start time: 10:36PM
 	end time: 10:43PM
 	phase: Code
-	comment: Running through the process of create board to make it look better.
+	comment: Running through the process of create board to make it look better, somewhat like the refactored HTML.
 
 	- date: March 28, 2013
 	start time: 10:32AM
@@ -157,13 +157,13 @@ time log:
 	start time: 11:33AM
 	end time: 11:54AM
 	phase: Code
-	comment: Working on json output code to be updated with shanes inclusion of a solution
+	comment: Shane ended up needing to include solutions with his create-board output. So this required a bit of restructuring to the JSON output, but mostly this was not much of a problem.
 
 	- date: March 31, 2013
 	start time: 12:04PM
 	end time: 9:36PM
 	phase: Code
-	comment: continued work on the json output above
+	comment: Continued work on the json output above. For some reason this took significantly longer than I expected. Mostly because I was trying to implement some extra (un-needed) features. 
 
 	- date: April 2, 2013
 	start time: 10:39AM
@@ -181,13 +181,13 @@ time log:
 	start time: 11:12AM
 	end time: 11:52AM
 	phase: Code
-	comment: Fixed a few bugs that popped up in the php and acl2 including the random period replacer.
+	comment: Fixed a few bugs that popped up in the php and acl2 including the random period replacer. So now the board actually finally looks like a real word search. I'm very excited!
 
 	- date: April 7, 2013
 	start time: 12:23PM
 	end time: 4:52PM
 	phase: Documentation
-	comment: Working on the large powerpoint presentation due tuesday.
+	comment: Working on the large powerpoint presentation due tuesday. Ended up requiring a lot of work to make some tables for the presentation along with a nice detailed description of each.
 
 	- date: April 16, 2013
 	start time: 12:23PM
