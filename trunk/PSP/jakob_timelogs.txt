@@ -5,7 +5,7 @@ instructor: Dr. Page
 
 actual base lines: 0
 actual added lines: 746
-actual modified lines: 0
+actual modified lines: 184
 actual removed lines: 0
 
 time log:
@@ -190,10 +190,10 @@ time log:
 	comment: Working on the large powerpoint presentation due tuesday. Ended up requiring a lot of work to make some tables for the presentation along with a nice detailed description of each.
 
 	- date: April 16, 2013
-	start time: 12:23PM
-	end time: 4:52PM
+	start time: 11:30AM
+	end time: 11:54AM
 	phase: Group Planning
-	comment: Discussion of what to do with team Godel's project.
+	comment: Discussion of what to do with team Godel's project. We had some initial ideas but decided it best to see what we will come up with thursday.
 
 	- date: April 23, 2013
 	start time: 10:28AM
@@ -205,25 +205,31 @@ time log:
 	start time: 10:56PM
 	end time: 11:59PM
 	phase: Code
-	comment: Further implementing web sockets into the actual system.
+	comment: After researching websockets and deciding them the best course of action, I began implementing them in python. The fact that Python 3 was chosen instead of Python 2.7 made this rather difficult, but not impossible.
 
 	- date: April 24, 2013
 	start time: 12:00AM
 	end time: 1:38AM
 	phase: Code
-	comment: Further implementing web sockets into the actual system.
+	comment: Found a few bugs from earlier, mostly regarding latency issues. I thought websockets would be a bit faster, but its not bad. I just needed to optimize some of my javascript and python code.
 
 	- date: April 25, 2013
 	start time: 10:12AM
 	end time: 11:54AM
 	phase: Group Planning and Code
-	comment: Display of the initial socket system to the team and then began work on refineing it.
+	comment: I was able to show off the initial socket system to the team, which was very exciting, until it broke, badly. So I have a few bugs to work out, mostly dealing with large amounts of data being sent.
 
 	- date: April 25, 2013
 	start time: 1:23PM
 	end time: 3:12PM
 	phase: Code
-	comment: Further implementing web sockets into the actual system.
+	comment: As it turns out, you can't send what I thought you could through websockets. But I rewrote the frame handler and now everything works as it should. Hopefully all bugs are gone and I can begin work on the presentation.
+
+	- date: April 29, 2013
+	start time: 6:42PM
+	end time: 7:01PM
+	phase: Presentation Practice
+	comment: All the code is good and done, today I'm just typing up everything for the presentation tomorrow and ensuring that we make a 100 on the assignment! I'm happy to see that Shane and Clay have made good progress on their portions as well. 
 
 new objects:
 
@@ -298,6 +304,18 @@ new objects:
 	- name: set_green
 	  type: function-javascript
 	  estimated lines: 5
+
+	- name: start-web-socket
+          type: function-python
+	  estimated lines: 25
+
+	- name: send-websocket-data
+          type: function-python
+	  estimated lines: 25
+
+	- name: display_websocket_godel_grid
+          type: function-javascript
+	  estimated lines: 20
 
 reused objects:
 
@@ -440,4 +458,4 @@ defect log:
 	- date: April 25, 2013
 	type: Code
 	fix time: 312
-	comment: When sending a message larger than 128 bits you must change the structure of the message, not just send more of them. Fun way to learn websockets!
+	comment: When sending a message larger than 128 bytes you must change the structure of the message, not just send more of them. Fun way to learn websockets!
