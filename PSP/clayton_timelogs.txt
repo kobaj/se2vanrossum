@@ -265,6 +265,48 @@ time log:
 		  end time: 7:12PM
 		  phase: documentation
 		  comment: Finished up Software Architecture slides.
+		  
+		- date: Apr 16, 2013
+		  start time: 10:44AM
+		  end time: 11:13AM
+		  phase: troubleshooting
+		  comment: Spent some time trying to get the Google Code repository set up for the team Godel code.
+		  
+		- date: Apr 23, 2013
+		  start time: 10:43AM
+		  end time: 11:43AM
+		  phase: discussion
+		  comment: Worked on deciding what we could add to the team Godel project.
+		  
+		- date: Apr 25, 2013
+		  start time: 10:36AM
+		  end time: 11:44AM
+		  phase: planning
+		  comment: Worked on deciding best approach to create GIFs from images. Dug through some of team Godel's code to try to figure out how the images are saved.
+		  
+		- date: Apr 27, 2013
+		  start time: 7:05PM
+		  end time: 9:06PM
+		  phase: planning
+		  comment: Looked at image-handler.lisp and command-handler.lisp for clues on how to save images with the specified dimensions instead of sizing them relative to living cells.
+		  
+		- date: Apr 28, 2013
+		  start time: 6:18PM
+		  end time: 6:43PM
+		  phase: planning
+		  comment: Looked into different ways to convert bitmap images to animated GIF images.
+		  
+		- date: Apr 28, 2013
+		  start time: 7:10PM
+		  end time: 7:16PM
+		  phase: documentation
+		  comment: Worked on slides for revision presentation.
+		  
+		- date: Apr 29, 2013
+		  start time: 3:19PM
+		  end time: 3:32PM
+		  phase: documentation
+		  comment: Finished up slides for revision presentation.
 		
 new objects:
 
