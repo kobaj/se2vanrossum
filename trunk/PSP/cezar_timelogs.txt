@@ -42,19 +42,19 @@ time log:
 
 	- date: Jan 30, 2013
 	  start time: 7:43am
-	  end time: 8:27pm
+	  end time: 8:27am
           phase: indiv doc
 	  comment: Finished Engineering practices and procedures document and shared with team members.
 
 	- date: Feb 5, 2013
 	  start time: 10:30am
-	  end time: 11:50pm
+	  end time: 11:50am
           phase: allocation
 	  comment: Team prepared for the first progress report and allocated modules. 
 
 	- date: Feb 7, 2013
 	  start time: 10:29am
-	  end time: 11:42pm
+	  end time: 11:42am
           phase: progress report
 	  comment: The session was used for conducting a progress report to Dr. Page.
 
@@ -83,14 +83,14 @@ time log:
 	  comment: Finished brute force solver. It successfully finds words in all directions.
 
 	- date: Feb 12, 2013
-	  start time: 10:30pm
-	  end time: 11:44pm
+	  start time: 10:30am
+	  end time: 11:44am
           phase: meeting
 	  comment: Team worked on current multi-level design document along with probe estimates.
 
 	- date: Feb 14, 2013
-	  start time: 10:32pm
-	  end time: 11:45pm
+	  start time: 10:32am
+	  end time: 11:45am
           phase: meeting
 	  comment: Team began preparing for the next progress report and finished the design documents and work for remaining modules. 
 
@@ -132,7 +132,7 @@ time log:
 
 	- date: Feb 26, 2013
 	  start time: 10:30am
-	  end time: 11:50pm
+	  end time: 11:50am
           phase: meeting
 	  comment: team worked on the t9 and t10 documents.
 
@@ -174,14 +174,13 @@ time log:
 
 	- date: Mar 12, 2013
 	  start time: 10:30am
-	  end time: 11:38pm
+	  end time: 11:38am
           phase: meeting
 	  comment: Group discussed bug fixes for create board and other functions.
 
 	- date: Mar 26, 2013
 	  start time: 10:33am
-	  end time: 11:44pm
-          phase: meeting
+	  end time: 11:44pam
 	  comment: Group planned and implemented a progress report for Dr. Page to be presented the following meeting.
 
 	- date: Mar 28, 2013
@@ -216,27 +215,33 @@ time log:
 
 	- date: Apr 16, 2013
 	  start time: 10:30am
-	  end time: 11:45pm
+	  end time: 11:45am
           phase: meeting
 	  comment: The team began planning for Godel's project improvement. 
 
 	- date: Apr 18, 2013
 	  start time: 10:30am
-	  end time: 11:15pm
+	  end time: 11:15am
           phase: cancelled
 	  comment: The meeting with the guest speaker was cancelled.
 
 	- date: Apr 23, 2013
 	  start time: 10:30am
-	  end time: 11:46pm
+	  end time: 11:46am
           phase: meeting
 	  comment: The team allocated work for the cellular automata project.
 
 	- date: Apr 25, 2013
 	  start time: 10:28am
-	  end time: 11:43pm
+	  end time: 11:43am
           phase: meeting
 	  comment: Team split final pieces of the improvements for the cellular automata project and worked independently on them.
+
+	- date: Apr 30, 2013
+	  start time: 10:30am
+	  end time: 11:44am
+          phase: presentation
+	  comment: Team presented Godels revisions.
 
 defect log:
 
