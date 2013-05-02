@@ -250,9 +250,33 @@ om letter/number generation. Also prepared t9/t10 for submission on Thursday
   start time: 1:45 PM
   end time: 4:40PM
   phase: Presentation
-  comment: Did majority of the work needed on the presentation
+  comment: Did majority of the work needed on the presentation this involved all of the slides for my section since I did all the word search generation part I took up the most slides
+
+- date: Apr 9,2013
+  start time: 10:30AM
+  end time: 11:45AM
+  phase: Presentation
+  comment: Presented our project thought it went really well had some interesting questions and saw some places where I could improve my project. Especially in dynamic board generation
+
+- date: Apr 16,2013
+  start time: 10:30AM
+  end time: 11:45AM
+  phase: Presentation
+  comment: Discussed how we will modify the other teams projects and what sections we will be working on for this project. We decided that Jakob will handle the web front end, Cezar and I will handle the reversal and Femi and Clay will handle gif generation
 
 
+- date: Apr 18,2013
+  start time: 6:20PM
+  end time: 8:32PM
+  phase: Presentation
+  comment: Did some learning of team Godel's code mainly putting the debugger within the Python modules so that we can find where we need to modify the state changer so that we can implement the reversal
+
+
+- date: Apr 20,2013
+  start time: 12:41PM
+  end time: 3:12PM
+  phase: Presentation
+  comment: Wrote all the code needed to implement reversal into the project. Cezar handled all of the gui portions of the project. My portion was to implement the reversal button so that it functions correctly. Rather easy as I am rather adept with Python and was able to implement these changes rather simply.
 
 
 defect log:
@@ -338,6 +362,10 @@ defect log:
   fix time: 5
   comment: Jakob pointed out that the letters being placed on the board were following a pattern this was due to the incrementation of the seed by 1 this was fixed and will make it so that the seed is incremented by more than 1 for the rest of them
 
+- date: Apr 20, 2013
+  type: Code
+  fix time: 35
+  comment: Within Godels project we had a Windows exception thrown when the command writer was utilized, what we did was whenever the reversal was utilized the command writer would crash the program so we handled the exception to pass whenever this exception would happen. This was problematic for me as I typically never code on windows machines and never saw something like this before.
 
 
 new objects:
